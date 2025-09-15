@@ -1,6 +1,6 @@
 <template>
     <footer
-        class="w-full bg-transparent py-6 flex items-center justify-center border-t border-current"
+        class="w-full bg-zinc-100 py-6 flex items-center justify-center border-t border-current"
     >
         <a
             href="mailto:hola@foggyhexbcn.com"

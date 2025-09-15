@@ -54,7 +54,7 @@ const archivedEvents = computed(() =>
             class="container mx-auto flex flex-col items-center justify-center py-6"
         >
             <h2
-                class="text-[32px] font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+                class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
             >
                 Próximamente
             </h2>
@@ -70,7 +70,7 @@ const archivedEvents = computed(() =>
         <!-- Future Events -->
         <section id="future-events" class="container mx-auto px-6 py-6">
             <h2
-                class="text-[32px] font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+                class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
             >
                 Próximos Eventos
             </h2>
@@ -102,7 +102,7 @@ const archivedEvents = computed(() =>
         <!-- Past Events -->
         <section id="past-events" class="container mx-auto px-6 py-12">
             <h2
-                class="text-4xl font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+                class="text-4xl bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
             >
                 Eventos Pasados
             </h2>

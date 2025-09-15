@@ -1,5 +1,5 @@
 <template>
-    <header class="w-full bg-transparent px-6 pt-4">
+    <header class="w-full bg-zinc-100 px-6 py-4">
         <div class="container mx-auto grid grid-cols-3 items-center">
             <!-- Left: Navigation -->
             <div class="flex justify-start">
