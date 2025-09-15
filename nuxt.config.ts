@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
-    css: ['~/assets/scss/main.scss', '~/assets/scss/tailwind.css'],
+    css: [
+        '~/assets/scss/main.scss',
+        '~/assets/scss/grain.scss',
+        '~/assets/scss/tailwind.css',
+    ],
     modules: [
         '@nuxt/icon',
         '@nuxtjs/google-fonts',

@@ -1,0 +1,20 @@
+/* Grain overlay fix */
+#sections::before {
+  pointer-events: none; /* don’t block clicks */
+  z-index: 1;           /* push behind content */
+}
+
+.page-section > .content-wrapper {
+  z-index: 100; /* content above */
+}
+
+#page > * {
+  position: relative; /* create stacking context */
+}
+
+img,
+figure,
+a {
+  position: relative;
+  z-index: 100; /* ensure UI elements above grain */
+}

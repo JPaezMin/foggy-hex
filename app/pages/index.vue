@@ -22,13 +22,29 @@ const archivedEvents = computed(() =>
     <div class="container mx-auto min-h-screen text-text space-y-6 py-10">
         <!-- About Section -->
         <section id="about" class="container py-12">
-            <div class="max-w-5xl text-left">
-                <p class="font-heading text-2xl lg:text-4xl break-words">
-                    Somos un colectivo con base de operaciones en Barcelona.
-                    Nacemos de la necesidad de celebrar espacios y escenas que
-                    residen en el margen de nuestra ciudad y a la vez acercar a
-                    ella proyectos internacionales que nos inspiran.
-                </p>
+            <div
+                class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-stretch max-w-6xl mx-auto"
+            >
+                <!-- Text (2/3 of the width on large screens) -->
+                <div
+                    class="lg:col-span-2 flex items-center border-l border-text pl-6"
+                >
+                    <p class="font-heading text-2xl lg:text-4xl leading-snug">
+                        Somos un colectivo con base de operaciones en Barcelona.
+                        Nacemos de la necesidad de celebrar espacios y escenas
+                        que residen en el margen de nuestra ciudad y a la vez
+                        acercar a ella proyectos internacionales que nos
+                        inspiran.
+                    </p>
+                </div>
+                <!-- Image (1/3 width, smaller accent) -->
+                <div class="relative flex justify-center items-center">
+                    <img
+                        src="/images/fh-deco.svg"
+                        alt="Foggy Hex Deco"
+                        class="h-full max-h-[360px] w-auto object-contain opacity-90"
+                    />
+                </div>
             </div>
         </section>
 

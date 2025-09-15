@@ -9,7 +9,7 @@
             <!-- Center: Logo -->
             <NuxtLink to="/" class="flex justify-center">
                 <img
-                    src="/assets/images/logo.png"
+                    src="/assets/images/logo.svg"
                     alt="Foggy Hex BCN"
                     class="w-[175px] h-auto object-contain sm:w-[140px]"
                 />
