@@ -21,11 +21,9 @@ const archivedEvents = computed(() =>
 <template>
     <div class="container mx-auto min-h-screen text-text space-y-6 py-10">
         <!-- About Section -->
-        <section id="about" class="container mx-auto px-6 py-12">
-            <div class="max-w-5xl mx-auto text-center">
-                <p
-                    class="font-heading font-normal text-[40px] leading-[40px] text-accent"
-                >
+        <section id="about" class="container py-12">
+            <div class="max-w-5xl text-left">
+                <p class="font-heading text-2xl lg:text-4xl break-words">
                     Somos un colectivo con base de operaciones en Barcelona.
                     Nacemos de la necesidad de celebrar espacios y escenas que
                     residen en el margen de nuestra ciudad y a la vez acercar a
@@ -39,30 +37,44 @@ const archivedEvents = computed(() =>
             id="current-event"
             class="container mx-auto flex flex-col items-center justify-center py-6"
         >
-            <h2 class="text-[32px] font-heading font-bold mb-8 text-center">
+            <h2
+                class="text-[32px] font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+            >
                 Próximamente
             </h2>
-            <img
-                src="/assets/images/inturist-poster.jpg"
-                alt="Cartel de nuestro próximo evento"
-                class="w-[478px] h-auto object-contain mt-8"
-            />
+            <NuxtLink to="/events/bear-bones-black-zone-uza">
+                <img
+                    src="/assets/images/current-event-poster.jpg"
+                    alt="Cartel de nuestro próximo evento"
+                    class="w-[478px] h-auto object-contain mt-8"
+                />
+            </NuxtLink>
         </section>
 
         <!-- Future Events -->
         <section id="future-events" class="container mx-auto px-6 py-6">
-            <h2 class="text-[32px] font-heading font-bold mb-8 text-center">
+            <h2
+                class="text-[32px] font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+            >
                 Próximos Eventos
             </h2>
 
             <div
                 v-if="upcomingEvents.length"
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                :class="[
+                    'grid gap-8',
+                    upcomingEvents.length === 1
+                        ? 'grid-cols-1'
+                        : upcomingEvents.length === 2
+                          ? 'grid-cols-1 md:grid-cols-2'
+                          : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+                ]"
             >
                 <EventCard
                     v-for="event in upcomingEvents"
                     :key="event.title"
                     :event="event"
+                    :to="`/events/${event.slug}`"
                 />
             </div>
 
@@ -73,8 +85,10 @@ const archivedEvents = computed(() =>
 
         <!-- Past Events -->
         <section id="past-events" class="container mx-auto px-6 py-12">
-            <h2 class="text-4xl font-heading font-bold mb-8 text-center">
-                Archivo
+            <h2
+                class="text-4xl font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
+            >
+                Eventos Pasados
             </h2>
 
             <div

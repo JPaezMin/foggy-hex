@@ -12,7 +12,7 @@ const config: Config = {
         extend: {
             fontFamily: {
                 sans: ['"Work Sans"', 'sans-serif'],
-                heading: ['Neuton', 'serif'],
+                heading: ['"Source Code Pro"', 'serif'],
             },
             colors: {
                 text: '#000',

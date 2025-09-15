@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     ],
     googleFonts: {
         families: {
-            Neuton: [400, 700],
+            'Source+Code+Pro': [400, 700],
             'Work+Sans': [400, 500, 600], // Normal to semi-bold for body
         },
         display: 'swap',

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .title-box {
+    @apply border border-t border-current px-4 py-2;
+  }
+}

@@ -1,0 +1,21 @@
+---
+slug: "bear-bones-black-zone-uza"
+title: "Bear Bones, Lay Low (VE) + Black Zone Myth Chant (FR) + Uza.Zetangas (PE)"
+date: "18/10/25"
+time: "18:30"
+venue: "La Negra Factory, Barcelona"
+ticketUrl: "https://entradium.com/events/foggyhex-bearbones"
+bands:
+  - name: "Bear Bones, Lay Low (Dispari / VEN)"
+    image: "/images/shows/future/bearbones.jpg"
+    bandcamp: "https://bearboneslaylow.bandcamp.com/"
+    description: "Originario de Venezuela y afincado en Bruselas, Ernesto González explora con su proyecto en solitario Bear Bones, Lay Low los climas mutantes de la psicodelia electrónica. Su sonido ha evolucionado de improvisaciones caseras de noise y drone a composiciones vibrantes de sintetizador, donde ritmos hipnóticos se funden con un tratamiento dub de efectos expansivos.Desde 2006 forma parte de la banda de improvisación psicodélica Silvester Anfang / Sylvester Anfang II y ha desarrollado proyectos paralelos como Tav Exotic, junto al productor Weird Dust. Su música ha visto la luz en sellos de culto como KRAAK, Full of Nothing, Sloow Tapes o Troglosound, y más recientemente en dispari, donde en 2024 firmó un remix de Tempentary Dance de Cloud Management junto a productores como Ploy, OKO DJ, Trần Uy Đức y Officium."
+  - name: "Black Zone Myth Chant (Editions Gravats / FRA)"
+    image: "/images/shows/future/bzmc.jpg"
+    bandcamp: "https://blackzonemythchant.bandcamp.com/"
+    description: "Proyecto del multi-instrumentista francés Maxime Primault (también conocido como High Wolf), Black Zone Myth Chant despliega una psicodelia afrocéntrica y footwork hipnótico fusionado con drones experimentales. Su sonido -a menudo descrito como si Sun Ra se fuera a tomar algo con DJ Screw- se articula a través de ritmos complejos, melodías aéreas, voces profundas y una atmósfera ritualista que desafía cualquier categorización. Desde su aparición en el 2011 su debut en casete Straight Cassette alcanzó un estatus de culto, fue recuperado en vinilo por el sello Laitbac y seguido del aclamado álbum Mane Thecel Phares (2015), editado en el sello francés Editions Gravats."
+  - name: "uza.zetangas (Zona Watusa / PER)"
+    image: "/images/shows/future/uza-zetangas.jpg"
+    bandcamp: "https://uzazetangas.bandcamp.com"
+    description: "Miguel Uza y Carlos García (Zetangas) formaron parte a inicios de los 2000 de una de las escenas más ocultas del underground peruano, aquella que exploró con urgencia juvenil la intersección entre el post-punk subterráneo de la Lima de los 80 y la experimentación guitarrera inspirada por Bill Orcutt, Glenn Branca y los primeros Sonic Youth. Con Rayobac -banda de culto que completaba Valentín Yoshimoto a la tercera guitarra y Neto Pérez a la batería- abrieron un camino que inspiró a toda una comunidad de artistas limeños para salir de la clandestinidad de los locales de ensayo. Dos décadas después, y repartidos entre Barcelona y Suecia, Uza y García retoman la conversación este año con un cassette editado por el sello barcelonés Zona Watusa. El resultado combina guitarras retorcidas, bajos y sintetizadores de cadencia dub, electrónica aventurera y un aura que remite tanto a Neil Hagerty como a la estética de la VHS music, el ruido doméstico y la cultura del cassette como archivo emocional."
+---

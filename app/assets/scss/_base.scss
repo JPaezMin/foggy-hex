@@ -8,6 +8,8 @@ body {
 
 h1, h2, h3, h4, h5, h6, .heading-text {
   font-family: $font-heading;
+  line-height: 1;
+  letter-spacing: -1.9075px
 }
 
 p {
@@ -16,8 +18,7 @@ p {
 
 a {
   color: inherit;
-  text-decoration: underline;
-  
+  letter-spacing: -1px;  
   &:hover,
   &:active {
     color: $color-link-hover;
