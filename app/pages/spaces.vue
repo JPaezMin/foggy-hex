@@ -2,9 +2,9 @@
 useSeoMeta({
     title: 'Espacios | Foggy Hex',
     description: 'Espacios con los que hemos colaborado.',
-    ogTitle: 'Espacios | Foggy Hex',
+    ogTitle: 'Espacios con los que colaborámos | Foggy Hex',
     ogDescription:
-        'Colectivo en Barcelona que celebra escenas en los márgenes.',
+        'Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan',
     ogImage: 'https://www.foggyhexbcn.com/about-og.jpg',
     ogUrl: 'https://www.foggyhexbcn.com/about',
 })

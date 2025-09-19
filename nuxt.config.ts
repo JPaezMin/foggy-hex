@@ -42,7 +42,7 @@ export default defineNuxtConfig({
                 {
                     name: 'description',
                     content:
-                        'Foggy Hex — colectivo en Barcelona que celebra escenas en los márgenes y conecta proyectos internacionales que nos inspiran.',
+                        'Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan',
                 },
 
                 // Open Graph defaults

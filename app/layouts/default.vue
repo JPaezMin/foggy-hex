@@ -1,9 +1,11 @@
 <template>
-    <div id="sections">
+    <div id="sections" class="min-h-screen flex flex-col">
         <SiteHeader />
+
         <main id="main-content" class="flex-grow">
             <slot />
         </main>
+
         <SiteFooter />
     </div>
 </template>

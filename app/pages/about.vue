@@ -1,10 +1,10 @@
 <script setup>
 useSeoMeta({
     title: 'Sobre Nosotros | Foggy Hex',
-    description: 'Conoce a Foggy Hex, nuestro colectivo con base en Barcelona.',
+    description: 'Conoce a Foggy Hex',
     ogTitle: 'Sobre Nosotros | Foggy Hex',
     ogDescription:
-        'Colectivo en Barcelona que celebra escenas en los márgenes.',
+        'Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan',
     ogImage: 'https://www.foggyhexbcn.com/about-og.jpg',
     ogUrl: 'https://www.foggyhexbcn.com/about',
 })

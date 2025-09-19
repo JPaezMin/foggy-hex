@@ -4,7 +4,7 @@ title: "Roméo Poirier (BE) + Pablo Volt y J.G.G. (BCN)"
 date: "14/11/25"
 time: "20:30"
 venue: "Casa Montjuic"
-ticketUrl: "https://entradium.com/events/foggyhex-bearbones"
+ticketUrl: ""
 bands:
   - name: "Roméo Poirier (Faitiche / BE)"
     image: "/images/shows/future/romeo-poirier.jpg"

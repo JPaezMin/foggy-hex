@@ -4,7 +4,7 @@ title: "Bear Bones, Lay Low (VE) + Black Zone Myth Chant (FR) + Uza.Zetangas (PE
 date: "18/10/25"
 time: "18:30"
 venue: "La Negra Factory, Barcelona"
-ticketUrl: "https://entradium.com/events/foggyhex-bearbones"
+ticketUrl: ""
 bands:
   - name: "Bear Bones, Lay Low (Dispari / VEN)"
     image: "/images/shows/future/bearbones.jpg"

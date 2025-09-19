@@ -99,6 +99,52 @@ const archivedEvents = computed(() =>
             </p>
         </section>
 
+        <!-- Newsletter Subscription -->
+        <section id="newsletter" class="container mx-auto px-6 py-6">
+            <div class="container mx-auto py-16 border-t border-b border-text">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-5xl mx-auto px-6"
+                >
+                    <!-- Text column -->
+                    <div class="text-left">
+                        <h2 class="font-heading text-3xl mb-4">
+                            Suscríbete a nuestra newsletter.
+                        </h2>
+                        <p class="text-lg text-gray-700 max-w-md">
+                            Únete a nuestra lista de correo para enterarte
+                            primero de los próximos conciertos, novedades y
+                            noticias de Foggy Hex.
+                        </p>
+                    </div>
+
+                    <!-- Form column -->
+                    <div class="flex justify-center md:justify-end w-full">
+                        <form
+                            action="https://foggyhexbcn.us13.list-manage.com/subscribe/post?u=3bf61944f37a5e219e4fdccda&amp;id=c32ef2e9a5&amp;f_id=001b02e9f0"
+                            method="post"
+                            target="_blank"
+                            novalidate
+                            class="flex w-full max-w-md"
+                        >
+                            <input
+                                type="email"
+                                name="EMAIL"
+                                placeholder="Tu correo electrónico"
+                                required
+                                class="flex-grow px-4 py-3 border border-gray-400 rounded-l focus:outline-none focus:ring-2 focus:ring-sky-400"
+                            />
+                            <button
+                                type="submit"
+                                class="bg-black text-white px-6 py-3 rounded-r font-medium hover:bg-gray-800 transition"
+                            >
+                                Suscribirse
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Past Events -->
         <section id="past-events" class="container mx-auto px-6 py-12">
             <h2

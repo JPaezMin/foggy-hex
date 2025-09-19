@@ -53,6 +53,7 @@ const formattedDate = computed(() => {
                 {{ formattedDate }} — {{ event.time }} — {{ event.venue }}
             </p>
             <a
+                v-if="event.ticketUrl"
                 :href="event.ticketUrl"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -60,6 +61,7 @@ const formattedDate = computed(() => {
             >
                 Entradas
             </a>
+            <p v-else>Entradas Próximamente</p>
         </header>
 
         <!-- Bands -->

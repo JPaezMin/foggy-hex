@@ -70,7 +70,7 @@ const menuOpen = ref(false)
 const navItems = [
     { name: 'Nosotros', to: '/about' },
     { name: 'Espacios', to: '/spaces' },
-    { name: 'Foggy Hex DJs', to: '/dj' },
+    //{ name: 'Foggy Hex DJs', to: '/dj' },
 ]
 </script>
 
