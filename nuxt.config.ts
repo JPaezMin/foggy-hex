@@ -55,7 +55,6 @@ export default defineNuxtConfig({
                 },
                 { property: 'og:locale', content: 'es_ES' },
             ],
-            link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
         },
     },
 })
