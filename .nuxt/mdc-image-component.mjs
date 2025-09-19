@@ -1,0 +1,1 @@
+export { default } from "/Users/jorgepaez/sites/foggy/node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue"
