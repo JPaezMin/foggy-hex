@@ -37,7 +37,7 @@ export default defineNuxtConfig({
             },
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Foggy Hex',
+            title: 'Foggy Hex - Conciertos y más',
             meta: [
                 {
                     name: 'description',

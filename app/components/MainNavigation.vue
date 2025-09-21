@@ -1,5 +1,5 @@
 <template>
-    <nav class="px-4 py-6 font-sans text-text">
+    <nav class="relative px-4 py-6 font-sans text-text">
         <div class="flex justify-between items-center">
             <!-- Logo Placeholder (handled separately) -->
             <slot name="logo" />
@@ -7,12 +7,25 @@
             <!-- Desktop Nav -->
             <ul class="hidden 2xl:flex gap-8 items-end">
                 <li v-for="item in navItems" :key="item.name">
+                    <!-- Internal link -->
                     <NuxtLink
+                        v-if="!item.external"
                         :to="item.to"
                         class="text-[22px] leading-normal border-b-2 border-current pb-2"
                     >
                         {{ item.name }}
                     </NuxtLink>
+
+                    <!-- External link -->
+                    <a
+                        v-else
+                        :href="item.href"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[22px] leading-normal border-b-2 border-current pb-2"
+                    >
+                        {{ item.name }}
+                    </a>
                 </li>
             </ul>
 
@@ -46,16 +59,34 @@
         <transition name="fade">
             <ul
                 v-if="menuOpen"
-                class="flex flex-col gap-6 mt-4 md:hidden text-[24px] leading-normal font-sans"
+                class="absolute py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 2xl:hidden text-[24px] leading-normal font-sans"
             >
-                <li v-for="item in navItems" :key="item.name">
+                <li
+                    v-for="item in navItems"
+                    :key="item.name"
+                    class="text-white"
+                >
+                    <!-- Internal link -->
                     <NuxtLink
+                        v-if="!item.external"
                         :to="item.to"
                         class="block border-b-2 border-current pb-4"
                         @click="menuOpen = false"
                     >
                         {{ item.name }}
                     </NuxtLink>
+
+                    <!-- External link -->
+                    <a
+                        v-else
+                        :href="item.href"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block border-b-2 border-current pb-4"
+                        @click="menuOpen = false"
+                    >
+                        {{ item.name }}
+                    </a>
                 </li>
             </ul>
         </transition>
@@ -70,7 +101,12 @@ const menuOpen = ref(false)
 const navItems = [
     { name: 'Nosotros', to: '/about' },
     { name: 'Espacios', to: '/spaces' },
-    //{ name: 'Foggy Hex DJs', to: '/dj' },
+    {
+        name: 'Kiosk Radio',
+        href: 'https://kioskradio.com/label/foggy-hex',
+        external: true,
+    },
+    // { name: 'Foggy Hex DJs', to: '/dj' },
 ]
 </script>
 

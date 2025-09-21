@@ -38,7 +38,9 @@ const archivedEvents = computed(() =>
                     </p>
                 </div>
                 <!-- Image (1/3 width, smaller accent) -->
-                <div class="relative flex justify-center items-center">
+                <div
+                    class="relative hidden lg:flex justify-center items-center"
+                >
                     <img
                         src="/images/fh-deco.svg"
                         alt="Foggy Hex Deco"
@@ -51,7 +53,7 @@ const archivedEvents = computed(() =>
         <!-- Current Event (featured) -->
         <section
             id="current-event"
-            class="container mx-auto flex flex-col items-center justify-center py-6"
+            class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
         >
             <h2
                 class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
@@ -100,11 +102,10 @@ const archivedEvents = computed(() =>
         </section>
 
         <!-- Newsletter Subscription -->
-        <section id="newsletter" class="container mx-auto px-6 py-6">
-            <div class="container mx-auto py-16 border-t border-b border-text">
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-5xl mx-auto px-6"
-                >
+        <!-- Newsletter Subscription -->
+        <section id="newsletter" class="border-t border-b border-text">
+            <div class="max-w-5xl mx-auto py-16 px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
                     <!-- Text column -->
                     <div class="text-left">
                         <h2 class="font-heading text-3xl mb-4">
@@ -118,13 +119,13 @@ const archivedEvents = computed(() =>
                     </div>
 
                     <!-- Form column -->
-                    <div class="flex justify-center md:justify-end w-full">
+                    <div class="w-full">
                         <form
                             action="https://foggyhexbcn.us13.list-manage.com/subscribe/post?u=3bf61944f37a5e219e4fdccda&amp;id=c32ef2e9a5&amp;f_id=001b02e9f0"
                             method="post"
                             target="_blank"
                             novalidate
-                            class="flex w-full max-w-md"
+                            class="flex w-full md:max-w-md"
                         >
                             <input
                                 type="email"
