@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "deploy": "yarn generate && git checkout deploy && rsync -a --delete --exclude='.git' --exclude='.cpanel.yml' .output/public/ . && git add -A && git commit -m 'Deploy fresh static build' && git push origin deploy --force-with-lease && git checkout main",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
