@@ -36,7 +36,7 @@ useSeoMeta({
                         href="https://www.instagram.com/dublab.cat/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         El Teatro de La Rubia
                         <span class="text-gray-500"
@@ -49,7 +49,7 @@ useSeoMeta({
                         href="https://www.instagram.com/elpumarejo"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         El Pumarejo Refugio Cultural
                     </a>
@@ -59,7 +59,7 @@ useSeoMeta({
                         href="https://hangar.org/en/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         Hangar
                     </a>
@@ -69,7 +69,7 @@ useSeoMeta({
                         href="https://www.instagram.com/if.publications/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         IF Publications Studio
                     </a>
@@ -79,7 +79,7 @@ useSeoMeta({
                         href="https://www.instagram.com/lanegrafactory"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         La Negra Factory
                     </a>
@@ -89,7 +89,7 @@ useSeoMeta({
                         href="https://www.instagram.com/niu_espai/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b border-text pb-2 hover:text-accent transition-colors"
+                        class="block hover:text-accent transition-colors"
                     >
                         NIU Espacio Artístico
                     </a>

@@ -55,6 +55,31 @@ export default defineNuxtConfig({
                 },
                 { property: 'og:locale', content: 'es_ES' },
             ],
+            link: [
+                {
+                    rel: 'icon',
+                    type: 'image/x-icon',
+                    href: '/favicons/favicon.ico',
+                },
+                {
+                    rel: 'apple-touch-icon',
+                    sizes: '180x180',
+                    href: '/favicons/favicon-180x180.png',
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '32x32',
+                    href: '/favicons/favicon-32x32.png',
+                },
+                {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '192x192',
+                    href: '/favicons/favicon-192x192.png',
+                },
+                { rel: 'manifest', href: '/favicons/site.webmanifest' },
+            ],
         },
     },
 })

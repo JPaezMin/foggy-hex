@@ -70,7 +70,7 @@
                     <NuxtLink
                         v-if="!item.external"
                         :to="item.to"
-                        class="block border-b-2 border-current pb-4"
+                        class="block border-b-2 border-current pb-4 whitespace-nowrap"
                         @click="menuOpen = false"
                     >
                         {{ item.name }}
@@ -82,7 +82,7 @@
                         :href="item.href"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="block border-b-2 border-current pb-4"
+                        class="block border-b-2 border-current pb-4 whitespace-nowrap"
                         @click="menuOpen = false"
                     >
                         {{ item.name }}

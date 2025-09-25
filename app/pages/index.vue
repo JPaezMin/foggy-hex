@@ -102,9 +102,10 @@ const archivedEvents = computed(() =>
         </section>
 
         <!-- Newsletter Subscription -->
-        <!-- Newsletter Subscription -->
-        <section id="newsletter" class="border-t border-b border-text">
-            <div class="max-w-5xl mx-auto py-16 px-4 md:px-6">
+        <section id="newsletter" class="container mx-auto px-6 py-6">
+            <div
+                class="border-t border border-text mx-auto py-8 px-8 lg:px-16 lg:py-16"
+            >
                 <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
                     <!-- Text column -->
                     <div class="text-left">
@@ -125,18 +126,18 @@ const archivedEvents = computed(() =>
                             method="post"
                             target="_blank"
                             novalidate
-                            class="flex w-full md:max-w-md"
+                            class="flex flex-col sm:flex-row w-full md:max-w-md"
                         >
                             <input
                                 type="email"
                                 name="EMAIL"
                                 placeholder="Tu correo electrónico"
                                 required
-                                class="flex-grow px-4 py-3 border border-gray-400 rounded-l focus:outline-none focus:ring-2 focus:ring-sky-400"
+                                class="flex-grow px-4 py-3 border border-gray-400 sm:rounded-l sm:rounded-r-none rounded focus:outline-none focus:ring-2 focus:ring-sky-400"
                             />
                             <button
                                 type="submit"
-                                class="bg-black text-white px-6 py-3 rounded-r font-medium hover:bg-gray-800 transition"
+                                class="bg-black text-white px-6 py-3 sm:rounded-r sm:rounded-l-none rounded font-medium hover:bg-gray-800 transition mt-2 sm:mt-0"
                             >
                                 Suscribirse
                             </button>
@@ -156,7 +157,7 @@ const archivedEvents = computed(() =>
 
             <div
                 v-if="archivedEvents && archivedEvents.length"
-                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
                 <div
                     v-for="event in archivedEvents"

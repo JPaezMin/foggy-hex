@@ -30,7 +30,7 @@ useSeoMeta({
         <!-- Collaborations -->
         <section class="max-w-5xl relative z-10">
             <h2
-                class="font-heading text-2xl text-text mb-6 border-b border-text inline-block"
+                class="font-heading text-[24px] leading-relaxed text-text mb-6 inline-block"
             >
                 Hemos tenido la suerte de trabajar, entre otros, con:
             </h2>
@@ -38,72 +38,215 @@ useSeoMeta({
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 font-sans text-base leading-snug text-text mt-4"
             >
                 <li>
-                    Broken Water
+                    <a
+                        href="https://brokenwatermusic.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Broken Water
+                    </a>
                     <span class="text-gray-500">(Night People / US)</span>
                 </li>
                 <li>
-                    Chloe Frieda
+                    <a
+                        href="https://www.nts.live/shows/alien-jams"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Chloe Frieda
+                    </a>
                     <span class="text-gray-500">(NTS / Alien Jams / UK)</span>
                 </li>
                 <li>
-                    Daniel Bachman
+                    <a
+                        href="https://danielbachman.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Daniel Bachman
+                    </a>
                     <span class="text-gray-500">(Three Lobed / US)</span>
                 </li>
                 <li>
-                    Don't DJ
+                    <a
+                        href="https://soundcloud.com/dont-dj-1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Don't DJ
+                    </a>
                     <span class="text-gray-500">(Berceuse Heroique / DE)</span>
                 </li>
                 <li>
-                    Gordon Ashworth
+                    <a
+                        href="https://www.dublab.cat"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Dublab Barcelona
+                        <span class="text-gray-500">(CAT)</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://gordonashworth.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Gordon Ashworth
+                    </a>
                     <span class="text-gray-500">(Olvido Records / US)</span>
                 </li>
                 <li>
-                    James Blackshaw
+                    <a
+                        href="https://jamesblackshaw.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        James Blackshaw
+                    </a>
                     <span class="text-gray-500">(Important / US)</span>
                 </li>
                 <li>
-                    Jung An Tagen
+                    <a
+                        href="https://jungantagen.bandcamp.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Jung An Tagen
+                    </a>
                     <span class="text-gray-500">(Mego Editions / AT)</span>
                 </li>
                 <li>
-                    Marisa Anderson
+                    <a
+                        href="https://kioskradio.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Kiosk
+                    </a>
+                    <span class="text-gray-500">(BE)</span>
+                </li>
+                <li>
+                    <a
+                        href="https://marisaanderson.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Marisa Anderson
+                    </a>
                     <span class="text-gray-500">(Thrill Jockey / US)</span>
                 </li>
                 <li>
-                    Maxwell August Croy
+                    <a
+                        href="https://maxwellaugustcroy.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Maxwell August Croy
+                    </a>
                     <span class="text-gray-500">(Root Strata / US)</span>
                 </li>
                 <li>
-                    Mope Grooves
+                    <a
+                        href="https://mopegrooves.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Mope Grooves
+                    </a>
                     <span class="text-gray-500">(See My Friends / US)</span>
                 </li>
                 <li>
-                    Mississippi Records <span class="text-gray-500">(US)</span>
+                    <a
+                        href="https://mississippirecords.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Mississippi Records
+                    </a>
+                    <span class="text-gray-500">(US)</span>
                 </li>
                 <li>
-                    Noveller
+                    <a
+                        href="https://noveller.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Noveller
+                    </a>
                     <span class="text-gray-500">(Fire Records / US)</span>
                 </li>
                 <li>
-                    Parris
+                    <a
+                        href="https://www.nts.live"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        NTS Radio
+                        <span class="text-gray-500">(UK)</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://paranoiseradio.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Paranoise Radio
+                        <span class="text-gray-500">(GR)</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://soundcloud.com/parris_dj"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Parris
+                    </a>
                     <span class="text-gray-500"
                         >(Idle Hands / Trilogy Tapes / UK)</span
                     >
                 </li>
                 <li>
-                    Shiva Feshareki
+                    <a
+                        href="https://shivafeshareki.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Shiva Feshareki
+                    </a>
                     <span class="text-gray-500">(Matière Mémoire / UK)</span>
                 </li>
                 <li>
-                    Steve Hauschildt
+                    <a
+                        href="https://stevehauschildt.bandcamp.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Steve Hauschildt
+                    </a>
                     <span class="text-gray-500">(Kranky / US)</span>
                 </li>
                 <li>
-                    The Mountain Goats
+                    <a
+                        href="https://www.mountain-goats.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        The Mountain Goats
+                    </a>
                     <span class="text-gray-500">(Merge / US)</span>
                 </li>
                 <li>
-                    The Woolen Men
+                    <a
+                        href="https://woolenmen.bandcamp.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        The Woolen Men
+                    </a>
                     <span class="text-gray-500">(Woodsist / US)</span>
                 </li>
             </ul>
