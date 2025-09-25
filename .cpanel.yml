@@ -1,0 +1,15 @@
+---
+deployment:
+  tasks:
+    # Ensure repo on the server matches remote
+    - cd /home/foggyhex/repositories/foggy-hex && git fetch origin deploy && git reset --hard origin/deploy
+
+    # Set the deploy target directory
+    - export DEPLOYPATH=/home/foggyhex/public_html/
+
+    # Sync files (excluding .git), delete removed ones, preserve permissions
+    - /usr/bin/rsync -a --delete --exclude='.git' ./ $DEPLOYPATH
+
+    # Optionally ensure correct permissions (folders/files)
+    - find $DEPLOYPATH -type d -exec chmod 755 '{}' \;
+    - find $DEPLOYPATH -type f -exec chmod 644 '{}' \;
