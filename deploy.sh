@@ -40,6 +40,13 @@ else
   git checkout -b deploy
 fi
 
+# SAFETY CHECK: Ensure we are really on deploy
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" != "deploy" ]; then
+  echo "❌ Not on deploy branch! Aborting clean step to avoid wiping main."
+  exit 1
+fi
+
 # 4. Clean everything except .git
 echo "🧹 Cleaning deploy branch..."
 find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
