@@ -1,0 +1,1 @@
+export { default } from "file:///Users/jorgepaez/sites/foggy-hex/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
