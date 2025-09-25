@@ -1,25 +1,22 @@
 #!/bin/bash
 set -euo pipefail
 
-# Always resolve to repo root (where this script lives)
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$PROJECT_DIR"
 
 echo "🚀 Starting deployment from $(pwd)"
 
-# 1. Ensure we are on main and up-to-date
+# 1. Ensure main branch is clean and up-to-date
 git checkout main
 git pull origin main
 
-# 1.1 Refuse if uncommitted changes
 if ! git diff --quiet || ! git diff --cached --quiet; then
   echo "❌ You have uncommitted changes on main. Commit or stash before deploying."
   exit 1
 fi
 
-# 1.2 Ensure .cpanel.yml exists on main
 if [ ! -f ".cpanel.yml" ]; then
-  echo "❌ .cpanel.yml is missing on main branch. Deployment aborted."
+  echo "❌ .cpanel.yml is missing on main. Deployment aborted."
   exit 1
 fi
 
@@ -27,36 +24,41 @@ fi
 echo "🛠️ Generating static site..."
 yarn generate
 
-# 2.1 Verify build exists
 if [ ! -d ".output/public" ]; then
   echo "❌ Build failed: .output/public not found"
   exit 1
 fi
 
-# 3. Switch/create deploy branch
+# 3. Copy build to a temp folder
+echo "📦 Preparing temp deploy folder..."
+rm -rf .deploy-tmp
+mkdir .deploy-tmp
+rsync -a .output/public/ .deploy-tmp/
+
+# 4. Switch/create deploy branch
 if git show-ref --quiet refs/heads/deploy; then
   git checkout deploy
 else
   git checkout -b deploy
 fi
 
-# SAFETY CHECK: Ensure we are really on deploy
+# Safety check
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$CURRENT_BRANCH" != "deploy" ]; then
-  echo "❌ Not on deploy branch! Aborting clean step to avoid wiping main."
+  echo "❌ Not on deploy branch! Aborting."
   exit 1
 fi
 
-# 4. Clean everything except .git
+# 5. Clean deploy branch except .git
 echo "🧹 Cleaning deploy branch..."
 find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 
-# 5. Copy static build + .cpanel.yml
-echo "📂 Copying build and .cpanel.yml..."
-rsync -a .output/public/ .
+# 6. Copy build + .cpanel.yml into deploy
+echo "📂 Copying build + .cpanel.yml..."
+rsync -a .deploy-tmp/ .
 git checkout main -- .cpanel.yml
 
-# 6. Commit changes if any
+# 7. Commit changes if any
 git add -A
 if git diff --cached --quiet; then
   echo "ℹ️ No changes to commit."
@@ -64,11 +66,12 @@ else
   git commit -m "Deploy fresh static build"
 fi
 
-# 7. Push deploy branch
+# 8. Push deploy branch
 echo "⬆️ Pushing deploy branch..."
 git push origin deploy --force-with-lease
 
-# 8. Switch back to main
+# 9. Cleanup and return to main
+rm -rf .deploy-tmp
 git checkout main
 
 echo "✅ Deployment finished successfully!"
