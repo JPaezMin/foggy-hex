@@ -123,7 +123,7 @@ useSeoMeta({
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Kiosk
+                        Kiosk Radio
                     </a>
                     <span class="text-gray-500">(BE)</span>
                 </li>

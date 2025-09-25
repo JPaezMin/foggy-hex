@@ -16,6 +16,33 @@ const upcomingEvents = computed(() =>
 const archivedEvents = computed(() =>
     (pastEvents.value ?? []).filter((event) => new Date(event.date) < today)
 )
+
+const formatDate = (dateString?: string | null): string => {
+    if (!dateString) return ''
+
+    // Handle ISO (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ)
+    if (/^\d{4}-\d{2}-\d{2}/.test(dateString)) {
+        const iso = dateString.split('T')[0] ?? ''
+        const parts = iso.split('-')
+        if (parts.length === 3) {
+            const [y, m, d] = parts
+            return `${d}/${m}/${y}`
+        }
+    }
+
+    // Handle DD/MM/YYYY or DD/MM/YY
+    const parts = dateString.split('/')
+    if (parts.length === 3) {
+        const [dd, mm, yy] = parts
+        if (dd && mm && yy) {
+            const fullYear = yy.length === 2 ? `20${yy}` : yy
+            return `${dd.padStart(2, '0')}/${mm.padStart(2, '0')}/${fullYear}`
+        }
+    }
+
+    // Fallback → return as-is
+    return dateString
+}
 </script>
 
 <template>
@@ -175,7 +202,7 @@ const archivedEvents = computed(() =>
                         {{ event.title }}
                     </h3>
                     <p class="font-sans text-sm text-center text-gray-600">
-                        {{ event.date }} — {{ event.venue }}
+                        {{ formatDate(event.date) }} — {{ event.venue }}
                     </p>
                 </div>
             </div>
