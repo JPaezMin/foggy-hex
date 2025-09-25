@@ -1,0 +1,1 @@
+export { default } from "/Users/jorgepaez/sites/foggy-hex/node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue"

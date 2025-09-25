@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    # Ensure the cPanel repo matches remote (force reset) — using probably available paths
+    - cd /home/foggyhex/repositories/foggy-hex && git fetch origin deploy && git reset --hard origin/deploy
+
+    # Set the target directory for deployment
+    - export DEPLOYPATH=/home/foggyhex/public_html/
+
+    # Copy files, excluding .git, delete removed ones
+    # Try with rsync if available
+    - /usr/bin/rsync -a --delete --exclude='.git' ./ $DEPLOYPATH || /bin/rsync -a --delete --exclude='.git' ./ $DEPLOYPATH || cp -a ./ $DEPLOYPATH
+
+    # Optionally, set permissions
+    - find $DEPLOYPATH -type d -exec chmod 755 '{}' \;
+    - find $DEPLOYPATH -type f -exec chmod 644 '{}' \;
