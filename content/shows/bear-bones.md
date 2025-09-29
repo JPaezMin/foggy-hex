@@ -1,6 +1,6 @@
 ---
 slug: "bear-bones-black-zone-uza"
-title: "Bear Bones, Lay Low (VE) + Black Zone Myth Chant (FR) + Uza.Zetangas (PE)"
+title: "Bear Bones, Lay Low (VE) + Black Zone Myth Chant (FR) + Uza.Zetangas (PE) + DJ Watusawa (NL) + Taki Onqoy (PE)"
 date: "18/10/25"
 time: "18:30"
 venue: "La Negra Factory, Barcelona"
@@ -18,4 +18,12 @@ bands:
     image: "/images/shows/future/uza-zetangas.jpg"
     bandcamp: "https://uzazetangas.bandcamp.com"
     description: "Miguel Uza y Carlos García (Zetangas) formaron parte a inicios de los 2000 de una de las escenas más ocultas del underground peruano, aquella que exploró con urgencia juvenil la intersección entre el post-punk subterráneo de la Lima de los 80 y la experimentación guitarrera inspirada por Bill Orcutt, Glenn Branca y los primeros Sonic Youth. Con Rayobac -banda de culto que completaba Valentín Yoshimoto a la tercera guitarra y Neto Pérez a la batería- abrieron un camino que inspiró a toda una comunidad de artistas limeños para salir de la clandestinidad de los locales de ensayo. Dos décadas después, y repartidos entre Barcelona y Suecia, Uza y García retoman la conversación este año con un cassette editado por el sello barcelonés Zona Watusa. El resultado combina guitarras retorcidas, bajos y sintetizadores de cadencia dub, electrónica aventurera y un aura que remite tanto a Neil Hagerty como a la estética de la VHS music, el ruido doméstico y la cultura del cassette como archivo emocional."
+  - name: "DJ Watusawa (Zona Watusa / NL)"
+    image: "/images/shows/future/dj-watusawa.jpg"
+    bandcamp: "https://soundcloud.com/djwatusawa"
+    description: "DJ Watusawa (Holanda) es una de esas figuras que se mueven en varios frentes a la vez. Creador de los sellos Zona Watusa y Selvamancer combina la arqueología sonora con la búsqueda de nuevas derivas. En paralelo, golpea metales en Gamelan Barasvara, la única formación de gamelán activa en España. Ha sido colaborador habitual de radios como Operator (Róterdam) y dublab (Barcelona), y actualmente mantiene una residencia en Repeater Radio (Londres)."
+  - name: "Taki Onqoy (Foggy Hex / Kiosk Radio / PE)"
+    image: "/images/shows/future/taki.jpg"
+    bandcamp: "https://soundcloud.com/takiononqoy"
+    description: "Miembro fundador de Foggy Hex, Taki Onqoy explora con ingenua fascinación el cruce entre la electrónica leftfield, el pop experimental y esa “otra música” atravesada por influencias misteriosas y globales. Además de ejercer como curador artístico del colectivo también está al frente de la residencia mensual Outsiders de Foggy Hex en Kiosk Radio (Bélgica). Ha colaborado con emisoras como WFMU (New Jersey) y dublab (Barcelona y Los Ángeles), y conduce Tower of Echo, programa mensual en Paranoise Radio (Tesalónica), donde articula una narrativa sonora entre la investigación, la intuición y la deriva experimental."      
 ---
