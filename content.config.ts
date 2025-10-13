@@ -5,8 +5,18 @@ export const ShowSchema = z.object({
     slug: z.string(),
     title: z.string(),
     date: z.string(),
+    time: z.string(),
     venue: z.string(),
-    ticketUrl: z.string().url(),
+    ticketUrl: z.string().url().optional(),
+    schedule: z
+        .array(
+            z.object({
+                title: z.string(),
+                subtitle: z.string().optional(),
+                time: z.string(),
+            })
+        )
+        .optional(),
     bands: z.array(
         z.object({
             name: z.string(),
@@ -52,6 +62,15 @@ export default defineContentConfig({
                 time: z.string(),
                 venue: z.string(),
                 ticketUrl: z.string().optional(),
+                schedule: z
+                    .array(
+                        z.object({
+                            title: z.string(),
+                            subtitle: z.string().optional(),
+                            time: z.string(),
+                        })
+                    )
+                    .optional(),
                 bands: z.array(
                     z.object({
                         name: z.string(),

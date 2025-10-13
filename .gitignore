@@ -20,3 +20,21 @@ logs
 .env
 .env.*
 !.env.example
+
+# Generated build artifacts
+.data/
+_payload.json
+200.html
+404.html
+dist
+index.html
+_nuxt/
+__nuxt_content/
+about/
+css/
+dj/
+events/
+favicons/
+fonts/
+images/
+spaces/

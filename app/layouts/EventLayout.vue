@@ -6,6 +6,12 @@ interface Band {
     description: string
 }
 
+interface ScheduleItem {
+    title: string
+    subtitle?: string
+    time: string
+}
+
 interface Show {
     title: string
     date: string
@@ -13,6 +19,7 @@ interface Show {
     venue: string
     ticketUrl: string
     bands: Band[]
+    schedule?: ScheduleItem[]
 }
 
 const props = defineProps<{ event: Show }>()
@@ -45,13 +52,43 @@ const formattedDate = computed(() => {
 <template>
     <article class="container mx-auto px-6 py-16 space-y-24">
         <!-- Header -->
-        <header class="text-center space-y-4">
+        <header class="text-center">
             <h1 class="font-heading text-[40px] leading-tight text-accent">
                 {{ event.title }}
             </h1>
-            <p class="font-sans text-lg">
+            <p class="font-sans text-lg mt-5">
                 {{ formattedDate }} — {{ event.time }} — {{ event.venue }}
             </p>
+            <div v-if="event.schedule?.length" class="mt-10 mb-10">
+                <div
+                    class="max-w-2xl mx-auto border border-text/10 bg-white/80 shadow-sm"
+                >
+                    <ul class="divide-y divide-text/10">
+                        <li
+                            v-for="item in event.schedule"
+                            :key="`${item.title}-${item.time}`"
+                            class="flex flex-col gap-2 px-6 py-4 text-left sm:flex-row sm:items-center sm:justify-between"
+                        >
+                            <div>
+                                <p class="font-heading text-xl text-accent">
+                                    {{ item.title }}
+                                </p>
+                                <p
+                                    v-if="item.subtitle"
+                                    class="mt-1 font-sans text-xs uppercase tracking-[0.25em] text-text/60"
+                                >
+                                    {{ item.subtitle }}
+                                </p>
+                            </div>
+                            <p
+                                class="font-sans text-sm uppercase tracking-[0.2em] text-text/80 sm:text-right"
+                            >
+                                {{ item.time }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <a
                 v-if="event.ticketUrl"
                 :href="event.ticketUrl"

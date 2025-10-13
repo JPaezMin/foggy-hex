@@ -78,7 +78,7 @@ export default defineNuxtConfig({
                     sizes: '192x192',
                     href: '/favicons/favicon-192x192.png',
                 },
-                { rel: 'manifest', href: '/favicons/site.webmanifest' },
+                { rel: 'manifest', href: '/site.webmanifest' },
             ],
         },
     },
