@@ -71,7 +71,7 @@ const formattedDate = computed(() => {
             <p v-else class="mt-6 font-sans text-base text-text">
                 Entradas Próximamente
             </p>
-            <div v-if="event.schedule?.length" class="mt-20 mb-24">
+            <div v-if="event.schedule?.length" class="mt-10">
                 <div
                     class="max-w-2xl mx-auto border border-text/10 bg-white/80 shadow-sm"
                 >
