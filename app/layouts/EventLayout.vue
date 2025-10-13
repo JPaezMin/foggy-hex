@@ -57,9 +57,21 @@ const formattedDate = computed(() => {
                 {{ event.title }}
             </h1>
             <p class="font-sans text-lg mt-5">
-                {{ formattedDate }} — {{ event.time }} — {{ event.venue }}
+                {{ formattedDate }} - {{ event.time }} - {{ event.venue }}
             </p>
-            <div v-if="event.schedule?.length" class="mt-10 mb-10">
+            <a
+                v-if="event.ticketUrl"
+                :href="event.ticketUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block mt-6 px-6 py-2 border-2 border-text text-text font-sans hover:bg-text hover:text-background transition"
+            >
+                Entradas
+            </a>
+            <p v-else class="mt-6 font-sans text-base text-text">
+                Entradas Próximamente
+            </p>
+            <div v-if="event.schedule?.length" class="mt-20 mb-24">
                 <div
                     class="max-w-2xl mx-auto border border-text/10 bg-white/80 shadow-sm"
                 >
@@ -89,16 +101,6 @@ const formattedDate = computed(() => {
                     </ul>
                 </div>
             </div>
-            <a
-                v-if="event.ticketUrl"
-                :href="event.ticketUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block mt-4 px-6 py-2 border-2 border-text text-text font-sans hover:bg-text hover:text-background transition"
-            >
-                Entradas
-            </a>
-            <p v-else>Entradas Próximamente</p>
         </header>
 
         <!-- Bands -->
