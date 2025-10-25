@@ -8,40 +8,123 @@ const { data: pastEvents } = await useAsyncData('past-events', () =>
 )
 
 const today = new Date()
+const startOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+)
+
+const parseEventDate = (dateString?: string | null): Date | null => {
+    if (!dateString) return null
+    const raw = dateString.trim()
+    if (!raw) return null
+
+    if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
+        const iso = raw.split('T')[0] ?? ''
+        const parts = iso.split('-').map((part) => part.trim())
+        if (parts.length === 3) {
+            const [y, m, d] = parts
+            const year = Number.parseInt(y, 10)
+            const month = Number.parseInt(m, 10)
+            const day = Number.parseInt(d, 10)
+            if (
+                Number.isInteger(year) &&
+                Number.isInteger(month) &&
+                Number.isInteger(day) &&
+                year >= 1900 &&
+                year <= 3000 &&
+                month >= 1 &&
+                month <= 12 &&
+                day >= 1 &&
+                day <= 31
+            ) {
+                const parsed = new Date(year, month - 1, day)
+                if (!Number.isNaN(parsed.getTime())) {
+                    return parsed
+                }
+            }
+        }
+    }
+
+    if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(raw)) {
+        const [dd, mm, yy] = raw.split('/').map((part) => part.trim())
+        const day = Number.parseInt(dd, 10)
+        const month = Number.parseInt(mm, 10)
+        const year = Number.parseInt(yy.length === 2 ? `20${yy}` : yy, 10)
+        if (
+            Number.isInteger(year) &&
+            Number.isInteger(month) &&
+            Number.isInteger(day) &&
+            year >= 1900 &&
+            year <= 3000 &&
+            month >= 1 &&
+            month <= 12 &&
+            day >= 1 &&
+            day <= 31
+        ) {
+            const parsed = new Date(year, month - 1, day)
+            if (!Number.isNaN(parsed.getTime())) {
+                return parsed
+            }
+        }
+    }
+
+    const fallback = new Date(raw)
+    if (Number.isNaN(fallback.getTime())) {
+        return null
+    }
+    const fallbackYear = fallback.getFullYear()
+    if (fallbackYear < 1900 || fallbackYear > 3000) {
+        return null
+    }
+    return fallback
+}
 
 const upcomingEvents = computed(() =>
-    (futureEvents.value ?? []).filter((event) => new Date(event.date) >= today)
+    (futureEvents.value ?? []).filter((event) => {
+        const eventDate = parseEventDate(event.date)
+        return !eventDate || eventDate >= startOfToday
+    })
 )
 
 const archivedEvents = computed(() =>
-    (pastEvents.value ?? []).filter((event) => new Date(event.date) < today)
+    (pastEvents.value ?? []).filter((event) => {
+        const eventDate = parseEventDate(event.date)
+        return !eventDate || eventDate < startOfToday
+    })
 )
 
 const formatDate = (dateString?: string | null): string => {
     if (!dateString) return ''
 
+    const raw = dateString.trim()
+
     // Handle ISO (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ)
-    if (/^\d{4}-\d{2}-\d{2}/.test(dateString)) {
-        const iso = dateString.split('T')[0] ?? ''
-        const parts = iso.split('-')
+    if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
+        const iso = raw.split('T')[0] ?? ''
+        const parts = iso.split('-').map((part) => part.trim())
         if (parts.length === 3) {
             const [y, m, d] = parts
-            return `${d}/${m}/${y}`
+            const formattedDay = d.padStart(2, '0')
+            const formattedMonth = m.padStart(2, '0')
+            return formattedDay + '/' + formattedMonth + '/' + y
         }
     }
 
     // Handle DD/MM/YYYY or DD/MM/YY
-    const parts = dateString.split('/')
+    const parts = raw.split('/').map((part) => part.trim())
     if (parts.length === 3) {
         const [dd, mm, yy] = parts
         if (dd && mm && yy) {
-            const fullYear = yy.length === 2 ? `20${yy}` : yy
-            return `${dd.padStart(2, '0')}/${mm.padStart(2, '0')}/${fullYear}`
+            const fullYear = yy.length === 2 ? '20' + yy : yy
+            const formattedDay = dd.padStart(2, '0')
+            const formattedMonth = mm.padStart(2, '0')
+            return formattedDay + '/' + formattedMonth + '/' + fullYear
         }
     }
 
-    // Fallback → return as-is
-    return dateString
+    // Fallback: return as-is
+    return raw
 }
 </script>
 
@@ -87,7 +170,7 @@ const formatDate = (dateString?: string | null): string => {
             >
                 Próximamente
             </h2>
-            <NuxtLink to="/events/bear-bones-black-zone-uza">
+            <NuxtLink to="/events/poirier-volt-jgg">
                 <img
                     src="/assets/images/current-event-poster.jpg"
                     alt="Cartel de nuestro próximo evento"

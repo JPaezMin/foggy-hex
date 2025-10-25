@@ -2,7 +2,7 @@
 slug: 'poirier-volt-jgg'
 title: 'Roméo Poirier (BE) + Pablo Volt y J.G.G. (BCN)'
 date: '14/11/25'
-time: '20:30'
+time: '20:00'
 venue: 'Casa Montjuic'
 ticketUrl: 'https://link.dice.fm/Tf4538739336'
 bands:
