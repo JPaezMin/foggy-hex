@@ -33,6 +33,16 @@ useSeoMeta({
             <ul class="space-y-4 font-sans text-base leading-snug text-text">
                 <li>
                     <a
+                        href="https://www.casamontjuic.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block hover:text-accent transition-colors"
+                    >
+                        Casa Montjuic
+                    </a>
+                </li>
+                <li>
+                    <a
                         href="https://www.instagram.com/dublab.cat/"
                         target="_blank"
                         rel="noopener noreferrer"

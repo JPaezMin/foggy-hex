@@ -1,5 +1,5 @@
 ---
-slug: 'hekura-jordi-santanach'
+slug: 'hekura'
 title: 'Hekura (BCN) presenta: "Two Lonely Space Pilots" + Artista invitado por confirmar'
 date: 'TBC'
 time: 'TBC'
