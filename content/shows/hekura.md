@@ -1,7 +1,7 @@
 ---
 slug: 'hekura-jordi-santanach'
 title: 'Hekura (BCN) presenta: "Two Lonely Space Pilots" + Jordi Santanach (BCN) presenta: "Strata"'
-date: '12/12/25'
+date: '11/12/25'
 time: '20:00'
 venue: 'Casa Montjuic'
 ticketUrl: ''
