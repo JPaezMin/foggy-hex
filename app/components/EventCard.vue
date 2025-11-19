@@ -24,14 +24,19 @@
         <div class="flex-1 flex flex-col justify-between text-center">
             <!-- Title (max 2 lines, fixed height) -->
             <NuxtLink
+                v-if="!isExpired"
                 :to="`/events/${event.slug}`"
                 class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem] underline decoration-inherit decoration-1 underline-offset-4"
-                :class="isExpired ? 'pointer-events-none cursor-not-allowed' : ''"
-                :tabindex="isExpired ? -1 : undefined"
-                :aria-disabled="isExpired ? 'true' : undefined"
             >
                 {{ event.title }}
             </NuxtLink>
+            <p
+                v-else
+                class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem] opacity-70"
+                aria-disabled="true"
+            >
+                {{ event.title }}
+            </p>
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="font-sans text-base text-gray-600 min-h-[1.5rem]">
