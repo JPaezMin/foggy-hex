@@ -100,6 +100,7 @@ const menuOpen = ref(false)
 
 const navItems = [
     { name: 'Nosotros', to: '/about' },
+    // { name: 'Agenda', to: '/agenda' },
     { name: 'Espacios', to: '/spaces' },
     {
         name: 'Kiosk Radio',

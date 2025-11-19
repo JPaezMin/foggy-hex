@@ -1,12 +1,23 @@
 <template>
-    <article class="bg-white title-box p-4 flex flex-col">
+    <article
+        class="bg-white title-box p-4 flex flex-col transition relative"
+        :class="isExpired ? 'opacity-60' : ''"
+        :aria-disabled="isExpired ? 'true' : 'false'"
+    >
         <!-- Image -->
-        <div class="w-full aspect-[16/9] overflow-hidden mb-4">
+        <div class="w-full aspect-[16/9] overflow-hidden mb-4 relative">
             <img
                 :src="event.image"
                 :alt="event.title"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition duration-300"
+                :class="isExpired ? 'grayscale scale-105' : ''"
             />
+            <div
+                v-if="isExpired"
+                class="absolute inset-0 bg-black/65 text-white font-heading text-sm uppercase tracking-[0.3em] flex items-center justify-center"
+            >
+                Evento pasado
+            </div>
         </div>
 
         <!-- Text content -->
@@ -15,13 +26,16 @@
             <NuxtLink
                 :to="`/events/${event.slug}`"
                 class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem] underline decoration-inherit decoration-1 underline-offset-4"
+                :class="isExpired ? 'pointer-events-none cursor-not-allowed' : ''"
+                :tabindex="isExpired ? -1 : undefined"
+                :aria-disabled="isExpired ? 'true' : undefined"
             >
                 {{ event.title }}
             </NuxtLink>
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="font-sans text-base text-gray-600 min-h-[1.5rem]">
-                {{ formattedDate }} — {{ event.venue }}
+                {{ formattedDate }} - {{ event.venue }}
             </p>
         </div>
     </article>
@@ -32,6 +46,7 @@ import type { FutureCollectionItem } from '@nuxt/content'
 
 const props = defineProps<{
     event: FutureCollectionItem
+    isExpired?: boolean
 }>()
 
 const formattedDate = computed(() => {
@@ -49,4 +64,6 @@ const formattedDate = computed(() => {
 
     return `${dd}/${mm}/${yyyy}`
 })
+
+const isExpired = computed(() => Boolean(props.isExpired))
 </script>

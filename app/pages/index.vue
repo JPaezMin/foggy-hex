@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import type { FutureCollectionItem } from '@nuxt/content'
+
+type FutureGridEvent = FutureCollectionItem & {
+    isExpired: boolean
+    sortTimestamp: number
+}
+
 const { data: futureEvents } = await useAsyncData('future-events', () =>
     queryCollection('future').order('date', 'ASC').all()
 )
@@ -80,12 +87,39 @@ const parseEventDate = (dateString?: string | null): Date | null => {
     return fallback
 }
 
-const upcomingEvents = computed(() =>
-    (futureEvents.value ?? []).filter((event) => {
+const futureGridEvents = computed<FutureGridEvent[]>(() => {
+    const source = futureEvents.value ?? []
+    const mapped = source.map((event) => {
         const eventDate = parseEventDate(event.date)
-        return !eventDate || eventDate >= startOfToday
+        const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
+        const isExpired = Boolean(eventDate && eventDate < startOfToday)
+        return {
+            ...event,
+            isExpired,
+            sortTimestamp: timestamp,
+        }
     })
-)
+
+    const upcoming = mapped
+        .filter((event) => !event.isExpired)
+        .sort((a, b) => {
+            if (a.sortTimestamp !== b.sortTimestamp) {
+                return a.sortTimestamp - b.sortTimestamp
+            }
+            return a.title.localeCompare(b.title)
+        })
+
+    const expired = mapped
+        .filter((event) => event.isExpired)
+        .sort((a, b) => {
+            if (a.sortTimestamp !== b.sortTimestamp) {
+                return b.sortTimestamp - a.sortTimestamp
+            }
+            return a.title.localeCompare(b.title)
+        })
+
+    return [...upcoming, ...expired]
+})
 
 const archivedEvents = computed(() =>
     (pastEvents.value ?? []).filter((event) => {
@@ -188,21 +222,21 @@ const formatDate = (dateString?: string | null): string => {
             </h2>
 
             <div
-                v-if="upcomingEvents.length"
+                v-if="futureGridEvents.length"
                 :class="[
                     'grid gap-8',
-                    upcomingEvents.length === 1
+                    futureGridEvents.length === 1
                         ? 'grid-cols-1'
-                        : upcomingEvents.length === 2
+                        : futureGridEvents.length === 2
                           ? 'grid-cols-1 md:grid-cols-2'
                           : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
                 ]"
             >
                 <EventCard
-                    v-for="event in upcomingEvents"
-                    :key="event.title"
+                    v-for="event in futureGridEvents"
+                    :key="event.slug"
                     :event="event"
-                    :to="`/events/${event.slug}`"
+                    :is-expired="event.isExpired"
                 />
             </div>
 

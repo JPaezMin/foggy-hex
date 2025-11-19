@@ -81,5 +81,27 @@ export default defineContentConfig({
                 ),
             }),
         }),
+        agenda: defineCollection({
+            type: 'data',
+            source: 'agenda/*.md',
+            schema: z.object({
+                slug: z.string(),
+                title: z.string(),
+                date: z.string(),
+                venue: z.string(),
+                space: z.string(),
+                time: z.string().optional(),
+                lineup: z.array(
+                    z.object({
+                        name: z.string(),
+                        note: z.string().optional(),
+                        url: z.string().url().optional(),
+                    })
+                ),
+                ticketUrl: z.string().url().optional(),
+                infoUrl: z.string().url().optional(),
+                source: z.string().url().optional(),
+            }),
+        }),
     },
 })
