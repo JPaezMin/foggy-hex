@@ -12,6 +12,7 @@ lineup:
     - name: 'Jordi Santanach (Cosima Pitz / BCN)'
       note: 'Presenta "Strata"'
       url: 'https://cosimapitz.bandcamp.com/album/strata'
+ticketUrl: 'https://link.dice.fm/i994938ff5f4'      
 infoUrl: 'https://www.foggyhexbcn.com/events/hekura-jordi-santanach'
 source: 'https://www.foggyhexbcn.com/events/hekura-jordi-santanach'
 ---

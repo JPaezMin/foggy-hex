@@ -4,7 +4,7 @@ title: 'Hekura (BCN) presenta: "Two Lonely Space Pilots" + Jordi Santanach (BCN)
 date: '11/12/25'
 time: '20:00'
 venue: 'Casa Montjuic'
-ticketUrl: ''
+ticketUrl: 'https://dice.fm/event/yonk92-hekura-jordi-santanach-11th-dec-casa-montjuc-barcelona-tickets'
 bands:
     - name: 'Hekura (Hegoa / BCN)'
       image: '/images/shows/future/hekura.jpg'
