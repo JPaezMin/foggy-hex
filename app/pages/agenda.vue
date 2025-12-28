@@ -401,25 +401,21 @@ const archivedAgenda = computed(() =>
             >
                 Nos veremos en...
             </h1>
-            <div class="font-sans text-lg leading-relaxed text-text space-y-4">
+                        <div class="font-sans text-lg leading-relaxed text-text space-y-4">
                 <p>
-                    Esta secci&oacute;n es simplemente una agenda de eventos que nos interesan de verdad.
-                    Aqu&iacute; solo compartimos fechas que pasan en espacios auto-gestionados y fuera del
-                    circuito habitual de festivales y grandes promotores de Barcelona. No hay pagos,
-                    intercambios ni promos detr&aacute;s. Publicamos conciertos, sesiones y encuentros a los
-                    que ir&iacute;amos como p&uacute;blico, porque nos gusta la m&uacute;sica y nos interesa lo que hacen
-                    les artistas, independientemente de qui&eacute;n organice el evento.
+                    Esta agenda reúne solo los eventos a los cuales nos encantaría ir. No hay pagos ni promos de por medio. 
+                    Compartimos eventos a los que iríamos como público, por simple afinidad con la música 
+                    y con lo que hacen les artistes, con especial atención -aunque no exclusiva- al tejido de salas y espacios autogestionados de nuestra ciudad.
                 </p>
                 <p>
-                    Si tienes un evento y crees que puede encajar, puedes escribirnos por email. Lo
-                    leemos todo, pero la agenda no funciona como un tabl&oacute;n abierto: lo que aparece
-                    aqu&iacute; responde &uacute;nicamente a los gustos y la curiosidad del colectivo.
+                    Si tienes un evento que crees que encaja, puedes escribirnos. Leemos todo, pero
+                    esto no es un tablón abierto: lo que aparece aquí responde únicamente a nuestros
+                    gustos y a la curiosidad del colectivo.
                 </p>
                 <p>
-                    No pretendemos descubrir nada ni salvar ninguna escena. Como promotores
-                    independientes, simplemente sabemos que muchos eventos peque&ntilde;os, experimentales o
-                    muy underground no suelen aparecer en los medios habituales. Esta web es nuestra
-                    forma de crear una peque&ntilde;a c&aacute;mara de eco para que esas fechas pasen desapercibidas por los miembros de nuestra comunidad.
+                    Sabemos, por experiencia, que muchos eventos pequeños organizados por otros colectivos como el nuestro 
+                    muchas veces se pierden en el eter del algoritmo, sin ninguna promoción de medios locales y esta agenda 
+                    es solo nuestra forma de intentar amplificar un poco esas fechas dentro de nuestra propia comunidad.
                 </p>
             </div>
         </header>
@@ -432,9 +428,6 @@ const archivedAgenda = computed(() =>
                 >
                     Agenda Local
                 </h2>
-                <span class="font-mono text-xs uppercase tracking-[0.4em] text-text/60"
-                    >En curso</span
-                >
             </div>
 
             <p
@@ -547,6 +540,7 @@ const archivedAgenda = computed(() =>
         </section>
     </article>
 </template>
+
 
 
 
