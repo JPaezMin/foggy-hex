@@ -297,18 +297,6 @@ const fetchCalendarAgenda = async () => {
         })
     }
 
-    // ICS proxy (only available on serverful/Nitro hosts). Skip if 404/static.
-    sources.push(async () => {
-        const response = await fetch(CALENDAR_ICS_URL, {
-            headers: { Accept: 'text/calendar' },
-        })
-        if (!response.ok) {
-            throw new Error('No se pudo cargar la agenda desde el proxy ICS')
-        }
-        const text = await response.text()
-        return parseIcs(text)
-    })
-
     let succeeded = false
     let lastError: unknown = null
     try {
