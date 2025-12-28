@@ -106,7 +106,7 @@ const navItems = [
         href: 'https://kioskradio.com/label/foggy-hex',
         external: true,
     },
-    { name: 'Agenda Local', to: '/agenda' },
+    // { name: 'Agenda Local', to: '/agenda' },
     // { name: 'Foggy Hex DJs', to: '/dj' },
 ]
 </script>
