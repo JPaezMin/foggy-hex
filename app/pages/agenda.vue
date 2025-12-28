@@ -271,18 +271,8 @@ const parseApiEvents = (items: any[]): ViewAgendaEntry[] =>
         .filter(Boolean) as ViewAgendaEntry[]
 
 const fetchCalendarAgenda = async () => {
-    const sources: (() => Promise<ViewAgendaEntry[]>)[] = [
-        async () => {
-            const response = await fetch(CALENDAR_ICS_URL, {
-                headers: { Accept: 'text/calendar' },
-            })
-            if (!response.ok) {
-                throw new Error('No se pudo cargar la agenda desde el proxy ICS')
-            }
-            const text = await response.text()
-            return parseIcs(text)
-        },
-    ]
+    // Prefer the Calendar API (works on static hosts) when a key is present.
+    const sources: (() => Promise<ViewAgendaEntry[]>)[] = []
 
     if (CALENDAR_API_KEY) {
         sources.push(async () => {
@@ -306,6 +296,18 @@ const fetchCalendarAgenda = async () => {
             return parseApiEvents(data.items)
         })
     }
+
+    // ICS proxy (only available on serverful/Nitro hosts). Skip if 404/static.
+    sources.push(async () => {
+        const response = await fetch(CALENDAR_ICS_URL, {
+            headers: { Accept: 'text/calendar' },
+        })
+        if (!response.ok) {
+            throw new Error('No se pudo cargar la agenda desde el proxy ICS')
+        }
+        const text = await response.text()
+        return parseIcs(text)
+    })
 
     let succeeded = false
     let lastError: unknown = null
