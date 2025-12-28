@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed } from 'vue'
+﻿<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 
 useSeoMeta({
     title: 'Nos verémos en... | Foggy Hex',
@@ -12,33 +12,51 @@ useSeoMeta({
     ogUrl: 'https://www.foggyhexbcn.com/agenda',
 })
 
-type AgendaLineupEntry = {
-    name: string
-    note?: string
-    url?: string
-}
-
-type RawAgendaEntry = {
+type ContentAgendaEntry = {
     slug: string
     title: string
     date: string
     venue: string
     space: string
     time?: string
-    lineup: AgendaLineupEntry[]
     ticketUrl?: string
     infoUrl?: string
     source?: string
+    lineup?: { name: string; note?: string; url?: string }[]
 }
 
-type AgendaEntry = RawAgendaEntry & {
-    parsedDate: Date | null
+type ViewAgendaEntry = {
+    id: string
+    title: string
+    date: Date | null
+    location?: string
+    description?: string
+    url?: string
+    allDay?: boolean
+    time?: string
 }
 
-const { data: agendaEvents } = await useAsyncData<RawAgendaEntry[]>(
+const CALENDAR_ID =
+    'c_1b9e4111ecdffe96f6d9e657a6b061386b05f3e5fc93de1f9a482e5a7b1cb485@group.calendar.google.com'
+// Fetch ICS via local API to avoid browser CORS from google.com
+const CALENDAR_ICS_URL = '/api/agenda/ics'
+const runtimeConfig = useRuntimeConfig()
+const CALENDAR_API_KEY =
+    runtimeConfig.public?.googleCalendarApiKey ??
+    runtimeConfig.public?.GOOGLE_CALENDAR_API_KEY ??
+    ''
+const CALENDAR_VIEW_URL = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(
+    CALENDAR_ID
+)}&mode=AGENDA`
+
+const { data: agendaEvents } = await useAsyncData<ContentAgendaEntry[]>(
     'agenda-events',
     () => queryCollection('agenda').order('date', 'ASC').all()
 )
+
+const fetchedAgenda = ref<ViewAgendaEntry[]>([])
+const isLoadingCalendar = ref(true)
+const calendarError = ref<string | null>(null)
 
 const today = new Date()
 const startOfToday = new Date(
@@ -74,18 +92,22 @@ const parseEventDate = (dateString?: string | null): Date | null => {
     }
 
     if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(raw)) {
-        const [dd, mm, yy] = raw.split('/').map((part) => part.trim())
-        const day = Number.parseInt(dd, 10)
-        const month = Number.parseInt(mm, 10)
-        const year = Number.parseInt(yy.length === 2 ? `20${yy}` : yy, 10)
-        if (
-            Number.isInteger(year) &&
-            Number.isInteger(month) &&
-            Number.isInteger(day)
-        ) {
-            const parsed = new Date(year, month - 1, day)
-            if (!Number.isNaN(parsed.getTime())) {
-                return parsed
+        const parts = raw.split('/').map((part) => part.trim())
+        if (parts.length === 3) {
+            const [dd, mm, yy] = parts
+            if (!dd || !mm || !yy) return null
+            const day = Number.parseInt(dd, 10)
+            const month = Number.parseInt(mm, 10)
+            const year = Number.parseInt(yy.length === 2 ? `20${yy}` : yy, 10)
+            if (
+                Number.isInteger(year) &&
+                Number.isInteger(month) &&
+                Number.isInteger(day)
+            ) {
+                const parsed = new Date(year, month - 1, day)
+                if (!Number.isNaN(parsed.getTime())) {
+                    return parsed
+                }
             }
         }
     }
@@ -97,192 +119,385 @@ const parseEventDate = (dateString?: string | null): Date | null => {
     return null
 }
 
-const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return ''
-    const parsed = parseEventDate(dateString)
-    if (!parsed) return dateString
+const formatDate = (value?: string | Date | null): string => {
+    if (!value) return ''
+    const parsed = value instanceof Date ? value : parseEventDate(value)
+    if (!parsed) return typeof value === 'string' ? value : ''
     const day = String(parsed.getDate()).padStart(2, '0')
     const month = String(parsed.getMonth() + 1).padStart(2, '0')
     const year = String(parsed.getFullYear())
     return `${day}/${month}/${year}`
 }
 
-const normalizeAgenda = computed<AgendaEntry[]>(() =>
-    (agendaEvents.value ?? []).map((event) => ({
-        ...event,
-        parsedDate: parseEventDate(event.date),
-    }))
+const formatTime = (
+    date?: Date | null,
+    allDay?: boolean,
+    fallback?: string
+) => {
+    if (fallback) return fallback
+    if (!date) return 'Por confirmar'
+    if (allDay) return 'Todo el diaa'
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+    return `${hours}:${minutes}`
+}
+
+const cleanText = (value?: string | null): string => {
+    if (!value) return ''
+    return value
+        .replace(/\\n/g, ' ')
+        .replace(/\\\\/g, '\\')
+        .replace(/\\,/g, ', ')
+        .replace(/\s+/g, ' ')
+        .trim()
+}
+
+const formatTitleText = (value?: string | null): string => {
+    const cleaned = cleanText(value)
+    if (!cleaned) return ''
+    return cleaned
+        .split(' ')
+        .map((word) =>
+            word ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() : ''
+        )
+        .join(' ')
+}
+
+const extractTicketUrl = (value?: string | null): string | null => {
+    if (!value) return null
+    const match = value.match(/https?:\/\/[^\s<>"']+/)
+    if (!match?.[0]) return null
+    return match[0].replace(/[),.;]+$/, '')
+}
+
+const ticketLink = (event: ViewAgendaEntry) =>
+    extractTicketUrl(event.description) ?? (event.url || null)
+
+const displayTitle = (event: ViewAgendaEntry) => formatTitleText(event.title)
+
+const unfoldIcs = (ics: string) => ics.replace(/\r?\n[ \t]/g, '')
+
+const parseIcsDate = (
+    value: string
+): { date: Date | null; allDay: boolean } => {
+    if (!value) return { date: null, allDay: false }
+
+    // All-day (YYYYMMDD)
+    if (/^\d{8}$/.test(value)) {
+        const year = Number.parseInt(value.slice(0, 4), 10)
+        const month = Number.parseInt(value.slice(4, 6), 10) - 1
+        const day = Number.parseInt(value.slice(6, 8), 10)
+        const parsed = new Date(Date.UTC(year, month, day))
+        return { date: Number.isNaN(parsed.getTime()) ? null : parsed, allDay: true }
+    }
+
+    // DateTime (YYYYMMDDTHHmmss[Z])
+    const dateTimeMatch = value.match(
+        /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/
+    )
+    if (dateTimeMatch) {
+        const [, y, m, d, hh, mm, ss, isUtc] = dateTimeMatch
+        const year = Number.parseInt(y, 10)
+        const month = Number.parseInt(m, 10) - 1
+        const day = Number.parseInt(d, 10)
+        const hours = Number.parseInt(hh, 10)
+        const minutes = Number.parseInt(mm, 10)
+        const seconds = Number.parseInt(ss, 10)
+        const parsed = isUtc
+            ? new Date(Date.UTC(year, month, day, hours, minutes, seconds))
+            : new Date(year, month, day, hours, minutes, seconds)
+        return { date: Number.isNaN(parsed.getTime()) ? null : parsed, allDay: false }
+    }
+
+    const parsed = new Date(value)
+    return { date: Number.isNaN(parsed.getTime()) ? null : parsed, allDay: false }
+}
+
+const parseIcs = (icsText: string): ViewAgendaEntry[] => {
+    const cleaned = unfoldIcs(icsText)
+    const blocks = cleaned.split('BEGIN:VEVENT').slice(1)
+
+    return blocks
+        .map((block, index) => {
+            const body = block.split('END:VEVENT')[0] ?? ''
+            const pick = (field: string) => {
+                const match = body.match(new RegExp(`${field}[^:]*:([^\\r\\n]+)`))
+                return match?.[1] ?? ''
+            }
+
+            const rawStart = pick('DTSTART')
+            const { date: parsedDate, allDay } = parseIcsDate(rawStart)
+            if (!parsedDate) return null
+
+            const url = pick('URL')
+            const summary = pick('SUMMARY') || 'Evento sin título'
+            const location = cleanText(pick('LOCATION'))
+            const description = cleanText(pick('DESCRIPTION'))
+            const uid = pick('UID') || `${summary}-${rawStart}-${index}`
+
+            return {
+                id: uid,
+                title: summary,
+                date: parsedDate,
+                location,
+                description,
+                url: url || CALENDAR_VIEW_URL,
+                allDay,
+            } satisfies ViewAgendaEntry
+        })
+        .filter(Boolean) as ViewAgendaEntry[]
+}
+
+const parseApiEvents = (items: any[]): ViewAgendaEntry[] =>
+    (items || [])
+        .map((item: any, index: number) => {
+            const rawStart = item.start?.dateTime || item.start?.date
+            if (!rawStart) return null
+
+            const allDay = Boolean(item.start?.date && !item.start?.dateTime)
+            const date = new Date(rawStart)
+            if (Number.isNaN(date.getTime())) return null
+
+            return {
+                id: item.id || `api-${index}`,
+                title: item.summary || 'Evento sin título',
+                date,
+                location: cleanText(item.location),
+                description: cleanText(item.description || item.organizer?.displayName),
+                url: item.htmlLink || item.source?.url || CALENDAR_VIEW_URL,
+                allDay,
+            } satisfies ViewAgendaEntry
+        })
+        .filter(Boolean) as ViewAgendaEntry[]
+
+const fetchCalendarAgenda = async () => {
+    const sources: (() => Promise<ViewAgendaEntry[]>)[] = [
+        async () => {
+            const response = await fetch(CALENDAR_ICS_URL, {
+                headers: { Accept: 'text/calendar' },
+            })
+            if (!response.ok) {
+                throw new Error('No se pudo cargar la agenda desde el proxy ICS')
+            }
+            const text = await response.text()
+            return parseIcs(text)
+        },
+    ]
+
+    if (CALENDAR_API_KEY) {
+        sources.push(async () => {
+            const params = new URLSearchParams({
+                timeMin: '2026-01-01T00:00:00Z',
+                timeMax: '2027-01-01T00:00:00Z',
+                singleEvents: 'true',
+                orderBy: 'startTime',
+                showDeleted: 'false',
+                maxResults: '2500',
+                key: CALENDAR_API_KEY,
+            })
+            const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
+                CALENDAR_ID
+            )}/events?${params.toString()}`
+            const response = await fetch(url)
+            if (!response.ok) {
+                throw new Error('No se pudo cargar la agenda via Google Calendar API')
+            }
+            const data = await response.json()
+            return parseApiEvents(data.items)
+        })
+    }
+
+    let succeeded = false
+    let lastError: unknown = null
+    try {
+        for (const source of sources) {
+            try {
+                const events = await source()
+                fetchedAgenda.value = events
+                succeeded = true
+                if (events.length) return
+            } catch (sourceError) {
+                lastError = sourceError
+            }
+        }
+    } catch (error) {
+        lastError = error
+    } finally {
+        isLoadingCalendar.value = false
+    }
+
+    if (succeeded) {
+        calendarError.value = null
+        return
+    }
+
+    if (lastError) {
+        console.error('Agenda fetch error', lastError)
+        calendarError.value =
+            'No pudimos cargar la agenda en vivo. Revisa tu conexión, agrega GOOGLE_CALENDAR_API_KEY o vuelve a intentarlo.'
+    } else {
+        calendarError.value =
+            'No pudimos cargar la agenda en vivo. Intentaremos de nuevo más tarde.'
+    }
+}
+
+onMounted(() => {
+    fetchCalendarAgenda()
+})
+
+const fallbackAgenda = computed<ViewAgendaEntry[]>(() =>
+    (agendaEvents.value ?? [])
+        .map((event) => ({
+            id: event.slug,
+            title: formatTitleText(event.title),
+            date: parseEventDate(event.date),
+            location: cleanText(event.venue),
+            description: cleanText(event.space),
+            url: event.ticketUrl ?? event.infoUrl ?? event.source ?? CALENDAR_VIEW_URL,
+            allDay: !event.time,
+            time: event.time,
+        }))
+        .filter((event) => !!event.date)
+)
+
+const resolvedAgenda = computed<ViewAgendaEntry[]>(() =>
+    fetchedAgenda.value.length ? fetchedAgenda.value : fallbackAgenda.value
 )
 
 const upcomingAgenda = computed(() =>
-    [...normalizeAgenda.value]
+    [...resolvedAgenda.value]
         .filter((event) => {
-            if (!event.parsedDate) return true
-            return event.parsedDate >= startOfToday
+            if (!event.date) return false
+            return event.date >= startOfToday && event.date.getFullYear() === 2026
         })
         .sort((a, b) => {
-            if (!a.parsedDate && !b.parsedDate) {
+            if (!a.date && !b.date) {
                 return a.title.localeCompare(b.title)
             }
-            if (!a.parsedDate) return -1
-            if (!b.parsedDate) return 1
-            return a.parsedDate.getTime() - b.parsedDate.getTime()
+            if (!a.date) return -1
+            if (!b.date) return 1
+            return a.date.getTime() - b.date.getTime()
         })
 )
 
 const archivedAgenda = computed(() =>
-    [...normalizeAgenda.value]
-        .filter((event) => event.parsedDate && event.parsedDate < startOfToday)
+    [...resolvedAgenda.value]
+        .filter((event) => {
+            if (!event.date) return false
+            return event.date < startOfToday && event.date.getFullYear() === 2026
+        })
         .sort((a, b) => {
-            if (!a.parsedDate || !b.parsedDate) return 0
-            return b.parsedDate.getTime() - a.parsedDate.getTime()
+            if (!a.date || !b.date) return 0
+            return b.date.getTime() - a.date.getTime()
         })
 )
-
-const spaces = [
-    'Casa Montjuic',
-    'El Teatro de La Rubia / Dublab Barcelona',
-    'El Pumarejo Refugio Cultural',
-    'Hangar',
-    'IF Publications Studio',
-    'La Negra Factory',
-    'NIU Espacio Artístico',
-]
-
-const primaryLink = (event: RawAgendaEntry) => event.ticketUrl ?? event.infoUrl
-const primaryLinkLabel = (event: RawAgendaEntry) =>
-    event.ticketUrl ? 'Entradas' : 'Más información'
 </script>
 
 <template>
-    <article class="container mx-auto px-6 py-16 space-y-16">
-        <header class="text-center space-y-6">
-            <div class="inline-flex flex-col gap-2 items-center">
-                <h1
-                    class="font-heading text-[46px] leading-tight text-accent title-box px-6 py-3 border border-text inline-block"
-                >
-                    Nos verémos en...
-                </h1>
+    <article class="relative container mx-auto px-6 py-16 space-y-16 text-left">
+        <header class="max-w-4xl space-y-6">
+            <h1
+                class="font-heading text-[40px] leading-tight text-accent mb-4 border-l-4 border-text pl-4"
+            >
+                Nos veremos en...
+            </h1>
+            <div class="font-sans text-lg leading-relaxed text-text space-y-4">
+                <p>
+                    Esta secci&oacute;n es simplemente una agenda de eventos que nos interesan de verdad.
+                    Aqu&iacute; solo compartimos fechas que pasan en espacios auto-gestionados y fuera del
+                    circuito habitual de festivales y grandes promotores de Barcelona. No hay pagos,
+                    intercambios ni promos detr&aacute;s. Publicamos conciertos, sesiones y encuentros a los
+                    que ir&iacute;amos como p&uacute;blico, porque nos gusta la m&uacute;sica y nos interesa lo que hacen
+                    les artistas, independientemente de qui&eacute;n organice el evento.
+                </p>
+                <p>
+                    Si tienes un evento y crees que puede encajar, puedes escribirnos por email. Lo
+                    leemos todo, pero la agenda no funciona como un tabl&oacute;n abierto: lo que aparece
+                    aqu&iacute; responde &uacute;nicamente a los gustos y la curiosidad del colectivo.
+                </p>
+                <p>
+                    No pretendemos descubrir nada ni salvar ninguna escena. Como promotores
+                    independientes, simplemente sabemos que muchos eventos peque&ntilde;os, experimentales o
+                    muy underground no suelen aparecer en los medios habituales. Esta web es nuestra
+                    forma de crear una peque&ntilde;a c&aacute;mara de eco para que esas fechas pasen desapercibidas por los miembros de nuestra comunidad.
+                </p>
             </div>
-            <p class="font-sans text-lg max-w-3xl mx-auto text-text">
-                Una lista en constante actualización con conciertos,
-                escuchas y encuentros que resuenan con la sensibilidad de Foggy
-                Hex. Sumamos paradas afines siempre que aparezcan.
-            </p>
         </header>
 
-        <section class="space-y-8" aria-labelledby="agenda-upcoming">
+        <section class="space-y-8 w-full" aria-labelledby="agenda-upcoming">
             <div class="flex items-center gap-4">
                 <h2
                     id="agenda-upcoming"
                     class="font-heading text-3xl border-b-2 border-text pb-2"
                 >
-                    Próximas fechas
+                    Agenda Local
                 </h2>
                 <span class="font-mono text-xs uppercase tracking-[0.4em] text-text/60"
                     >En curso</span
                 >
             </div>
 
+            <p
+                v-if="calendarError"
+                class="font-sans text-center text-base text-text/70 border border-dashed border-text/40 py-4"
+            >
+                {{ calendarError }}
+            </p>
+
+            <p
+                v-else-if="isLoadingCalendar"
+                class="font-sans text-center text-base text-text/70 border border-dashed border-text/40 py-4"
+            >
+                Cargando agenda 2026...
+            </p>
+
             <div
-                v-if="upcomingAgenda.length"
-                class="grid gap-8 md:grid-cols-2"
+                v-else-if="upcomingAgenda.length"
+                class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full"
             >
                 <article
                     v-for="event in upcomingAgenda"
-                    :key="event.slug"
+                    :key="event.id"
                     class="border border-text/30 bg-white p-6 flex flex-col gap-4 shadow-sm"
                 >
                     <div class="space-y-2">
                         <p
                             class="font-mono text-xs uppercase tracking-[0.6em] text-text/60"
                         >
-                            {{ formatDate(event.date) }}
+                            {{ formatDate(event.date) || 'Fecha por definir' }}
                         </p>
                         <h3 class="font-heading text-2xl leading-snug">
-                            {{ event.title }}
+                            {{ displayTitle(event) }}
                         </h3>
                         <p class="font-sans text-sm text-text/80">
-                            {{ event.venue }}
+                            {{ event.location || 'Lugar por definir' }}
                         </p>
                     </div>
 
                     <dl class="space-y-3 font-sans text-sm">
-                        <div class="flex gap-3">
-                            <dt class="font-semibold w-16">Hora</dt>
+                        <div class="flex items-center gap-2">
+                            <dt class="font-semibold whitespace-nowrap">Hora:</dt>
                             <dd class="flex-1">
-                                {{ event.time || 'Por confirmar' }}
+                                {{ formatTime(event.date, event.allDay, event.time) }}
                             </dd>
                         </div>
 
-                        <div class="flex gap-3">
-                            <dt class="font-semibold w-16">Line-up</dt>
-                            <dd class="flex-1 space-y-1">
-                                <p
-                                    v-if="!event.lineup?.length"
-                                    class="text-text/70"
+                        <div class="text-text/80">
+                            <template v-if="ticketLink(event)">
+                                <a
+                                    :href="ticketLink(event)!"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-accent underline decoration-inherit underline-offset-2"
                                 >
-                                    Por anunciar
-                                </p>
-                                <template v-else>
-                                    <p
-                                        v-for="artist in event.lineup"
-                                        :key="artist.name"
-                                        class="leading-relaxed"
-                                    >
-                                        <span class="font-medium">{{
-                                            artist.name
-                                        }}</span>
-                                        <span
-                                            v-if="artist.note"
-                                            class="text-text/70"
-                                        >
-                                            — {{ artist.note }}
-                                        </span>
-                                        <a
-                                            v-if="artist.url"
-                                            :href="artist.url"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="ml-2 text-accent underline decoration-inherit decoration-1 underline-offset-2"
-                                        >
-                                            escuchar
-                                        </a>
-                                    </p>
-                                </template>
-                            </dd>
+                                    Entradas
+                                </a>
+                            </template>
+                            <template v-else>
+                                {{ event.description || 'Mas detalles pronto' }}
+                            </template>
                         </div>
                     </dl>
-
-                    <div class="flex flex-wrap gap-4 items-center">
-                        <a
-                            v-if="primaryLink(event)"
-                            :href="primaryLink(event)!"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center justify-center px-4 py-2 border border-text text-text font-sans uppercase tracking-[0.4em] text-xs hover:bg-text hover:text-background transition"
-                        >
-                            {{ primaryLinkLabel(event) }}
-                        </a>
-                        <a
-                            v-if="event.infoUrl && event.ticketUrl"
-                            :href="event.infoUrl"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-sm underline underline-offset-2 decoration-inherit text-text/70 hover:text-text"
-                        >
-                            Más detalles
-                        </a>
-                        <a
-                            v-else-if="event.source && event.source !== primaryLink(event)"
-                            :href="event.source"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-sm underline underline-offset-2 decoration-inherit text-text/70 hover:text-text"
-                        >
-                            Fuente
-                        </a>
-                    </div>
                 </article>
             </div>
 
@@ -290,14 +505,13 @@ const primaryLinkLabel = (event: RawAgendaEntry) =>
                 v-else
                 class="font-sans text-center text-base text-text/70 border border-dashed border-text/40 py-8"
             >
-                Aún no hay eventos confirmados para los próximos días. Vuelve
-                pronto: actualizamos tan pronto como cada espacio publica su
-                programación.
+                Aún no hay eventos confirmados para 2026. Vuelve pronto: el
+                calendario se actualiza en cuanto añadimos nuevas fechas.
             </p>
         </section>
 
         <section
-            v-if="archivedAgenda.length"
+            v-if="!isLoadingCalendar && archivedAgenda.length"
             class="space-y-6"
             aria-labelledby="agenda-archived"
         >
@@ -316,20 +530,33 @@ const primaryLinkLabel = (event: RawAgendaEntry) =>
             <ul class="grid gap-4 md:grid-cols-2">
                 <li
                     v-for="event in archivedAgenda"
-                    :key="`archived-${event.slug}`"
+                    :key="`archived-${event.id}`"
                     class="border border-text/20 bg-white/70 px-5 py-4"
                 >
                     <p class="font-mono text-[11px] uppercase tracking-[0.5em] text-text/60">
                         {{ formatDate(event.date) }}
                     </p>
                     <p class="font-heading text-lg text-text">
-                        {{ event.title }}
+                        {{ displayTitle(event) }}
                     </p>
                     <p class="font-sans text-sm text-text/70">
-                        {{ event.venue }}
+                        {{ event.location || 'Lugar por definir' }}
                     </p>
                 </li>
             </ul>
         </section>
     </article>
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+

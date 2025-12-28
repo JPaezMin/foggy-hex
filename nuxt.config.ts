@@ -30,6 +30,11 @@ export default defineNuxtConfig({
         viewer: true,
         exposeConfig: true,
     },
+    runtimeConfig: {
+        public: {
+            googleCalendarApiKey: process.env.NUXT_PUBLIC_GOOGLE_CALENDAR_API_KEY,
+        },
+    },
     app: {
         head: {
             htmlAttrs: {

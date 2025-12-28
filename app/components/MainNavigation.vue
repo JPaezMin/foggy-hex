@@ -5,13 +5,13 @@
             <slot name="logo" />
 
             <!-- Desktop Nav -->
-            <ul class="hidden 2xl:flex gap-8 items-end">
+            <ul class="hidden 2xl:flex gap-8 items-end flex-nowrap">
                 <li v-for="item in navItems" :key="item.name">
                     <!-- Internal link -->
                     <NuxtLink
                         v-if="!item.external"
                         :to="item.to"
-                        class="text-[22px] leading-normal border-b-2 border-current pb-2"
+                        class="text-[22px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
                     >
                         {{ item.name }}
                     </NuxtLink>
@@ -22,7 +22,7 @@
                         :href="item.href"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-[22px] leading-normal border-b-2 border-current pb-2"
+                        class="text-[22px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
                     >
                         {{ item.name }}
                     </a>
@@ -100,13 +100,13 @@ const menuOpen = ref(false)
 
 const navItems = [
     { name: 'Nosotros', to: '/about' },
-    // { name: 'Agenda', to: '/agenda' },
     { name: 'Espacios', to: '/spaces' },
     {
         name: 'Kiosk Radio',
         href: 'https://kioskradio.com/label/foggy-hex',
         external: true,
     },
+    { name: 'Agenda Local', to: '/agenda' },
     // { name: 'Foggy Hex DJs', to: '/dj' },
 ]
 </script>
