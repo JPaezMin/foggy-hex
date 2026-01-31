@@ -3,43 +3,39 @@ import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getResponseStatus, getQuery as getQuery$1, readBody, getRouterParam, setHeader, lazyEventHandler, useBase, createApp, createRouter as createRouter$1, toNodeListener, getResponseStatusText } from 'file://C:/Users/lowtr/foggy-hex/node_modules/h3/dist/index.mjs';
-import { escapeHtml } from 'file://C:/Users/lowtr/foggy-hex/node_modules/@vue/shared/dist/shared.cjs.js';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/lowtr/foggy-hex/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file://C:/Users/lowtr/foggy-hex/node_modules/ufo/dist/index.mjs';
-import destr, { destr as destr$1 } from 'file://C:/Users/lowtr/foggy-hex/node_modules/destr/dist/index.mjs';
-import { renderToString } from 'file://C:/Users/lowtr/foggy-hex/node_modules/vue/server-renderer/index.mjs';
-import { klona } from 'file://C:/Users/lowtr/foggy-hex/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file://C:/Users/lowtr/foggy-hex/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file://C:/Users/lowtr/foggy-hex/node_modules/scule/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/lowtr/foggy-hex/node_modules/unhead/dist/server.mjs';
-import { stringify, uneval } from 'file://C:/Users/lowtr/foggy-hex/node_modules/devalue/index.js';
-import { isVNode, toValue, isRef } from 'file://C:/Users/lowtr/foggy-hex/node_modules/vue/index.mjs';
-import { createHooks } from 'file://C:/Users/lowtr/foggy-hex/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file://C:/Users/lowtr/foggy-hex/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://C:/Users/lowtr/foggy-hex/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file://C:/Users/lowtr/foggy-hex/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://C:/Users/lowtr/foggy-hex/node_modules/unstorage/drivers/fs.mjs';
-import { digest, hash as hash$1 } from 'file://C:/Users/lowtr/foggy-hex/node_modules/ohash/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file://C:/Users/lowtr/foggy-hex/node_modules/radix3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, getRouterParam, getResponseStatusText } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/h3/dist/index.mjs';
+import { escapeHtml } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/@vue/shared/dist/shared.cjs.js';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/ufo/dist/index.mjs';
+import destr, { destr as destr$1 } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/destr/dist/index.mjs';
+import { renderToString } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/vue/server-renderer/index.mjs';
+import { klona } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/scule/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/unhead/dist/server.mjs';
+import { stringify, uneval } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/devalue/index.js';
+import { isVNode, toValue, isRef } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/vue/index.mjs';
+import { createHooks } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/unstorage/drivers/fs.mjs';
+import { digest } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/ohash/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file://C:/Users/lowtr/foggy-hex/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file://C:/Users/lowtr/foggy-hex/node_modules/youch-core/build/index.js';
-import { Youch } from 'file://C:/Users/lowtr/foggy-hex/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file://C:/Users/lowtr/foggy-hex/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/youch-core/build/index.js';
+import { Youch } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { getContext } from 'file://C:/Users/lowtr/foggy-hex/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/lowtr/foggy-hex/node_modules/errx/dist/index.js';
+import { getContext } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/errx/dist/index.js';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname as dirname$1, resolve as resolve$1, basename, isAbsolute } from 'file://C:/Users/lowtr/foggy-hex/node_modules/pathe/dist/index.mjs';
-import { getIcons } from 'file://C:/Users/lowtr/foggy-hex/node_modules/@iconify/utils/lib/index.js';
-import { collections } from 'file://C:/Users/lowtr/foggy-hex/.nuxt/nuxt-icon-server-bundle.mjs';
-import { walkResolver } from 'file://C:/Users/lowtr/foggy-hex/node_modules/unhead/dist/utils.mjs';
-import localAdapter from 'file://C:/Users/lowtr/foggy-hex/node_modules/db0/dist/connectors/better-sqlite3.mjs';
-import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file://C:/Users/lowtr/foggy-hex/node_modules/ipx/dist/index.mjs';
+import { dirname as dirname$1, resolve as resolve$1 } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/pathe/dist/index.mjs';
+import { walkResolver } from 'file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/unhead/dist/utils.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"C:/Users/lowtr/foggy-hex/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -51,11 +47,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets$1);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/lowtr/foggy-hex","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/lowtr/foggy-hex/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/lowtr/foggy-hex/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/lowtr/foggy-hex/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:/Users/lowtr/foggy-hex/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -580,201 +576,7 @@ function cloneWithProxy(obj, overrides) {
 const cachedEventHandler = defineCachedEventHandler;
 
 const inlineAppConfig = {
-  "nuxt": {},
-  "icon": {
-    "provider": "server",
-    "class": "",
-    "aliases": {},
-    "iconifyApiEndpoint": "https://api.iconify.design",
-    "localApiEndpoint": "/api/_nuxt_icon",
-    "fallbackToApi": true,
-    "cssSelectorPrefix": "i-",
-    "cssWherePseudo": true,
-    "mode": "css",
-    "attrs": {
-      "aria-hidden": true
-    },
-    "collections": [
-      "academicons",
-      "akar-icons",
-      "ant-design",
-      "arcticons",
-      "basil",
-      "bi",
-      "bitcoin-icons",
-      "bpmn",
-      "brandico",
-      "bx",
-      "bxl",
-      "bxs",
-      "bytesize",
-      "carbon",
-      "catppuccin",
-      "cbi",
-      "charm",
-      "ci",
-      "cib",
-      "cif",
-      "cil",
-      "circle-flags",
-      "circum",
-      "clarity",
-      "codicon",
-      "covid",
-      "cryptocurrency",
-      "cryptocurrency-color",
-      "dashicons",
-      "devicon",
-      "devicon-plain",
-      "ei",
-      "el",
-      "emojione",
-      "emojione-monotone",
-      "emojione-v1",
-      "entypo",
-      "entypo-social",
-      "eos-icons",
-      "ep",
-      "et",
-      "eva",
-      "f7",
-      "fa",
-      "fa-brands",
-      "fa-regular",
-      "fa-solid",
-      "fa6-brands",
-      "fa6-regular",
-      "fa6-solid",
-      "fad",
-      "fe",
-      "feather",
-      "file-icons",
-      "flag",
-      "flagpack",
-      "flat-color-icons",
-      "flat-ui",
-      "flowbite",
-      "fluent",
-      "fluent-emoji",
-      "fluent-emoji-flat",
-      "fluent-emoji-high-contrast",
-      "fluent-mdl2",
-      "fontelico",
-      "fontisto",
-      "formkit",
-      "foundation",
-      "fxemoji",
-      "gala",
-      "game-icons",
-      "geo",
-      "gg",
-      "gis",
-      "gravity-ui",
-      "gridicons",
-      "grommet-icons",
-      "guidance",
-      "healthicons",
-      "heroicons",
-      "heroicons-outline",
-      "heroicons-solid",
-      "hugeicons",
-      "humbleicons",
-      "ic",
-      "icomoon-free",
-      "icon-park",
-      "icon-park-outline",
-      "icon-park-solid",
-      "icon-park-twotone",
-      "iconamoon",
-      "iconoir",
-      "icons8",
-      "il",
-      "ion",
-      "iwwa",
-      "jam",
-      "la",
-      "lets-icons",
-      "line-md",
-      "logos",
-      "ls",
-      "lucide",
-      "lucide-lab",
-      "mage",
-      "majesticons",
-      "maki",
-      "map",
-      "marketeq",
-      "material-symbols",
-      "material-symbols-light",
-      "mdi",
-      "mdi-light",
-      "medical-icon",
-      "memory",
-      "meteocons",
-      "mi",
-      "mingcute",
-      "mono-icons",
-      "mynaui",
-      "nimbus",
-      "nonicons",
-      "noto",
-      "noto-v1",
-      "octicon",
-      "oi",
-      "ooui",
-      "openmoji",
-      "oui",
-      "pajamas",
-      "pepicons",
-      "pepicons-pencil",
-      "pepicons-pop",
-      "pepicons-print",
-      "ph",
-      "pixelarticons",
-      "prime",
-      "ps",
-      "quill",
-      "radix-icons",
-      "raphael",
-      "ri",
-      "rivet-icons",
-      "si-glyph",
-      "simple-icons",
-      "simple-line-icons",
-      "skill-icons",
-      "solar",
-      "streamline",
-      "streamline-emojis",
-      "subway",
-      "svg-spinners",
-      "system-uicons",
-      "tabler",
-      "tdesign",
-      "teenyicons",
-      "token",
-      "token-branded",
-      "topcoat",
-      "twemoji",
-      "typcn",
-      "uil",
-      "uim",
-      "uis",
-      "uit",
-      "uiw",
-      "unjs",
-      "vaadin",
-      "vs",
-      "vscode-icons",
-      "websymbol",
-      "weui",
-      "whh",
-      "wi",
-      "wpf",
-      "zmdi",
-      "zondicons"
-    ],
-    "fetchTimeout": 1500
-  }
+  "nuxt": {}
 };
 
 
@@ -832,26 +634,6 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
-      "/__nuxt_content/**": {
-        "robots": false
-      },
-      "/__nuxt_content/future/sql_dump.txt": {
-        "prerender": true
-      },
-      "/__nuxt_content/past/sql_dump.txt": {
-        "prerender": true
-      },
-      "/__nuxt_content/shows/sql_dump.txt": {
-        "prerender": true
-      },
-      "/_scripts/**": {
-        "headers": {
-          "cache-control": "public, max-age=31536000, immutable"
-        },
-        "cache": {
-          "maxAge": 31536000
-        }
-      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -864,64 +646,7 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {
-    "content": {
-      "wsUrl": "ws://localhost:4000/"
-    },
-    "mdc": {
-      "components": {
-        "prose": true,
-        "map": {}
-      },
-      "headings": {
-        "anchorLinks": {
-          "h1": false,
-          "h2": true,
-          "h3": true,
-          "h4": true,
-          "h5": false,
-          "h6": false
-        }
-      }
-    },
-    "nuxt-scripts": {
-      "version": "0.11.13",
-      "defaultScriptOptions": {
-        "trigger": "onNuxtReady"
-      }
-    }
-  },
-  "icon": {
-    "serverKnownCssClasses": []
-  },
-  "content": {
-    "databaseVersion": "v3.5.0",
-    "version": "3.6.3",
-    "database": {
-      "type": "sqlite",
-      "filename": "./contents.sqlite"
-    },
-    "localDatabase": {
-      "type": "sqlite",
-      "filename": "C:/Users/lowtr/foggy-hex/.data/content/contents.sqlite"
-    },
-    "integrityCheck": true
-  },
-  "nuxt-scripts": {
-    "version": "0.11.13"
-  },
-  "ipx": {
-    "baseURL": "/_ipx",
-    "alias": {},
-    "fs": {
-      "dir": [
-        "C:/Users/lowtr/foggy-hex/public"
-      ]
-    },
-    "http": {
-      "domains": []
-    }
-  }
+  "public": {}
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -943,12 +668,7 @@ function useRuntimeConfig(event) {
   event.context.nitro.runtimeConfig = runtimeConfig;
   return runtimeConfig;
 }
-const _sharedAppConfig = _deepFreeze(klona(appConfig));
-function useAppConfig(event) {
-  {
-    return _sharedAppConfig;
-  }
-}
+_deepFreeze(klona(appConfig));
 function _deepFreeze(object) {
   const propNames = Object.getOwnPropertyNames(object);
   for (const name of propNames) {
@@ -1291,15 +1011,15 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _TsW2W7uaveMOWTeiKVnxO1Ya95BO3qmWxz16JlCDr0 = (function(nitro) {
+const _uSbi1SHssvpbTUX6XBP3Tcci8O7sVX1qcpuCkPbTys = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "C:/Users/lowtr/foggy-hex";
+const rootDir = "C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan"},{"property":"og:site_name","content":"Foggy Hex"},{"property":"og:type","content":"website"},{"property":"og:url","content":"https://www.foggyhexbcn.com"},{"property":"og:image","content":"https://www.foggyhexbcn.com/og-image.jpg"},{"property":"og:locale","content":"es_ES"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicons/favicon.ico"},{"rel":"apple-touch-icon","sizes":"180x180","href":"/favicons/favicon-180x180.png"},{"rel":"icon","type":"image/png","sizes":"32x32","href":"/favicons/favicon-32x32.png"},{"rel":"icon","type":"image/png","sizes":"192x192","href":"/favicons/favicon-192x192.png"},{"rel":"manifest","href":"/favicons/site.webmanifest"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"es"},"charset":"utf-8","viewport":"width=device-width, initial-scale=1","title":"Foggy Hex - Conciertos y más"};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
 const appRootTag = "div";
 
@@ -1320,7 +1040,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _KbQcP1EmuRkHRyfbQVvrlde2Twz741hSEhJFUddY1U = (nitroApp) => {
+const _vWVhRLvkThJSHByAt6hChdJcIBRmCd8UOnnj_K7v28 = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1390,8 +1110,8 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _TsW2W7uaveMOWTeiKVnxO1Ya95BO3qmWxz16JlCDr0,
-_KbQcP1EmuRkHRyfbQVvrlde2Twz741hSEhJFUddY1U
+  _uSbi1SHssvpbTUX6XBP3Tcci8O7sVX1qcpuCkPbTys,
+_vWVhRLvkThJSHByAt6hChdJcIBRmCd8UOnnj_K7v28
 ];
 
 const assets = {};
@@ -1401,7 +1121,7 @@ function readAsset (id) {
   return promises.readFile(resolve$1(serverDir, assets[id].path))
 }
 
-const publicAssetBases = {"/_nuxt/builds/meta/":{"maxAge":31536000},"/_nuxt/builds/":{"maxAge":1},"/_scripts/":{"maxAge":31536000}};
+const publicAssetBases = {"/_nuxt/builds/meta/":{"maxAge":31536000},"/_nuxt/builds/":{"maxAge":1}};
 
 function isPublicAssetURL(id = '') {
   if (assets[id]) {
@@ -1419,7 +1139,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _eUbcP0 = eventHandler((event) => {
+const _FDgxaA = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -1483,232 +1203,6 @@ const _eUbcP0 = eventHandler((event) => {
   return readAsset(id);
 });
 
-function defineRenderHandler(render) {
-  const runtimeConfig = useRuntimeConfig();
-  return eventHandler(async (event) => {
-    const nitroApp = useNitroApp();
-    const ctx = { event, render, response: void 0 };
-    await nitroApp.hooks.callHook("render:before", ctx);
-    if (!ctx.response) {
-      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
-        setResponseHeader(event, "Content-Type", "image/x-icon");
-        return send(
-          event,
-          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        );
-      }
-      ctx.response = await ctx.render(event);
-      if (!ctx.response) {
-        const _currentStatus = getResponseStatus(event);
-        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
-        return send(
-          event,
-          "No response returned from render handler: " + event.path
-        );
-      }
-    }
-    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
-    if (ctx.response.headers) {
-      setResponseHeaders(event, ctx.response.headers);
-    }
-    if (ctx.response.statusCode || ctx.response.statusMessage) {
-      setResponseStatus(
-        event,
-        ctx.response.statusCode,
-        ctx.response.statusMessage
-      );
-    }
-    return ctx.response.body;
-  });
-}
-
-const scheduledTasks = false;
-
-const tasks = {
-  
-};
-
-const __runningTasks__ = {};
-async function runTask(name, {
-  payload = {},
-  context = {}
-} = {}) {
-  if (__runningTasks__[name]) {
-    return __runningTasks__[name];
-  }
-  if (!(name in tasks)) {
-    throw createError({
-      message: `Task \`${name}\` is not available!`,
-      statusCode: 404
-    });
-  }
-  if (!tasks[name].resolve) {
-    throw createError({
-      message: `Task \`${name}\` is not implemented!`,
-      statusCode: 501
-    });
-  }
-  const handler = await tasks[name].resolve();
-  const taskEvent = { name, payload, context };
-  __runningTasks__[name] = handler.run(taskEvent);
-  try {
-    const res = await __runningTasks__[name];
-    return res;
-  } finally {
-    delete __runningTasks__[name];
-  }
-}
-
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
-}
-
-const checksums = {
-  "future": "v3.5.0--fomqQ2duFgcFmrIjHOVlcJDGPSr-xrt-MVJQO3HdahQ",
-  "past": "v3.5.0--IT-h1vsB5Kb2QmRyyaoqgclc-77Q4Kklcn6g8lW92xY",
-  "shows": "v3.5.0--XP8XQj7NNXvrSqqzVLe9YwhzHNT-IaloCt_nZ3JUt8U"
-};
-const checksumsStructure = {
-  "future": "biVwhuj78882mQVmuNapltIXUw984dJJUemelBEpBdA",
-  "past": "u_3NH_oFso9Dv5YFc_XSGtqqnHIIVV9HQFoyFmS6X1w",
-  "shows": "5KcdnHZ7M6HspG9jfu3utktvSyvaoeMR4PxI9tSHNzI"
-};
-const tables = {
-  "future": "_content_future",
-  "past": "_content_past",
-  "shows": "_content_shows",
-  "info": "_content_info"
-};
-const contentManifest = {
-  "future": {
-    "type": "data",
-    "fields": {
-      "id": "string",
-      "title": "string",
-      "date": "string",
-      "extension": "string",
-      "image": "string",
-      "meta": "json",
-      "slug": "string",
-      "stem": "string",
-      "venue": "string"
-    }
-  },
-  "past": {
-    "type": "data",
-    "fields": {
-      "id": "string",
-      "title": "string",
-      "date": "string",
-      "extension": "string",
-      "image": "string",
-      "meta": "json",
-      "stem": "string",
-      "venue": "string"
-    }
-  },
-  "shows": {
-    "type": "data",
-    "fields": {
-      "id": "string",
-      "title": "string",
-      "bands": "json",
-      "date": "string",
-      "extension": "string",
-      "meta": "json",
-      "slug": "string",
-      "stem": "string",
-      "ticketUrl": "string",
-      "time": "string",
-      "venue": "string"
-    }
-  },
-  "info": {
-    "type": "data",
-    "fields": {}
-  }
-};
-
-async function fetchDatabase(event, collection) {
-  return await $fetch(`/__nuxt_content/${collection}/sql_dump.txt`, {
-    context: event ? { cloudflare: event.context.cloudflare } : {},
-    responseType: "text",
-    headers: {
-      "content-type": "text/plain",
-      ...event?.node?.req?.headers?.cookie ? { cookie: event.node.req.headers.cookie } : {}
-    },
-    query: { v: checksums[String(collection)], t: Date.now()  }
-  });
-}
-
-const warnOnceSet = /* @__PURE__ */ new Set();
-const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _5zpRbf = defineCachedEventHandler(async (event) => {
-  const url = getRequestURL(event);
-  if (!url)
-    return createError({ status: 400, message: "Invalid icon request" });
-  const options = useAppConfig().icon;
-  const collectionName = event.context.params?.collection?.replace(/\.json$/, "");
-  const collection = collectionName ? await collections[collectionName]?.() : null;
-  const apiEndPoint = options.iconifyApiEndpoint || DEFAULT_ENDPOINT;
-  const icons = url.searchParams.get("icons")?.split(",");
-  if (collection) {
-    if (icons?.length) {
-      const data = getIcons(
-        collection,
-        icons
-      );
-      consola$1.debug(`[Icon] serving ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from bundled collection`);
-      return data;
-    }
-  } else {
-    if (collectionName && !warnOnceSet.has(collectionName) && apiEndPoint === DEFAULT_ENDPOINT) {
-      consola$1.warn([
-        `[Icon] Collection \`${collectionName}\` is not found locally`,
-        `We suggest to install it via \`npm i -D @iconify-json/${collectionName}\` to provide the best end-user experience.`
-      ].join("\n"));
-      warnOnceSet.add(collectionName);
-    }
-  }
-  if (options.fallbackToApi === true || options.fallbackToApi === "server-only") {
-    const apiUrl = new URL("./" + basename(url.pathname) + url.search, apiEndPoint);
-    consola$1.debug(`[Icon] fetching ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from iconify api`);
-    if (apiUrl.host !== new URL(apiEndPoint).host) {
-      return createError({ status: 400, message: "Invalid icon request" });
-    }
-    try {
-      const data = await $fetch(apiUrl.href);
-      return data;
-    } catch (e) {
-      consola$1.error(e);
-      if (e.status === 404)
-        return createError({ status: 404 });
-      else
-        return createError({ status: 500, message: "Failed to fetch fallback icon" });
-    }
-  }
-  return createError({ status: 404 });
-}, {
-  group: "nuxt",
-  name: "icon",
-  getKey(event) {
-    const collection = event.context.params?.collection?.replace(/\.json$/, "") || "unknown";
-    const icons = String(getQuery$1(event).icons || "");
-    return `${collection}_${icons.split(",")[0]}_${icons.length}_${hash$1(icons)}`;
-  },
-  swr: true,
-  maxAge: 60 * 60 * 24 * 7
-  // 1 week
-});
-
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;
 };
@@ -1764,10 +1258,22 @@ function setSSRError(ssrContext, error) {
   ssrContext.url = error.url;
 }
 
+function buildAssetsDir() {
+  return useRuntimeConfig().app.buildAssetsDir;
+}
+function buildAssetsURL(...path) {
+  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
+}
+function publicAssetsURL(...path) {
+  const app = useRuntimeConfig().app;
+  const publicBase = app.cdnURL || app.baseURL;
+  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
+}
+
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getServerEntry = () => import('file://C:/Users/lowtr/foggy-hex/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
-const getClientManifest = () => import('file://C:/Users/lowtr/foggy-hex/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file://C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   if (!manifest) {
@@ -2015,329 +1521,13 @@ async function getIslandContext(event) {
   return ctx;
 }
 
-const _yF2BZn = eventHandler(async (event) => {
-  const collection = getRouterParam(event, "collection");
-  setHeader(event, "Content-Type", "text/plain");
-  const data = await useStorage().getItem(`build:content:database.compressed.mjs`) || "";
-  if (data) {
-    const lineStart = `export const ${collection} = "`;
-    const content = String(data).split("\n").find((line) => line.startsWith(lineStart));
-    if (content) {
-      return content.substring(lineStart.length, content.length - 1);
-    }
-  }
-  return await import('file://C:/Users/lowtr/foggy-hex/.nuxt/content/database.compressed.mjs').then((m) => m[collection]);
-});
-
-async function decompressSQLDump(base64Str, compressionType = "gzip") {
-  const binaryData = Uint8Array.from(atob(base64Str), (c) => c.charCodeAt(0));
-  const response = new Response(new Blob([binaryData]));
-  const decompressedStream = response.body?.pipeThrough(new DecompressionStream(compressionType));
-  const text = await new Response(decompressedStream).text();
-  return JSON.parse(text);
-}
-
-function refineContentFields(sql, doc) {
-  const fields = findCollectionFields(sql);
-  const item = { ...doc };
-  for (const key in item) {
-    if (fields[key] === "json" && item[key] && item[key] !== "undefined") {
-      item[key] = JSON.parse(item[key]);
-    }
-    if (fields[key] === "boolean" && item[key] !== "undefined") {
-      item[key] = Boolean(item[key]);
-    }
-  }
-  for (const key in item) {
-    if (item[key] === "NULL") {
-      item[key] = void 0;
-    }
-  }
-  return item;
-}
-function findCollectionFields(sql) {
-  const table = sql.match(/FROM\s+(\w+)/);
-  if (!table) {
-    return {};
-  }
-  const info = contentManifest[getCollectionName(table[1])];
-  return info?.fields || {};
-}
-function getCollectionName(table) {
-  return table.replace(/^_content_/, "");
-}
-
-let db;
-function loadDatabaseAdapter(config) {
-  const { database, localDatabase } = config;
-  if (!db) {
-    {
-      db = localAdapter(refineDatabaseConfig(localDatabase));
-    }
-  }
-  return {
-    all: async (sql, params = []) => {
-      return db.prepare(sql).all(...params).then((result) => (result || []).map((item) => refineContentFields(sql, item)));
-    },
-    first: async (sql, params = []) => {
-      return db.prepare(sql).get(...params).then((item) => item ? refineContentFields(sql, item) : item);
-    },
-    exec: async (sql, params = []) => {
-      return db.prepare(sql).run(...params);
-    }
-  };
-}
-const checkDatabaseIntegrity = {};
-const integrityCheckPromise = {};
-async function checkAndImportDatabaseIntegrity(event, collection, config) {
-  if (checkDatabaseIntegrity[String(collection)] !== false) {
-    checkDatabaseIntegrity[String(collection)] = false;
-    integrityCheckPromise[String(collection)] = integrityCheckPromise[String(collection)] || _checkAndImportDatabaseIntegrity(event, collection, checksums[String(collection)], checksumsStructure[String(collection)], config).then((isValid) => {
-      checkDatabaseIntegrity[String(collection)] = !isValid;
-    }).catch((error) => {
-      console.error("Database integrity check failed", error);
-      checkDatabaseIntegrity[String(collection)] = true;
-      integrityCheckPromise[String(collection)] = null;
-    });
-  }
-  if (integrityCheckPromise[String(collection)]) {
-    await integrityCheckPromise[String(collection)];
-  }
-}
-async function _checkAndImportDatabaseIntegrity(event, collection, integrityVersion, structureIntegrityVersion, config) {
-  const db2 = loadDatabaseAdapter(config);
-  const before = await db2.first(`SELECT * FROM ${tables.info} WHERE id = ?`, [`checksum_${collection}`]).catch(() => null);
-  if (before?.version && !String(before.version)?.startsWith(`${config.databaseVersion}--`)) {
-    await db2.exec(`DROP TABLE IF EXISTS ${tables.info}`);
-    before.version = "";
-  }
-  const unchangedStructure = before?.structureVersion === structureIntegrityVersion;
-  if (before?.version) {
-    if (before.version === integrityVersion) {
-      if (before.ready) {
-        return true;
-      }
-      await waitUntilDatabaseIsReady(db2, collection);
-      return true;
-    }
-    await db2.exec(`DELETE FROM ${tables.info} WHERE id = ?`, [`checksum_${collection}`]);
-    if (!unchangedStructure) {
-      await db2.exec(`DROP TABLE IF EXISTS ${tables[collection]}`);
-    }
-  }
-  const dump = await loadDatabaseDump(event, collection).then(decompressSQLDump);
-  const dumpLinesHash = dump.map((row) => row.split(" -- ").pop());
-  let hashesInDb = /* @__PURE__ */ new Set();
-  if (unchangedStructure) {
-    const hashListFromTheDump = new Set(dumpLinesHash);
-    const hashesInDbRecords = await db2.all(`SELECT __hash__ FROM ${tables[collection]}`).catch(() => []);
-    hashesInDb = new Set(hashesInDbRecords.map((r) => r.__hash__));
-    const hashesToDelete = hashesInDb.difference(hashListFromTheDump);
-    if (hashesToDelete.size) {
-      await db2.exec(`DELETE FROM ${tables[collection]} WHERE __hash__ IN (${Array(hashesToDelete.size).fill("?").join(",")})`, Array.from(hashesToDelete));
-    }
-  }
-  await dump.reduce(async (prev, sql, index) => {
-    await prev;
-    const hash = dumpLinesHash[index];
-    const statement = sql.substring(0, sql.length - hash.length - 4);
-    if (unchangedStructure) {
-      if (hash === "structure") {
-        return Promise.resolve();
-      }
-      if (hashesInDb.has(hash)) {
-        return Promise.resolve();
-      }
-    }
-    await db2.exec(statement).catch((err) => {
-      const message = err.message || "Unknown error";
-      console.error(`Failed to execute SQL ${sql}: ${message}`);
-    });
-  }, Promise.resolve());
-  const after = await db2.first(`SELECT version FROM ${tables.info} WHERE id = ?`, [`checksum_${collection}`]).catch(() => ({ version: "" }));
-  return after?.version === integrityVersion;
-}
-const REQUEST_TIMEOUT = 90;
-async function waitUntilDatabaseIsReady(db2, collection) {
-  let iterationCount = 0;
-  let interval;
-  await new Promise((resolve, reject) => {
-    interval = setInterval(async () => {
-      const row = await db2.first(`SELECT ready FROM ${tables.info} WHERE id = ?`, [`checksum_${collection}`]).catch(() => ({ ready: true }));
-      if (row?.ready) {
-        clearInterval(interval);
-        resolve(0);
-      }
-      if (iterationCount++ > REQUEST_TIMEOUT) {
-        clearInterval(interval);
-        reject(new Error("Waiting for another database initialization timed out"));
-      }
-    }, 1e3);
-  }).catch((e) => {
-    throw e;
-  }).finally(() => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  });
-}
-async function loadDatabaseDump(event, collection) {
-  return await fetchDatabase(event, String(collection)).catch((e) => {
-    console.error("Failed to fetch compressed dump", e);
-    return "";
-  });
-}
-function refineDatabaseConfig(config) {
-  if (config.type === "d1") {
-    return { ...config, bindingName: config.bindingName || config.binding };
-  }
-  if (config.type === "sqlite") {
-    const _config = { ...config };
-    if (config.filename === ":memory:") {
-      return { name: "memory" };
-    }
-    if ("filename" in config) {
-      const filename = isAbsolute(config?.filename || "") || config?.filename === ":memory:" ? config?.filename : new URL(config.filename, globalThis._importMeta_.url).pathname;
-      _config.path = process.platform === "win32" && filename.startsWith("/") ? filename.slice(1) : filename;
-    }
-    return _config;
-  }
-  return config;
-}
-
-const SQL_COMMANDS = /SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|\$/i;
-const SQL_COUNT_REGEX = /COUNT\((DISTINCT )?([a-z_]\w+|\*)\)/i;
-const SQL_SELECT_REGEX = /^SELECT (.*) FROM (\w+)( WHERE .*)? ORDER BY (["\w,\s]+) (ASC|DESC)( LIMIT \d+)?( OFFSET \d+)?$/;
-function assertSafeQuery(sql, collection) {
-  if (!sql) {
-    throw new Error("Invalid query");
-  }
-  const cleanedupQuery = cleanupQuery(sql);
-  if (cleanedupQuery !== sql) {
-    throw new Error("Invalid query");
-  }
-  const match = sql.match(SQL_SELECT_REGEX);
-  if (!match) {
-    throw new Error("Invalid query");
-  }
-  const [_, select, from, where, orderBy, order, limit, offset] = match;
-  const columns = select.trim().split(", ");
-  if (columns.length === 1) {
-    if (columns[0] !== "*" && !columns[0].match(SQL_COUNT_REGEX) && !columns[0].match(/^"[a-z_]\w+"$/i)) {
-      throw new Error("Invalid query");
-    }
-  } else if (!columns.every((column) => column.match(/^"[a-z_]\w+"$/i))) {
-    throw new Error("Invalid query");
-  }
-  if (from !== `_content_${collection}`) {
-    throw new Error("Invalid query");
-  }
-  if (where) {
-    if (!where.startsWith(" WHERE (") || !where.endsWith(")")) {
-      throw new Error("Invalid query");
-    }
-    const noString = cleanupQuery(where, { removeString: true });
-    if (noString.match(SQL_COMMANDS)) {
-      throw new Error("Invalid query");
-    }
-  }
-  const _order = (orderBy + " " + order).split(", ");
-  if (!_order.every((column) => column.match(/^("[a-zA-Z_]+"|[a-zA-Z_]+) (ASC|DESC)$/))) {
-    throw new Error("Invalid query");
-  }
-  if (limit !== void 0 && !limit.match(/^ LIMIT \d+$/)) {
-    throw new Error("Invalid query");
-  }
-  if (offset !== void 0 && !offset.match(/^ OFFSET \d+$/)) {
-    throw new Error("Invalid query");
-  }
-  return true;
-}
-function cleanupQuery(query, options = { removeString: false }) {
-  let inString = false;
-  let stringFence = "";
-  let result = "";
-  for (let i = 0; i < query.length; i++) {
-    const char = query[i];
-    const prevChar = query[i - 1];
-    const nextChar = query[i + 1];
-    if (char === "'" || char === '"') {
-      if (!options?.removeString) {
-        result += char;
-        continue;
-      }
-      if (inString) {
-        if (char !== stringFence || nextChar === stringFence || prevChar === stringFence) {
-          continue;
-        }
-        inString = false;
-        stringFence = "";
-        continue;
-      } else {
-        inString = true;
-        stringFence = char;
-        continue;
-      }
-    }
-    if (!inString) {
-      if (char === "-" && nextChar === "-") {
-        return result;
-      }
-      if (char === "/" && nextChar === "*") {
-        i += 2;
-        while (i < query.length && !(query[i] === "*" && query[i + 1] === "/")) {
-          i += 1;
-        }
-        i += 2;
-        continue;
-      }
-      result += char;
-    }
-  }
-  return result;
-}
-
-const _tKfotv = eventHandler(async (event) => {
-  const { sql } = await readBody(event);
-  const collection = getRouterParam(event, "collection");
-  assertSafeQuery(sql, collection);
-  const conf = useRuntimeConfig().content;
-  if (conf.integrityCheck) {
-    await checkAndImportDatabaseIntegrity(event, collection, conf);
-  }
-  return loadDatabaseAdapter(conf).all(sql);
-});
-
-const _SDXYrh = lazyEventHandler(() => {
-  const opts = useRuntimeConfig().ipx || {};
-  const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
-  const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
-  const httpStorage = opts.http?.domains ? ipxHttpStorage({ ...opts.http }) : void 0;
-  if (!fsStorage && !httpStorage) {
-    throw new Error("IPX storage is not configured!");
-  }
-  const ipxOptions = {
-    ...opts,
-    storage: fsStorage || httpStorage,
-    httpStorage
-  };
-  const ipx = createIPX(ipxOptions);
-  const ipxHandler = createIPXH3Handler(ipx);
-  return useBase(opts.baseURL, ipxHandler);
-});
-
-const _lazy_fu1ZwY = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_PtL1tk = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _eUbcP0, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_fu1ZwY, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _5zpRbf, lazy: false, middleware: false, method: undefined },
+  { route: '', handler: _FDgxaA, lazy: false, middleware: true, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_PtL1tk, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/__nuxt_content/:collection/sql_dump.txt', handler: _yF2BZn, lazy: false, middleware: false, method: undefined },
-  { route: '/__nuxt_content/:collection/query', handler: _tKfotv, lazy: false, middleware: false, method: undefined },
-  { route: '/_ipx/**', handler: _SDXYrh, lazy: false, middleware: false, method: undefined },
-  { route: '/_scripts/**', handler: _lazy_fu1ZwY, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_fu1ZwY, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_PtL1tk, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -2480,6 +1670,82 @@ function useNitroApp() {
   return nitroApp$1;
 }
 runNitroPlugins(nitroApp$1);
+
+function defineRenderHandler(render) {
+  const runtimeConfig = useRuntimeConfig();
+  return eventHandler(async (event) => {
+    const nitroApp = useNitroApp();
+    const ctx = { event, render, response: void 0 };
+    await nitroApp.hooks.callHook("render:before", ctx);
+    if (!ctx.response) {
+      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
+        setResponseHeader(event, "Content-Type", "image/x-icon");
+        return send(
+          event,
+          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        );
+      }
+      ctx.response = await ctx.render(event);
+      if (!ctx.response) {
+        const _currentStatus = getResponseStatus(event);
+        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
+        return send(
+          event,
+          "No response returned from render handler: " + event.path
+        );
+      }
+    }
+    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
+    if (ctx.response.headers) {
+      setResponseHeaders(event, ctx.response.headers);
+    }
+    if (ctx.response.statusCode || ctx.response.statusMessage) {
+      setResponseStatus(
+        event,
+        ctx.response.statusCode,
+        ctx.response.statusMessage
+      );
+    }
+    return ctx.response.body;
+  });
+}
+
+const scheduledTasks = false;
+
+const tasks = {
+  
+};
+
+const __runningTasks__ = {};
+async function runTask(name, {
+  payload = {},
+  context = {}
+} = {}) {
+  if (__runningTasks__[name]) {
+    return __runningTasks__[name];
+  }
+  if (!(name in tasks)) {
+    throw createError({
+      message: `Task \`${name}\` is not available!`,
+      statusCode: 404
+    });
+  }
+  if (!tasks[name].resolve) {
+    throw createError({
+      message: `Task \`${name}\` is not implemented!`,
+      statusCode: 501
+    });
+  }
+  const handler = await tasks[name].resolve();
+  const taskEvent = { name, payload, context };
+  __runningTasks__[name] = handler.run(taskEvent);
+  try {
+    const res = await __runningTasks__[name];
+    return res;
+  } finally {
+    delete __runningTasks__[name];
+  }
+}
 
 if (!globalThis.crypto) {
   globalThis.crypto = nodeCrypto;

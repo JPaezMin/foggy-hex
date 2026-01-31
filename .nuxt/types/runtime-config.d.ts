@@ -13,71 +13,9 @@ import { RuntimeConfig as UserRuntimeConfig, PublicRuntimeConfig as UserPublicRu
    nitro: {
       envPrefix: string,
    },
-
-   icon: {
-      serverKnownCssClasses: Array<any>,
-   },
-
-   content: {
-      databaseVersion: string,
-
-      version: string,
-
-      database: {
-         type: string,
-
-         filename: string,
-      },
-
-      localDatabase: {
-         type: string,
-
-         filename: string,
-      },
-
-      integrityCheck: boolean,
-   },
-
-   "nuxt-scripts": {
-      version: string,
-   },
   }
   interface SharedPublicRuntimeConfig {
-   content: {
-      wsUrl: string,
-   },
 
-   mdc: {
-      components: {
-         prose: boolean,
-
-         map: any,
-      },
-
-      headings: {
-         anchorLinks: {
-            h1: boolean,
-
-            h2: boolean,
-
-            h3: boolean,
-
-            h4: boolean,
-
-            h5: boolean,
-
-            h6: boolean,
-         },
-      },
-   },
-
-   "nuxt-scripts": {
-      version: any,
-
-      defaultScriptOptions: {
-         trigger: string,
-      },
-   },
   }
 declare module '@nuxt/schema' {
   interface RuntimeConfig extends UserRuntimeConfig {}

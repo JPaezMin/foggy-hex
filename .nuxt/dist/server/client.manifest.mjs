@@ -1,1 +1,1 @@
-export { default } from "file:///C:/Users/lowtr/foggy-hex/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
+export { default } from "file:///C:/Users/lowtr/Documents/FoggyHex/web/foggy-hex/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
