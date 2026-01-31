@@ -8,6 +8,7 @@ export const ShowSchema = z.object({
     time: z.string(),
     venue: z.string(),
     ticketUrl: z.string().url().optional(),
+    layoutVariant: z.enum(['split-venues', 'default']).optional(),
     schedule: z
         .array(
             z.object({
@@ -21,7 +22,7 @@ export const ShowSchema = z.object({
         z.object({
             name: z.string(),
             image: z.string(),
-            bandcamp: z.string().url(),
+            bandcamp: z.string().url().optional(),
             description: z.string(),
         })
     ),
@@ -62,6 +63,7 @@ export default defineContentConfig({
                 time: z.string(),
                 venue: z.string(),
                 ticketUrl: z.string().optional(),
+                layoutVariant: z.enum(['split-venues', 'default']).optional(),
                 schedule: z
                     .array(
                         z.object({

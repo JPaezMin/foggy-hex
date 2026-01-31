@@ -1,7 +1,10 @@
 <template>
     <article
         class="bg-white title-box p-4 flex flex-col transition relative"
-        :class="isExpired ? 'opacity-60' : ''"
+        :class="[
+            isExpired ? 'opacity-60' : '',
+            hideCard ? 'hidden' : '',
+        ]"
         :aria-disabled="isExpired ? 'true' : 'false'"
     >
         <!-- Image -->
@@ -71,4 +74,5 @@ const formattedDate = computed(() => {
 })
 
 const isExpired = computed(() => Boolean(props.isExpired))
+const hideCard = computed(() => props.event?.slug === 'colleen')
 </script>
