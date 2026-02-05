@@ -30,18 +30,18 @@ const show = props.event
 
 const isSplitVenueEvent = computed(() => show.layoutVariant === 'split-venues')
 
-const splitVenueSlots = [
+const splitVenueSlots = computed(() => [
     {
-        time: '18:00',
+        time: show.timeCasa || show.time || '18:00',
         venue: 'Casa Montjuic',
         note: '+ Taki Onqoy (Foggy Hex / Kiosk Radio)',
     },
     {
-        time: '21:00',
+        time: show.timeLaut || show.time || '21:00',
         venue: 'Laut',
         note: '+ Francisco Sosa (Barcelona Modular Society / Restless Music)',
     },
-]
+])
 
 const supportingBand = computed(() =>
     show.bands.find((band) =>
@@ -302,10 +302,10 @@ const formattedDate = computed(() => {
         <!-- Split-venue supporting artists -->
         <section
             v-if="isSplitVenueEvent && supportingBandCasa && supportingBandLaut"
-            class="grid gap-16 md:grid-cols-2 max-w-5xl mx-auto"
+            class="grid gap-12 md:gap-16 md:grid-cols-2 w-full max-w-5xl mx-auto"
             id="split-venue-support"
         >
-            <div class="space-y-4 md:max-w-xl">
+            <div class="space-y-4 w-full">
                 <div class="flex flex-col items-start gap-1.5">
                     <h3
                         class="font-heading text-[26px] leading-tight text-accent m-0 underline decoration-1 underline-offset-4 decoration-current"
@@ -313,7 +313,7 @@ const formattedDate = computed(() => {
                         Casa Montjuic
                     </h3>
                     <span
-                        class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 whitespace-nowrap"
+                        class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 support-subtitle"
                     >
                         Taki Onqoy (Foggy Hex / Kiosk Radio)
                     </span>
@@ -321,9 +321,7 @@ const formattedDate = computed(() => {
                         Warm up DJ Set
                     </span>
                 </div>
-                <div
-                    class="w-full max-w-lg aspect-[4/3] overflow-hidden rounded-sm mx-auto md:mx-0"
-                >
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm">
                     <img
                         :src="supportingBandCasa.image"
                         :alt="supportingBandCasa.name"
@@ -331,11 +329,11 @@ const formattedDate = computed(() => {
                     />
                 </div>
                 <div
-                    class="font-sans text-base leading-relaxed description-html text-left max-w-lg mx-auto md:mx-0"
+                    class="font-sans text-base leading-relaxed description-html text-left w-full"
                     v-html="supportingBandCasa.description"
                 />
             </div>
-            <div class="space-y-4 md:max-w-xl">
+            <div class="space-y-4 w-full">
                 <div class="flex flex-col items-start gap-1.5">
                     <h3
                         class="font-heading text-[26px] leading-tight text-accent m-0 underline decoration-1 underline-offset-4 decoration-current"
@@ -343,7 +341,7 @@ const formattedDate = computed(() => {
                         Laut
                     </h3>
                     <span
-                        class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 whitespace-nowrap"
+                        class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 support-subtitle"
                     >
                         Francisco Sosa (Barcelona Modular Society / Restless Music)
                     </span>
@@ -351,9 +349,7 @@ const formattedDate = computed(() => {
                         Live modular set
                     </span>
                 </div>
-                <div
-                    class="w-full max-w-lg aspect-[4/3] overflow-hidden rounded-sm mx-auto md:mx-0"
-                >
+                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm">
                     <img
                         :src="supportingBandLaut.image"
                         :alt="supportingBandLaut.name"
@@ -361,7 +357,7 @@ const formattedDate = computed(() => {
                     />
                 </div>
                 <div
-                    class="font-sans text-base leading-relaxed description-html text-left max-w-lg mx-auto md:mx-0"
+                    class="font-sans text-base leading-relaxed description-html text-left w-full"
                     v-html="supportingBandLaut.description"
                 />
             </div>
@@ -401,6 +397,11 @@ const formattedDate = computed(() => {
 
 .event-article img {
     filter: none !important;
+}
+
+.support-subtitle {
+    white-space: normal;
+    word-break: break-word;
 }
 
 /* Split-venue template adjustments for landscape orientation */
