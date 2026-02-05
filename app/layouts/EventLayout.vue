@@ -18,7 +18,8 @@ interface Show {
     date: string
     time: string
     venue: string
-    ticketUrl: string
+    ticketUrl?: string
+    ticketUrlCasa?: string
     bands: Band[]
     schedule?: ScheduleItem[]
     layoutVariant?: 'split-venues' | 'default'
@@ -61,6 +62,13 @@ const titleParts = computed(() => {
         tag: (match?.[2] ?? '').trim(),
     }
 })
+
+const slotTicketUrl = (venue: string) => {
+    const lower = venue.toLowerCase()
+    if (lower.includes('casa')) return show.ticketUrlCasa
+    if (lower.includes('laut')) return show.ticketUrl
+    return show.ticketUrl
+}
 
 const formattedDate = computed(() => {
     if (!show.date) return ''
@@ -123,27 +131,10 @@ const formattedDate = computed(() => {
                     <span v-if="slot.note" class="text-sm text-text/70">
                         {{ slot.note }}
                     </span>
-                    <template v-if="event.ticketUrl">
+                    <template v-if="slotTicketUrl(slot.venue)">
                         <span>-</span>
                         <a
-                            :href="event.ticketUrl"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="underline decoration-inherit underline-offset-4 hover:text-accent transition"
-                        >
-                            Entradas
-                        </a>
-                    </template>
-                    <span v-else>- Entradas Próximamente</span>
-                </div>
-                <div
-                    class="flex flex-wrap items-center justify-center gap-2 font-sans text-lg"
-                >
-                    <span>Bundle Casa Montjuic + Laut</span>
-                    <template v-if="event.ticketUrl">
-                        <span>-</span>
-                        <a
-                            :href="event.ticketUrl"
+                            :href="slotTicketUrl(slot.venue)"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="underline decoration-inherit underline-offset-4 hover:text-accent transition"

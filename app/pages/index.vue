@@ -121,6 +121,8 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
     return [...upcoming, ...expired]
 })
 
+const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
+
 const archivedEvents = computed(() =>
     (pastEvents.value ?? []).filter((event) => {
         const eventDate = parseEventDate(event.date)
@@ -197,7 +199,7 @@ const formatDate = (dateString?: string | null): string => {
         <!-- Current Event (featured) -->
         <section
             id="current-event"
-            class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
+            class="container mx-auto flex flex-col items-center justify-center px-6 py-6 hidden"
         >
             <h2
                 class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
@@ -222,18 +224,18 @@ const formatDate = (dateString?: string | null): string => {
             </h2>
 
             <div
-                v-if="futureGridEvents.length"
+                v-if="futureGridTop.length"
                 :class="[
                     'grid gap-8',
-                    futureGridEvents.length === 1
+                    futureGridTop.length === 1
                         ? 'grid-cols-1'
-                        : futureGridEvents.length === 2
+                        : futureGridTop.length === 2
                           ? 'grid-cols-1 md:grid-cols-2'
                           : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
                 ]"
             >
                 <EventCard
-                    v-for="event in futureGridEvents"
+                    v-for="event in futureGridTop"
                     :key="event.slug"
                     :event="event"
                     :is-expired="event.isExpired"

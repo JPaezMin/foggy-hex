@@ -8,6 +8,7 @@ export const ShowSchema = z.object({
     time: z.string(),
     venue: z.string(),
     ticketUrl: z.string().url().optional(),
+    ticketUrlCasa: z.string().url().optional(),
     layoutVariant: z.enum(['split-venues', 'default']).optional(),
     schedule: z
         .array(
@@ -63,6 +64,7 @@ export default defineContentConfig({
                 time: z.string(),
                 venue: z.string(),
                 ticketUrl: z.string().optional(),
+                ticketUrlCasa: z.string().optional(),
                 layoutVariant: z.enum(['split-venues', 'default']).optional(),
                 schedule: z
                     .array(
