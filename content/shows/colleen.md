@@ -7,7 +7,7 @@ timeCasa: '18:00'
 timeLaut: '20:50'
 venue: 'Casa Montjuic + Laut'
 ticketUrl: 'https://entradium.com/events/colleen-presenta-libres-antes-del-final-segunda-sesion'
-ticketUrlCasa: ''
+ticketUrlCasa: 'https://dice.fm/event/xe6ebl-colleen-presenta-libres-antes-del-final-26th-apr-casa-montjuc-barcelona-tickets'
 layoutVariant: 'split-venues'
 bands:
     - name: 'Colleen (Thrill Jockey  / FR)'
