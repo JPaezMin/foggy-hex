@@ -34,12 +34,12 @@ const splitVenueSlots = computed(() => [
     {
         time: show.timeCasa || show.time || '18:00',
         venue: 'Casa Montjuic',
-        note: '+ Taki Onqoy (Foggy Hex / Kiosk Radio)',
+        note: '+ Taki Onqoy (Warm up DJ set)',
     },
     {
         time: show.timeLaut || show.time || '21:00',
         venue: 'Laut',
-        note: '+ Francisco Sosa (Barcelona Modular Society / Restless Music)',
+        note: '+ Francisco Sosa (Live modular set)',
     },
 ])
 
