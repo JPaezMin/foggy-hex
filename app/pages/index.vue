@@ -206,7 +206,7 @@ const formatDate = (dateString?: string | null): string => {
             >
                 Próximamente
             </h2>
-            <NuxtLink to="https://foggyhexbcn.com/events/colleen">
+            <NuxtLink to="/events/colleen">
                 <img
                     src="/assets/images/current-event-poster.jpg"
                     alt="Cartel de nuestro próximo evento"
