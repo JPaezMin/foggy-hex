@@ -199,7 +199,7 @@ const formatDate = (dateString?: string | null): string => {
         <!-- Current Event (featured) -->
         <section
             id="current-event"
-            class="container mx-auto flex flex-col items-center justify-center px-6 py-6 hidden"
+            class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
         >
             <h2
                 class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
