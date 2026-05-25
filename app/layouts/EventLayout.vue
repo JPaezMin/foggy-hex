@@ -4,6 +4,8 @@ interface Band {
     image: string
     bandcamp: string
     description: string
+    label?: string
+    country?: string
 }
 
 interface ScheduleItem {
@@ -215,23 +217,35 @@ const formattedDate = computed(() => {
 
                 <!-- Text -->
                 <div class="lg:col-span-7 feature-text-col">
-                    <h2 class="font-heading text-3xl relative inline-block">
-                        <template v-if="primaryBand.bandcamp">
-                            <a
-                                :href="primaryBand.bandcamp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
-                            >
-                                {{ primaryBand.name }}
-                            </a>
-                        </template>
-                        <template v-else>
-                            <span class="border-text pb-1 decoration-1 underline-offset-4">
-                                {{ primaryBand.name }}
-                            </span>
-                        </template>
-                    </h2>
+                    <div>
+                        <h2 class="font-heading text-3xl relative inline-block">
+                            <template v-if="primaryBand.bandcamp">
+                                <a
+                                    :href="primaryBand.bandcamp"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
+                                >
+                                    {{ primaryBand.name }}
+                                </a>
+                            </template>
+                            <template v-else>
+                                <span class="border-text pb-1 decoration-1 underline-offset-4">
+                                    {{ primaryBand.name }}
+                                </span>
+                            </template>
+                        </h2>
+                        <p
+                            v-if="primaryBand.label || primaryBand.country"
+                            class="mt-1 font-sans text-base text-text/60"
+                        >
+                            (
+                            <span v-if="primaryBand.label">{{ primaryBand.label }}</span>
+                            <span v-if="primaryBand.label && primaryBand.country"> / </span>
+                            <span v-if="primaryBand.country">{{ primaryBand.country }}</span>
+                            )
+                        </p>
+                    </div>
                     <div
                         class="font-sans text-base leading-relaxed max-w-prose mt-8 description-html"
                         v-html="primaryBand.description"
@@ -267,23 +281,35 @@ const formattedDate = computed(() => {
                     class="lg:col-span-7"
                     :class="i % 2 === 1 ? 'lg:order-1 text-right' : 'text-left'"
                 >
-                    <h2 class="font-heading text-3xl relative inline-block">
-                        <template v-if="band.bandcamp">
-                            <a
-                                :href="band.bandcamp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
-                            >
-                                {{ band.name }}
-                            </a>
-                        </template>
-                        <template v-else>
-                            <span class="border-text pb-1 decoration-1 underline-offset-4">
-                                {{ band.name }}
-                            </span>
-                        </template>
-                    </h2>
+                    <div>
+                        <h2 class="font-heading text-3xl relative inline-block">
+                            <template v-if="band.bandcamp">
+                                <a
+                                    :href="band.bandcamp"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
+                                >
+                                    {{ band.name }}
+                                </a>
+                            </template>
+                            <template v-else>
+                                <span class="border-text pb-1 decoration-1 underline-offset-4">
+                                    {{ band.name }}
+                                </span>
+                            </template>
+                        </h2>
+                        <p
+                            v-if="band.label || band.country"
+                            class="mt-1 font-sans text-base text-text/60"
+                        >
+                            (
+                            <span v-if="band.label">{{ band.label }}</span>
+                            <span v-if="band.label && band.country"> / </span>
+                            <span v-if="band.country">{{ band.country }}</span>
+                            )
+                        </p>
+                    </div>
                     <div
                         class="font-sans text-base leading-relaxed max-w-prose mt-8 description-html"
                         :class="i % 2 === 1 ? 'ml-auto' : ''"

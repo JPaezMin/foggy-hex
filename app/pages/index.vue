@@ -4,6 +4,7 @@ import type { FutureCollectionItem } from '@nuxt/content'
 type FutureGridEvent = FutureCollectionItem & {
     isExpired: boolean
     sortTimestamp: number
+    artists?: string[]
 }
 
 const { data: futureEvents } = await useAsyncData('future-events', () =>
@@ -123,6 +124,8 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
 
 const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
 
+const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
+
 const archivedEvents = computed(() =>
     (pastEvents.value ?? []).filter((event) => {
         const eventDate = parseEventDate(event.date)
@@ -206,7 +209,7 @@ const formatDate = (dateString?: string | null): string => {
             >
                 Próximamente
             </h2>
-            <NuxtLink to="/events/colleen">
+            <NuxtLink v-if="upcomingEvent" :to="`/events/${upcomingEvent.slug}`">
                 <img
                     src="/assets/images/current-event-poster.jpg"
                     alt="Cartel de nuestro próximo evento"

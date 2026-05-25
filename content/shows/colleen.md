@@ -10,7 +10,9 @@ ticketUrl: 'https://entradium.com/events/colleen-presenta-libres-antes-del-final
 ticketUrlCasa: 'https://dice.fm/event/xe6ebl-colleen-presenta-libres-antes-del-final-26th-apr-casa-montjuc-barcelona-tickets'
 layoutVariant: 'split-venues'
 bands:
-    - name: 'Colleen (Thrill Jockey  / FR)'
+    - name: 'Colleen'
+      label: 'Thrill Jockey'
+      country: 'FR'
       image: '/images/shows/future/colleen.jpg'
       bandcamp: 'https://colleencolleen.bandcamp.com/album/libres-antes-del-final'
       description: |
@@ -20,12 +22,16 @@ bands:
                   
         <p>Por ese motivo, la presentación en Barcelona se articula como <strong>dos conciertos distintos en la misma noche</strong>. <strong>El primero, en Casa Montjuïc</strong>, actúa como punto de origen, un regreso del sonido al lugar que contribuyó a darle forma. <strong>Más tarde, en Laut</strong>, la música se reinterpreta en otro entorno, con Colleen en medio de la pista permitiendo al público <strong>una experiencia de escucha totalmente física y especial</strong>.</p>
 
-    - name: 'Francisco Sosa (Out Records  / BCN)'
+    - name: 'Francisco Sosa'
+      label: 'Out Records'
+      country: 'BCN'
       image: '/images/shows/future/f-sosa-3.jpg'
       bandcamp: 'https://outrecs.bandcamp.com/album/out009-various-artists-3'
       description: |
           <p>Nacido en Rosario (Argentina) y afincado en Barcelona desde hace unos años Francisco Sosa desarrolla su práctica musical a partir de una relación directa con la síntesis modular. El rosarino ha publicado su trabajo en sellos como Restless Music, Out Records y el sello de Barcelona Modular Society, colectivo al cual también acompaña desde la logística y la curaduría.</p>
-    - name: 'Taki Onqoy (Foggy Hex / Kiosk Radio / BCN)'
+    - name: 'Taki Onqoy'
+      label: 'Foggy Hex / Kiosk Radio'
+      country: 'BCN'
       image: '/images/shows/future/taki-onqoy-pr.jpg'
       description: |
           <p>Miembro fundador y actual host de la <a href="https://kioskradio.com/label/foggy-hex" target="_blank">residencia Outsiders de Foggy Hex en la radio belga Kiosk</a>, Taki Onqoy concibe sus sesiones como un terreno de exploración guiado por la intuición. Sus sets trazan conexiones entre la música tradicional, el jazz improvisado y el noise, y se proyectan hacia el dub y la bass music, dando lugar a espacios de sonido abiertos al baile y la psicodélia.</p>
