@@ -1,0 +1,52 @@
+import { mergeProps, useSSRContext } from 'vue';
+import { ssrRenderAttrs } from 'vue/server-renderer';
+import { u as useSeoMeta } from './composables-DFdc4R-K.mjs';
+import './server.mjs';
+import '../_/nitro.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
+import 'node:fs';
+import 'node:url';
+import '@iconify/utils';
+import 'node:crypto';
+import 'consola';
+import 'node:path';
+import 'better-sqlite3';
+import 'ipx';
+import 'vue-router';
+import '@iconify/vue';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/plugins';
+import 'unhead/utils';
+
+const _sfc_main = {
+  __name: "about",
+  __ssrInlineRender: true,
+  setup(__props) {
+    useSeoMeta({
+      title: "Sobre Nosotros | Foggy Hex",
+      description: "Conoce a Foggy Hex",
+      ogTitle: "Sobre Nosotros | Foggy Hex",
+      ogDescription: "Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan",
+      ogImage: "https://www.foggyhexbcn.com/about-og.jpg",
+      ogUrl: "https://www.foggyhexbcn.com/about"
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<article${ssrRenderAttrs(mergeProps({ class: "relative container mx-auto px-6 py-16 space-y-8 text-left" }, _attrs))}><section class="max-w-4xl relative z-10"><h1 class="font-heading text-[40px] leading-tight text-accent mb-8 border-l-4 border-text pl-4"> Sobre Nosotros </h1><p class="font-sans text-lg leading-relaxed text-text"> Nuestro trabajo es orientado al fan, de espíritu DIY y basado en la experiencia. Colaboramos con espacios y salas de nuestra ciudad organizando conciertos abiertos a personas de todas las edades y orígenes. </p></section><section class="max-w-5xl relative z-10"><h2 class="font-heading text-[24px] leading-relaxed text-text mb-6 inline-block"> Hemos tenido la suerte de trabajar, entre otros, con: </h2><ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 font-sans text-base leading-snug text-text mt-4"><li><a href="https://brokenwatermusic.bandcamp.com" target="_blank" rel="noopener noreferrer"> Broken Water </a><span class="text-gray-500">(Night People / US)</span></li><li><a href="https://www.nts.live/shows/alien-jams" target="_blank" rel="noopener noreferrer"> Chloe Frieda </a><span class="text-gray-500">(NTS / Alien Jams / UK)</span></li><li><a href="https://danielbachman.bandcamp.com" target="_blank" rel="noopener noreferrer"> Daniel Bachman </a><span class="text-gray-500">(Three Lobed / US)</span></li><li><a href="https://soundcloud.com/dont-dj-1" target="_blank" rel="noopener noreferrer"> Don&#39;t DJ </a><span class="text-gray-500">(Berceuse Heroique / DE)</span></li><li><a href="https://www.dublab.cat" target="_blank" rel="noopener noreferrer"> Dublab Barcelona <span class="text-gray-500">(CAT)</span></a></li><li><a href="https://gordonashworth.bandcamp.com" target="_blank" rel="noopener noreferrer"> Gordon Ashworth </a><span class="text-gray-500">(Olvido Records / US)</span></li><li><a href="https://jamesblackshaw.bandcamp.com" target="_blank" rel="noopener noreferrer"> James Blackshaw </a><span class="text-gray-500">(Important / US)</span></li><li><a href="https://jungantagen.bandcamp.com/" target="_blank" rel="noopener noreferrer"> Jung An Tagen </a><span class="text-gray-500">(Mego Editions / AT)</span></li><li><a href="https://kioskradio.com/" target="_blank" rel="noopener noreferrer"> Kiosk Radio </a><span class="text-gray-500">(BE)</span></li><li><a href="https://marisaanderson.bandcamp.com" target="_blank" rel="noopener noreferrer"> Marisa Anderson </a><span class="text-gray-500">(Thrill Jockey / US)</span></li><li><a href="https://maxwellaugustcroy.bandcamp.com" target="_blank" rel="noopener noreferrer"> Maxwell August Croy </a><span class="text-gray-500">(Root Strata / US)</span></li><li><a href="https://mopegrooves.bandcamp.com" target="_blank" rel="noopener noreferrer"> Mope Grooves </a><span class="text-gray-500">(See My Friends / US)</span></li><li><a href="https://mississippirecords.bandcamp.com" target="_blank" rel="noopener noreferrer"> Mississippi Records </a><span class="text-gray-500">(US)</span></li><li><a href="https://noveller.bandcamp.com" target="_blank" rel="noopener noreferrer"> Noveller </a><span class="text-gray-500">(Fire Records / US)</span></li><li><a href="https://www.nts.live" target="_blank" rel="noopener noreferrer"> NTS Radio <span class="text-gray-500">(UK)</span></a></li><li><a href="https://paranoiseradio.com" target="_blank" rel="noopener noreferrer"> Paranoise Radio <span class="text-gray-500">(GR)</span></a></li><li><a href="https://soundcloud.com/parris_dj" target="_blank" rel="noopener noreferrer"> Parris </a><span class="text-gray-500">(Idle Hands / Trilogy Tapes / UK)</span></li><li><a href="https://shivafeshareki.bandcamp.com" target="_blank" rel="noopener noreferrer"> Shiva Feshareki </a><span class="text-gray-500">(Matière Mémoire / UK)</span></li><li><a href="https://stevehauschildt.bandcamp.com" target="_blank" rel="noopener noreferrer"> Steve Hauschildt </a><span class="text-gray-500">(Kranky / US)</span></li><li><a href="https://www.mountain-goats.com" target="_blank" rel="noopener noreferrer"> The Mountain Goats </a><span class="text-gray-500">(Merge / US)</span></li><li><a href="https://woolenmen.bandcamp.com/" target="_blank" rel="noopener noreferrer"> The Woolen Men </a><span class="text-gray-500">(Woodsist / US)</span></li></ul></section></article>`);
+    };
+  }
+};
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/about.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+
+export { _sfc_main as default };
+//# sourceMappingURL=about-DmvgRzPY.mjs.map
