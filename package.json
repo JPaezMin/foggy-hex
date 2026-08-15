@@ -1,0 +1,14 @@
+{
+  "name": "foggy-hex-root",
+  "version": "1.0.0",
+  "private": true,
+  "bin": {
+    "deploy-foggy-hex": "./scripts/deploy.js"
+  },
+  "scripts": {
+    "deploy": "node ./scripts/deploy.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
