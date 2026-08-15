@@ -6,6 +6,7 @@
     "deploy-foggy-hex": "./scripts/deploy.js"
   },
   "scripts": {
+    "build": "nuxi build",
     "deploy": "node ./scripts/deploy.js"
   },
   "engines": {
