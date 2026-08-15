@@ -16,12 +16,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
       - name: Start ssh-agent and add key
         uses: webfactory/ssh-agent@v0.9.0
         with:
