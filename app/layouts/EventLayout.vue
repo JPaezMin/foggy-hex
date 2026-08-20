@@ -59,6 +59,13 @@ const supportingBandLaut = supportingBand
 const primaryBand = computed(() => show.bands?.[0] ?? null)
 
 const titleParts = computed(() => {
+    if (show.title.includes('+')) {
+        return {
+            main: show.title,
+            tag: '',
+        }
+    }
+
     const match = show.title.match(/^(.*?)(?:\s*\(([^)]*)\))?$/)
     return {
         main: (match?.[1] ?? show.title).trim(),
