@@ -44,6 +44,7 @@ export default defineContentConfig({
                 date: z.string(),
                 venue: z.string(),
                 image: z.string(),
+                detailsPublic: z.boolean().optional(),
             }),
         }),
         past: defineCollection({
@@ -69,6 +70,7 @@ export default defineContentConfig({
                 venue: z.string(),
                 ticketUrl: z.string().optional(),
                 ticketUrlCasa: z.string().optional(),
+                detailsPublic: z.boolean().optional(),
                 layoutVariant: z.enum(['split-venues', 'default']).optional(),
                 schedule: z
                     .array(

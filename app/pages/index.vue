@@ -5,6 +5,7 @@ type FutureGridEvent = FutureCollectionItem & {
     isExpired: boolean
     sortTimestamp: number
     artists?: string[]
+    detailsPublic?: boolean
 }
 
 type ArchiveEvent = {
@@ -238,13 +239,22 @@ const formatDate = (dateString?: string | null): string => {
             >
                 Próximamente
             </h2>
-            <NuxtLink v-if="upcomingEvent" :to="`/events/${upcomingEvent.slug}`">
+            <NuxtLink
+                v-if="upcomingEvent && upcomingEvent.detailsPublic !== false"
+                :to="`/events/${upcomingEvent.slug}`"
+            >
                 <img
                     src="/assets/images/current-event-poster.jpg"
                     alt="Cartel de nuestro próximo evento"
                     class="w-[478px] h-auto object-contain mt-8"
                 />
             </NuxtLink>
+            <img
+                v-else-if="upcomingEvent"
+                src="/assets/images/current-event-poster.jpg"
+                alt="Cartel de nuestro próximo evento"
+                class="w-[478px] h-auto object-contain mt-8"
+            />
         </section>
 
         <!-- Future Events -->

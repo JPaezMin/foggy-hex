@@ -4,6 +4,7 @@ title: 'Les Halles (FR) + TBC'
 date: '04/12/26'
 time: 'TBC'
 venue: "L'Atumatica"
+detailsPublic: false
 bands:
     - name: 'Les Halles'
       image: '/images/shows/future/les-halles.jpg'

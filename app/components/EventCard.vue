@@ -26,7 +26,7 @@
         <div class="flex-1 flex flex-col justify-between text-center">
             <!-- Title (max 2 lines, fixed height) -->
             <NuxtLink
-                v-if="!isExpired"
+                v-if="isLinkable"
                 :to="`/events/${event.slug}`"
                 class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem] underline decoration-inherit decoration-1 underline-offset-4"
             >
@@ -34,7 +34,8 @@
             </NuxtLink>
             <p
                 v-else
-                class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem] opacity-70"
+                class="font-heading text-2xl mb-2 line-clamp-2 min-h-[3.5rem]"
+                :class="isExpired ? 'opacity-70' : ''"
                 aria-disabled="true"
             >
                 {{ event.title }}
@@ -73,4 +74,7 @@ const formattedDate = computed(() => {
 })
 
 const isExpired = computed(() => Boolean(props.isExpired))
+const isLinkable = computed(
+    () => !isExpired.value && props.event.detailsPublic !== false
+)
 </script>
