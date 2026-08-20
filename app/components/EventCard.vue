@@ -43,7 +43,17 @@
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="font-sans text-base text-gray-600 min-h-[1.5rem]">
-                {{ formattedDate }} - {{ event.venue }}
+                {{ formattedDate }} -
+                <a
+                    v-if="event.venueUrl"
+                    :href="event.venueUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-inherit underline-offset-4 hover:text-accent transition"
+                >
+                    {{ event.venue }}
+                </a>
+                <span v-else>{{ event.venue }}</span>
             </p>
         </div>
     </article>

@@ -96,6 +96,26 @@ useSeoMeta({
                 </li>
                 <li>
                     <a
+                        href="https://www.instagram.com/sinestesia.barcelona"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block hover:text-accent transition-colors"
+                    >
+                        Sinestesia
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.lautomatica.org/es/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block hover:text-accent transition-colors"
+                    >
+                        L'Automatica
+                    </a>
+                </li>
+                <li>
+                    <a
                         href="https://www.instagram.com/niu_espai/"
                         target="_blank"
                         rel="noopener noreferrer"

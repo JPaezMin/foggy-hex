@@ -20,6 +20,7 @@ interface Show {
     date: string
     time: string
     venue: string
+    venueUrl?: string
     ticketUrl?: string
     ticketUrlCasa?: string
     bands: Band[]
@@ -152,7 +153,17 @@ const formattedDate = computed(() => {
                     <span class="font-heading text-xl font-bold text-accent">
                         {{ formattedDate }}
                     </span>
-                    - {{ event.time }} - {{ event.venue }}
+                    - {{ event.time }} -
+                    <a
+                        v-if="event.venueUrl"
+                        :href="event.venueUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="underline decoration-inherit underline-offset-4 hover:text-accent transition"
+                    >
+                        {{ event.venue }}
+                    </a>
+                    <span v-else>{{ event.venue }}</span>
                 </p>
                 <a
                     v-if="event.ticketUrl"

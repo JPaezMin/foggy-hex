@@ -3,7 +3,8 @@ slug: 'les-halles'
 title: 'Les Halles (FR) + TBC'
 date: '04/12/26'
 time: 'TBC'
-venue: "L'Atumatica"
+venue: "L'Automatica"
+venueUrl: 'https://www.lautomatica.org/es/'
 detailsPublic: false
 bands:
     - name: 'Les Halles'

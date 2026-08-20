@@ -250,6 +250,61 @@ useSeoMeta({
                     <span class="text-gray-500">(Woodsist / US)</span>
                 </li>
             </ul>
+            <ul
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-8 font-sans text-base leading-snug text-text mt-8"
+            >
+                <li>Able Noise</li>
+                <li>Adriaan de Roover</li>
+                <li>Dudal</li>
+                <li>Aircode</li>
+                <li>Francisco Morgan</li>
+                <li>Ana Roxanne</li>
+                <li>Dania</li>
+                <li>Big Blood</li>
+                <li>Thérése</li>
+                <li>Bear Bones, Lay Low</li>
+                <li>Black Zone Myth Chant</li>
+                <li>Uza.Zetangas</li>
+                <li>DJ Watusawa</li>
+                <li>Céline Gillain</li>
+                <li>Cole Pulice</li>
+                <li>Jason Kolàr</li>
+                <li>Colleen</li>
+                <li>Ivan Zoloto</li>
+                <li>Pablo Volt</li>
+                <li>Rosso Polare</li>
+                <li>Eric Chenaux</li>
+                <li>H Waas</li>
+                <li>Goldblum</li>
+                <li>Hekura</li>
+                <li>Jordi Santanach</li>
+                <li>Inturist</li>
+                <li>Dima Midborn</li>
+                <li>Jeremiah Chiu</li>
+                <li>Morita Vargas</li>
+                <li>Kou</li>
+                <li>QBRNTHSS</li>
+                <li>Mecánica Clásica</li>
+                <li>Sentuhlà</li>
+                <li>---___--____</li>
+                <li>Ex Continent</li>
+                <li>Nick Malkin</li>
+                <li>J.G.G.</li>
+                <li>Niecy Blues</li>
+                <li>M. Mohamed Khtira</li>
+                <li>Passepartout Duo</li>
+                <li>Bio DATA-X</li>
+                <li>Patrick Shiroishi</li>
+                <li>The Devil, Probably</li>
+                <li>Piotr Kurek</li>
+                <li>Roméo Poirier</li>
+                <li>Taki Onqoy</li>
+                <li>Fassion Health</li>
+                <li>Új Bála</li>
+                <li>DMRA</li>
+                <li>Vic Bang</li>
+                <li>Los Cuatro Amigos</li>
+            </ul>
         </section>
     </article>
 </template>

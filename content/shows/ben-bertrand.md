@@ -4,6 +4,7 @@ title: 'Ben Bertrand (BE) + DJ Blue Flowers (BCN) + JK (BCN)'
 date: '31/10/26'
 time: 'TBC'
 venue: 'Sinestesia'
+venueUrl: 'https://www.instagram.com/sinestesia.barcelona'
 detailsPublic: false
 bands:
     - name: 'Ben Bertrand'
