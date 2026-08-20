@@ -7,6 +7,14 @@ type FutureGridEvent = FutureCollectionItem & {
     artists?: string[]
 }
 
+type ArchiveEvent = {
+    title: string
+    date?: string | null
+    venue: string
+    image: string
+    sortTimestamp: number
+}
+
 const { data: futureEvents } = await useAsyncData('future-events', () =>
     queryCollection('future').order('date', 'ASC').all()
 )
@@ -90,18 +98,17 @@ const parseEventDate = (dateString?: string | null): Date | null => {
 
 const futureGridEvents = computed<FutureGridEvent[]>(() => {
     const source = futureEvents.value ?? []
-    const mapped = source.map((event) => {
-        const eventDate = parseEventDate(event.date)
-        const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
-        const isExpired = Boolean(eventDate && eventDate < startOfToday)
-        return {
-            ...event,
-            isExpired,
-            sortTimestamp: timestamp,
-        }
-    })
-
-    const upcoming = mapped
+    return source
+        .map((event) => {
+            const eventDate = parseEventDate(event.date)
+            const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
+            const isExpired = Boolean(eventDate && eventDate < startOfToday)
+            return {
+                ...event,
+                isExpired,
+                sortTimestamp: timestamp,
+            }
+        })
         .filter((event) => !event.isExpired)
         .sort((a, b) => {
             if (a.sortTimestamp !== b.sortTimestamp) {
@@ -109,29 +116,51 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
             }
             return a.title.localeCompare(b.title)
         })
-
-    const expired = mapped
-        .filter((event) => event.isExpired)
-        .sort((a, b) => {
-            if (a.sortTimestamp !== b.sortTimestamp) {
-                return b.sortTimestamp - a.sortTimestamp
-            }
-            return a.title.localeCompare(b.title)
-        })
-
-    return [...upcoming, ...expired]
 })
 
 const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
 
 const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
 
-const archivedEvents = computed(() =>
-    (pastEvents.value ?? []).filter((event) => {
-        const eventDate = parseEventDate(event.date)
-        return !eventDate || eventDate < startOfToday
+const archivedEvents = computed<ArchiveEvent[]>(() => {
+    const expiredFutureEvents = (futureEvents.value ?? [])
+        .map((event) => {
+            const eventDate = parseEventDate(event.date)
+            const sortTimestamp = eventDate?.getTime() ?? 0
+            return {
+                title: event.title,
+                date: event.date,
+                venue: event.venue,
+                image: event.image,
+                sortTimestamp,
+                isExpired: Boolean(eventDate && eventDate < startOfToday),
+            }
+        })
+        .filter((event) => event.isExpired)
+
+    const historicalEvents = (pastEvents.value ?? [])
+        .filter((event) => {
+            const eventDate = parseEventDate(event.date)
+            return !eventDate || eventDate < startOfToday
+        })
+        .map((event) => {
+            const eventDate = parseEventDate(event.date)
+            return {
+                title: event.title,
+                date: event.date,
+                venue: event.venue,
+                image: event.image,
+                sortTimestamp: eventDate?.getTime() ?? 0,
+            }
+        })
+
+    return [...expiredFutureEvents, ...historicalEvents].sort((a, b) => {
+        if (a.sortTimestamp !== b.sortTimestamp) {
+            return b.sortTimestamp - a.sortTimestamp
+        }
+        return a.title.localeCompare(b.title)
     })
-)
+})
 
 const formatDate = (dateString?: string | null): string => {
     if (!dateString) return ''
