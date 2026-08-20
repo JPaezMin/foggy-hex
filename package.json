@@ -7,6 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "deploy": "./deploy.sh",
+    "deploy:static": "powershell -ExecutionPolicy Bypass -File ./scripts/publish-static.ps1",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

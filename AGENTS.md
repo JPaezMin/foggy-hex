@@ -26,13 +26,13 @@ Repository:
 
 ## Common Commands
 
-Use Corepack for Yarn instead of relying on a global `yarn` executable.
+Prefer npm on this Windows workstation. Corepack/Yarn has required manual setup here and slows down routine changes.
 
 ```powershell
-corepack yarn install
-corepack yarn dev
-corepack yarn generate
-corepack yarn preview
+npm install
+npm run dev
+npm run generate
+npm run preview
 ```
 
 The static output is generated at:
@@ -45,14 +45,14 @@ The static output is generated at:
 
 Production is managed through cPanel using `.cpanel.yml`.
 
-The intended deploy flow is:
+The intended fast deploy flow is:
 
 1. Work on `main`.
-2. Generate the static site with `corepack yarn generate`.
-3. Copy `.output/public` contents to the `deploy` branch.
-4. Keep `.cpanel.yml` in the `deploy` branch.
-5. Push `deploy` to GitHub.
-6. cPanel pulls `origin/deploy` and syncs files to `/home/foggyhex/public_html/`.
+2. Generate the static site with `npm run generate`.
+3. Commit and push the source/content change to `origin/main`.
+4. Run `npm run deploy:static -- -Message "Deploy <short description>"`.
+5. The deploy script copies `.output/public` to the `deploy` branch, keeps `.cpanel.yml`, commits, pushes `origin/deploy`, and returns to `main`.
+6. The user verifies production directly in the browser.
 
 Do not create duplicate local copies of this repository. Work only in:
 
@@ -68,7 +68,8 @@ C:\Users\lowtr\Documents\FoggyHex\web\foggy-hex
 - Ask for explicit authorization before commits, pushes, PRs, or production deploys.
 - Use the GitHub plugin for remote GitHub writes when local Git credentials are unavailable.
 - Prefer small, focused changes.
-- Verify user-facing changes with `corepack yarn generate` when feasible.
+- Verify user-facing changes with `npm run generate` when feasible.
+- Do not spend time verifying production in browser unless the user explicitly asks for it.
 
 ## Content Structure
 
