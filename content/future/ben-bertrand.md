@@ -5,5 +5,5 @@ date: '2026-10-31'
 venue: 'Sinestesia'
 venueUrl: 'https://www.instagram.com/sinestesia.barcelona'
 image: '/images/shows/future/ben-bertrand.jpg'
-detailsPublic: false
+detailsPublic: true
 ---

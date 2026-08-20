@@ -27,6 +27,8 @@ export const ShowSchema = z.object({
             image: z.string(),
             bandcamp: z.string().url().optional(),
             description: z.string(),
+            label: z.string().optional(),
+            country: z.string().optional(),
         })
     ),
 })
@@ -89,6 +91,8 @@ export default defineContentConfig({
                         image: z.string(),
                         bandcamp: z.string().optional(),
                         description: z.string(),
+                        label: z.string().optional(),
+                        country: z.string().optional(),
                     })
                 ),
             }),
