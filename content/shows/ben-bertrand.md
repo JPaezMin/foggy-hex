@@ -21,7 +21,7 @@ bands:
     - name: 'DJ Blue Flowers'
       label: 'angle mort / Ultra-Local Records'
       country: 'BCN'
-      image: '/images/shows/future/ben-bertrand.jpg'
+      image: '/images/shows/future/dj-blue-flowers.jpg'
       bandcamp: 'https://anglemort.bandcamp.com/album/una-extra-a-amistad'
       description: |
         <p>El evento sirve también para presentar, a propios y extraños, las primeras referencias de la plataforma de autoedición angle mort.</p>
@@ -34,7 +34,7 @@ bands:
     - name: 'jk'
       label: 'angle mort'
       country: 'BCN'
-      image: '/images/shows/future/ben-bertrand.jpg'
+      image: '/images/shows/future/jk.jpg'
       bandcamp: 'https://jasonkolar.bandcamp.com/'
       description: |
         <p>Por otro lado tendremos a jk, cabeza no pensante detrás de angle mort, que vendrá a presentar su nuevo trabajo, <em>Paradís Artificial</em>. jk fue un día, y sigue siendo a veces, Jason Kolàr, un no músico local que intenta, seguramente con dudoso éxito, huir de la etiqueta que lo define como artista ambient.</p>

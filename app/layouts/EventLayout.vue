@@ -271,14 +271,14 @@ const formattedDate = computed(() => {
             <div
                 v-for="(band, i) in event.bands"
                 :key="band.name"
-                class="relative grid grid-cols-1 lg:grid-cols-12 gap-4 items-start"
+                class="relative grid grid-cols-1 lg:grid-cols-12 gap-4 items-start default-event-row"
             >
                 <!-- Image -->
                 <div
-                    class="lg:col-span-5 flex justify-center"
+                    class="lg:col-span-5 flex justify-center default-image-col"
                     :class="i % 2 === 1 ? 'lg:order-2' : ''"
                 >
-                    <div class="w-2/3 aspect-square overflow-hidden">
+                    <div class="w-2/3 aspect-square overflow-hidden default-image-frame">
                         <img
                             :src="band.image"
                             :alt="band.name"
@@ -439,6 +439,22 @@ const formattedDate = computed(() => {
 .support-subtitle {
     white-space: normal;
     word-break: break-word;
+}
+
+@media (min-width: 1024px) {
+    .default-event-row {
+        align-items: stretch;
+    }
+
+    .default-image-col {
+        align-items: stretch;
+    }
+
+    .default-image-frame {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+    }
 }
 
 /* Split-venue template adjustments for landscape orientation */
