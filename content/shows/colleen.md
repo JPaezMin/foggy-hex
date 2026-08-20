@@ -13,7 +13,7 @@ bands:
     - name: 'Colleen'
       label: 'Thrill Jockey'
       country: 'FR'
-      image: '/images/shows/future/colleen.jpg'
+      image: '/images/shows/past/colleen.jpg'
       bandcamp: 'https://colleencolleen.bandcamp.com/album/libres-antes-del-final'
       description: |
         <p>Desde principios del año 2002, Cécile Schott (Colleen) ha desarrollado un lenguaje propio donde composición y escucha van de la mano. A lo largo de más de dos décadas, su música ha explorado la repetición, el timbre y la forma como espacios de atención, siempre desde una sensibilidad íntima y paciente.</p>
@@ -25,14 +25,14 @@ bands:
     - name: 'Francisco Sosa'
       label: 'Out Records'
       country: 'BCN'
-      image: '/images/shows/future/f-sosa-3.jpg'
+      image: '/images/shows/past/f-sosa-3.jpg'
       bandcamp: 'https://outrecs.bandcamp.com/album/out009-various-artists-3'
       description: |
           <p>Nacido en Rosario (Argentina) y afincado en Barcelona desde hace unos años Francisco Sosa desarrolla su práctica musical a partir de una relación directa con la síntesis modular. El rosarino ha publicado su trabajo en sellos como Restless Music, Out Records y el sello de Barcelona Modular Society, colectivo al cual también acompaña desde la logística y la curaduría.</p>
     - name: 'Taki Onqoy'
       label: 'Foggy Hex / Kiosk Radio'
       country: 'BCN'
-      image: '/images/shows/future/taki-onqoy-pr.jpg'
+      image: '/images/shows/past/taki-onqoy-pr.jpg'
       description: |
           <p>Miembro fundador y actual host de la <a href="https://kioskradio.com/label/foggy-hex" target="_blank">residencia Outsiders de Foggy Hex en la radio belga Kiosk</a>, Taki Onqoy concibe sus sesiones como un terreno de exploración guiado por la intuición. Sus sets trazan conexiones entre la música tradicional, el jazz improvisado y el noise, y se proyectan hacia el dub y la bass music, dando lugar a espacios de sonido abiertos al baile y la psicodélia.</p>
 
