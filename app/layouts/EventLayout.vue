@@ -271,7 +271,7 @@ const formattedDate = computed(() => {
             <div
                 v-for="(band, i) in event.bands"
                 :key="band.name"
-                class="relative grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-14 xl:gap-x-20 items-start default-event-row"
+                class="relative grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14 items-start default-event-row"
             >
                 <!-- Image -->
                 <div
