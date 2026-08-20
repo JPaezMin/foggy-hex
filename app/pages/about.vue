@@ -251,59 +251,212 @@ useSeoMeta({
                 </li>
             </ul>
             <ul
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-8 font-sans text-base leading-snug text-text mt-8"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 font-sans text-base leading-snug text-text mt-4"
             >
-                <li>Able Noise</li>
-                <li>Adriaan de Roover</li>
-                <li>Dudal</li>
-                <li>Aircode</li>
-                <li>Francisco Morgan</li>
-                <li>Ana Roxanne</li>
-                <li>Dania</li>
-                <li>Big Blood</li>
-                <li>Thérése</li>
-                <li>Bear Bones, Lay Low</li>
-                <li>Black Zone Myth Chant</li>
-                <li>Uza.Zetangas</li>
-                <li>DJ Watusawa</li>
-                <li>Céline Gillain</li>
-                <li>Cole Pulice</li>
-                <li>Jason Kolàr</li>
-                <li>Colleen</li>
-                <li>Ivan Zoloto</li>
-                <li>Pablo Volt</li>
-                <li>Rosso Polare</li>
-                <li>Eric Chenaux</li>
-                <li>H Waas</li>
-                <li>Goldblum</li>
-                <li>Hekura</li>
-                <li>Jordi Santanach</li>
-                <li>Inturist</li>
-                <li>Dima Midborn</li>
-                <li>Jeremiah Chiu</li>
-                <li>Morita Vargas</li>
-                <li>Kou</li>
-                <li>QBRNTHSS</li>
-                <li>Mecánica Clásica</li>
-                <li>Sentuhlà</li>
-                <li>---___--____</li>
-                <li>Ex Continent</li>
-                <li>Nick Malkin</li>
-                <li>J.G.G.</li>
-                <li>Niecy Blues</li>
-                <li>M. Mohamed Khtira</li>
-                <li>Passepartout Duo</li>
-                <li>Bio DATA-X</li>
-                <li>Patrick Shiroishi</li>
-                <li>The Devil, Probably</li>
-                <li>Piotr Kurek</li>
-                <li>Roméo Poirier</li>
-                <li>Taki Onqoy</li>
-                <li>Fassion Health</li>
-                <li>Új Bála</li>
-                <li>DMRA</li>
-                <li>Vic Bang</li>
-                <li>Los Cuatro Amigos</li>
+                <li>
+                    Able Noise
+                    <span class="text-gray-500">(World of Echo / NL-UK)</span>
+                </li>
+                <li>
+                    Adriaan de Roover
+                    <span class="text-gray-500">(Dauw / BE)</span>
+                </li>
+                <li>
+                    Dudal
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Aircode
+                    <span class="text-gray-500">(Alien Jams / UK)</span>
+                </li>
+                <li>
+                    Francisco Morgan
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Ana Roxanne
+                    <span class="text-gray-500">(Kranky / US)</span>
+                </li>
+                <li>
+                    Dania
+                    <span class="text-gray-500">(Geographic North / AU)</span>
+                </li>
+                <li>
+                    Big Blood
+                    <span class="text-gray-500">(Feeding Tube / US)</span>
+                </li>
+                <li>
+                    Thérése
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Bear Bones, Lay Low
+                    <span class="text-gray-500">(KRAAK / VE-BE)</span>
+                </li>
+                <li>
+                    Black Zone Myth Chant
+                    <span class="text-gray-500">(Editions Gravats / FR)</span>
+                </li>
+                <li>
+                    Uza.Zetangas
+                    <span class="text-gray-500">(Ind. / PE)</span>
+                </li>
+                <li>
+                    DJ Watusawa
+                    <span class="text-gray-500">(Red Light Radio / NL)</span>
+                </li>
+                <li>
+                    Céline Gillain
+                    <span class="text-gray-500">(Crammed Discs / BE)</span>
+                </li>
+                <li>
+                    Cole Pulice
+                    <span class="text-gray-500">(Leaving Records / US)</span>
+                </li>
+                <li>
+                    Jason Kolàr
+                    <span class="text-gray-500">(Stroom / ES)</span>
+                </li>
+                <li>
+                    Colleen
+                    <span class="text-gray-500">(Thrill Jockey / FR)</span>
+                </li>
+                <li>
+                    Ivan Zoloto
+                    <span class="text-gray-500">(School of the Arts / RU)</span>
+                </li>
+                <li>
+                    Pablo Volt
+                    <span class="text-gray-500">(Balmat / ES)</span>
+                </li>
+                <li>
+                    Rosso Polare
+                    <span class="text-gray-500">(Discrepant / IT)</span>
+                </li>
+                <li>
+                    Eric Chenaux
+                    <span class="text-gray-500">(Constellation / CA)</span>
+                </li>
+                <li>
+                    H Waas
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Goldblum
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Hekura
+                    <span class="text-gray-500">(Humo Internacional / ES)</span>
+                </li>
+                <li>
+                    Jordi Santanach
+                    <span class="text-gray-500">(Humo Internacional / ES)</span>
+                </li>
+                <li>
+                    Inturist
+                    <span class="text-gray-500">(Gost Zvuk / RU)</span>
+                </li>
+                <li>
+                    Dima Midborn
+                    <span class="text-gray-500">(Gost Zvuk / RU)</span>
+                </li>
+                <li>
+                    Jeremiah Chiu
+                    <span class="text-gray-500">(International Anthem / US)</span>
+                </li>
+                <li>
+                    Morita Vargas
+                    <span class="text-gray-500">(Hidden Harmony / AR)</span>
+                </li>
+                <li>
+                    Kou
+                    <span class="text-gray-500">(Discrepant / ES)</span>
+                </li>
+                <li>
+                    QBRNTHSS
+                    <span class="text-gray-500">(Gin&Platonic / ES)</span>
+                </li>
+                <li>
+                    Mecánica Clásica
+                    <span class="text-gray-500">(Abstrakce / ES)</span>
+                </li>
+                <li>
+                    Sentuhlà
+                    <span class="text-gray-500">(Humo Internacional / ES)</span>
+                </li>
+                <li>
+                    ---___--____
+                    <span class="text-gray-500">(Orange Milk / US)</span>
+                </li>
+                <li>
+                    Ex Continent
+                    <span class="text-gray-500">(Hivern Discs / ES)</span>
+                </li>
+                <li>
+                    Nick Malkin
+                    <span class="text-gray-500">(Geographic North / US)</span>
+                </li>
+                <li>
+                    J.G.G.
+                    <span class="text-gray-500">(Humo Internacional / ES)</span>
+                </li>
+                <li>
+                    Niecy Blues
+                    <span class="text-gray-500">(Kranky / US)</span>
+                </li>
+                <li>
+                    M. Mohamed Khtira
+                    <span class="text-gray-500">(Hive Mind / MA)</span>
+                </li>
+                <li>
+                    Passepartout Duo
+                    <span class="text-gray-500">(Cantaloupe Music / IT-US)</span>
+                </li>
+                <li>
+                    Bio DATA-X
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Patrick Shiroishi
+                    <span class="text-gray-500">(American Dreams / US)</span>
+                </li>
+                <li>
+                    The Devil, Probably
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Piotr Kurek
+                    <span class="text-gray-500">(Mondoj / PL)</span>
+                </li>
+                <li>
+                    Roméo Poirier
+                    <span class="text-gray-500">(Sferic / BE)</span>
+                </li>
+                <li>
+                    Taki Onqoy
+                    <span class="text-gray-500">(Ind. / AR)</span>
+                </li>
+                <li>
+                    Fassion Health
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
+                <li>
+                    Új Bála
+                    <span class="text-gray-500">(Dalmata Daniel / HU)</span>
+                </li>
+                <li>
+                    DMRA
+                    <span class="text-gray-500">(Ind. / FR)</span>
+                </li>
+                <li>
+                    Vic Bang
+                    <span class="text-gray-500">(Orange Milk / AR)</span>
+                </li>
+                <li>
+                    Los Cuatro Amigos
+                    <span class="text-gray-500">(Ind. / ES)</span>
+                </li>
             </ul>
         </section>
     </article>
