@@ -271,26 +271,26 @@ const formattedDate = computed(() => {
             <div
                 v-for="(band, i) in event.bands"
                 :key="band.name"
-                class="relative grid grid-cols-1 lg:grid-cols-12 gap-4 items-start default-event-row"
+                class="relative grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-14 xl:gap-x-20 items-start default-event-row"
             >
                 <!-- Image -->
                 <div
                     class="lg:col-span-5 flex justify-center default-image-col"
                     :class="i % 2 === 1 ? 'lg:order-2' : ''"
                 >
-                    <div class="w-2/3 aspect-square overflow-hidden default-image-frame">
+                    <div class="overflow-hidden default-image-frame">
                         <img
                             :src="band.image"
                             :alt="band.name"
-                            class="w-full h-full object-cover transition duration-500"
+                            class="w-full h-full object-cover transition duration-500 default-image"
                         />
                     </div>
                 </div>
 
                 <!-- Text -->
                 <div
-                    class="lg:col-span-7"
-                    :class="i % 2 === 1 ? 'lg:order-1 text-right' : 'text-left'"
+                    class="lg:col-span-7 default-text-col"
+                    :class="i % 2 === 1 ? 'lg:order-1 lg:text-right' : ''"
                 >
                     <div>
                         <h2 class="font-heading text-3xl relative inline-block">
@@ -323,7 +323,7 @@ const formattedDate = computed(() => {
                     </div>
                     <div
                         class="font-sans text-base leading-relaxed max-w-prose mt-8 description-html"
-                        :class="i % 2 === 1 ? 'ml-auto' : ''"
+                        :class="i % 2 === 1 ? 'lg:ml-auto' : ''"
                         v-html="band.description"
                     />
                 </div>
@@ -441,6 +441,22 @@ const formattedDate = computed(() => {
     word-break: break-word;
 }
 
+.default-image-frame {
+    width: min(100%, 36rem);
+    margin: 0 auto;
+    aspect-ratio: 4 / 3;
+}
+
+.default-image {
+    object-position: center;
+}
+
+@media (min-width: 640px) {
+    .default-image-frame {
+        aspect-ratio: 3 / 2;
+    }
+}
+
 @media (min-width: 1024px) {
     .default-event-row {
         align-items: stretch;
@@ -448,12 +464,18 @@ const formattedDate = computed(() => {
 
     .default-image-col {
         align-items: stretch;
+        justify-content: stretch;
     }
 
     .default-image-frame {
         width: 100%;
         height: 100%;
         aspect-ratio: auto;
+        min-height: clamp(360px, 42vw, 620px);
+    }
+
+    .default-text-col {
+        min-width: 0;
     }
 }
 
