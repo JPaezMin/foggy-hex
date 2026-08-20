@@ -45,6 +45,11 @@ try {
     throw "Build output not found at .output/public"
   }
 
+  $generatedCache = (& git status --porcelain -- ".data")
+  if ($generatedCache) {
+    Run-Git restore -- ".data"
+  }
+
   New-Item -ItemType Directory -Path $TempDeploy | Out-Null
   Run-Robocopy ".output/public" $TempDeploy
   Copy-Item -LiteralPath ".cpanel.yml" -Destination (Join-Path $TempDeploy ".cpanel.yml") -Force
