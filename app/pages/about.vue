@@ -1,4 +1,151 @@
 <script setup>
+const collaborators = [
+    {
+        name: 'Broken Water',
+        meta: 'Night People / US',
+        url: 'https://brokenwatermusic.bandcamp.com',
+    },
+    {
+        name: 'Chloe Frieda',
+        meta: 'NTS / Alien Jams / UK',
+        url: 'https://www.nts.live/shows/alien-jams',
+    },
+    {
+        name: 'Daniel Bachman',
+        meta: 'Three Lobed / US',
+        url: 'https://danielbachman.bandcamp.com',
+    },
+    {
+        name: "Don't DJ",
+        meta: 'Berceuse Heroique / DE',
+        url: 'https://soundcloud.com/dont-dj-1',
+    },
+    {
+        name: 'Dublab Barcelona',
+        meta: 'CAT',
+        url: 'https://www.dublab.cat',
+    },
+    {
+        name: 'Gordon Ashworth',
+        meta: 'Olvido Records / US',
+        url: 'https://gordonashworth.bandcamp.com',
+    },
+    {
+        name: 'James Blackshaw',
+        meta: 'Important / UK',
+        url: 'https://jamesblackshaw.bandcamp.com',
+    },
+    {
+        name: 'Jung An Tagen',
+        meta: 'Editions Mego / AT',
+        url: 'https://jungantagen.bandcamp.com/',
+    },
+    { name: 'Kiosk Radio', meta: 'BE', url: 'https://kioskradio.com/' },
+    {
+        name: 'Marisa Anderson',
+        meta: 'Thrill Jockey / US',
+        url: 'https://marisaanderson.bandcamp.com',
+    },
+    {
+        name: 'Maxwell August Croy',
+        meta: 'Root Strata / US',
+        url: 'https://maxwellaugustcroy.bandcamp.com',
+    },
+    {
+        name: 'Mope Grooves',
+        meta: 'See My Friends / US',
+        url: 'https://mopegrooves.bandcamp.com',
+    },
+    {
+        name: 'Mississippi Records',
+        meta: 'US',
+        url: 'https://mississippirecords.bandcamp.com',
+    },
+    {
+        name: 'Noveller',
+        meta: 'Fire Records / US',
+        url: 'https://noveller.bandcamp.com',
+    },
+    { name: 'NTS Radio', meta: 'UK', url: 'https://www.nts.live' },
+    { name: 'Paranoise Radio', meta: 'GR', url: 'https://paranoiseradio.com' },
+    {
+        name: 'Parris',
+        meta: 'Idle Hands / The Trilogy Tapes / UK',
+        url: 'https://soundcloud.com/parris_dj',
+    },
+    {
+        name: 'Shiva Feshareki',
+        meta: 'Matière Mémoire / UK',
+        url: 'https://shivafeshareki.bandcamp.com',
+    },
+    {
+        name: 'Steve Hauschildt',
+        meta: 'Kranky / US',
+        url: 'https://stevehauschildt.bandcamp.com',
+    },
+    {
+        name: 'The Mountain Goats',
+        meta: 'Merge / US',
+        url: 'https://www.mountain-goats.com',
+    },
+    {
+        name: 'The Woolen Men',
+        meta: 'Woodsist / US',
+        url: 'https://woolenmen.bandcamp.com/',
+    },
+    { name: 'Able Noise', meta: 'World of Echo / NL-UK' },
+    { name: 'Adriaan de Roover', meta: 'Dauw / BE' },
+    { name: 'Dudal', meta: 'Ind. / BE' },
+    { name: 'Aircode', meta: 'Alien Jams / SWE' },
+    { name: 'Francisco Morgan', meta: 'Loveless Records / PT' },
+    { name: 'Ana Roxanne', meta: 'Kranky / US' },
+    { name: 'Dania', meta: 'Paralaxe Editions / BCN' },
+    { name: 'Big Blood', meta: 'Feeding Tube / US' },
+    { name: 'Thérèse', meta: 'Repetidor / ES' },
+    { name: 'Bear Bones, Lay Low', meta: 'KRAAK / VE' },
+    { name: 'Black Zone Myth Chant', meta: 'Editions Gravats / FR' },
+    { name: 'Uza.Zetangas', meta: 'Ind. / PE' },
+    { name: 'DJ Watusawa', meta: 'Zona Watusa / NL' },
+    { name: 'Céline Gillain', meta: 'Cortizona / Lexi Disques / BE' },
+    { name: 'Cole Pulice', meta: 'Leaving Records / US' },
+    { name: 'Jason Kolàr', meta: 'Stroom / CAT' },
+    { name: 'Colleen', meta: 'Thrill Jockey / FR' },
+    { name: 'Ivan Zoloto', meta: 'School of the Arts / RU' },
+    { name: 'Pablo Volt', meta: 'Ediciones Populares / BCN' },
+    { name: 'Rosso Polare', meta: 'Ind. / IT' },
+    { name: 'Eric Chenaux', meta: 'Constellation / CA' },
+    { name: 'H Waas', meta: 'Dublab BCN / BCN' },
+    { name: 'Goldblum', meta: 'Ind. / BCN' },
+    { name: 'Hekura', meta: 'Hegoa / BCN' },
+    { name: 'Jordi Santanach', meta: 'Cosima Pitz / BCN' },
+    { name: 'Inturist', meta: 'Incompetence Records / RU' },
+    { name: 'Dima Midborn', meta: 'Ind. / RU' },
+    { name: 'Jeremiah Chiu', meta: 'International Anthem / US' },
+    { name: 'Morita Vargas', meta: 'Hidden Harmony / ARG' },
+    { name: 'Kou', meta: 'Ind. / BCN' },
+    { name: 'QBRNTHSS', meta: 'Interworld Media / BCN' },
+    { name: 'Mecánica Clásica', meta: 'Abstrakce / Valencia' },
+    { name: 'Sentuhlà', meta: 'Abstrakce / Valencia' },
+    { name: '---___--____', meta: 'Orange Milk / US' },
+    { name: 'Ex Continent', meta: 'Hivern Discs / CAT' },
+    { name: 'Nick Malkin', meta: 'Geographic North / US' },
+    { name: 'J.G.G.', meta: 'Ediciones Populares / CAT' },
+    { name: 'Niecy Blues', meta: 'Kranky / US' },
+    { name: 'Maalem Mohamed Khtira', meta: 'Gnawa Music / MA' },
+    { name: 'Passepartout Duo', meta: 'Tonal Union / IT-US' },
+    { name: 'Bio DATA-X', meta: 'Ind. / BCN' },
+    { name: 'Patrick Shiroishi', meta: 'American Dreams / US' },
+    { name: 'The Devil, Probably', meta: 'Urpa i musell / BCN' },
+    { name: 'Piotr Kurek', meta: 'Mondoj / PL' },
+    { name: 'Roméo Poirier', meta: 'Faitiche / BE' },
+    { name: 'Taki Onqoy', meta: 'Foggy Hex / BCN' },
+    { name: 'Fassion Health', meta: 'Ind. / BCN' },
+    { name: 'Új Bála', meta: 'Baba Vanga / BE' },
+    { name: 'DMRA', meta: 'International Winners / FR' },
+    { name: 'Vic Bang', meta: 'Mondoj / ARG' },
+    { name: 'Los Cuatro Amigos', meta: 'Ediciones Populares / VGO' },
+]
+
 useSeoMeta({
     title: 'Sobre Nosotros | Foggy Hex',
     description: 'Conoce a Foggy Hex',
@@ -12,7 +159,6 @@ useSeoMeta({
 
 <template>
     <article class="relative container mx-auto px-6 py-16 space-y-8 text-left">
-        <!-- Intro -->
         <section class="max-w-4xl relative z-10">
             <h1
                 class="font-heading text-[40px] leading-tight text-accent mb-8 border-l-4 border-text pl-4"
@@ -27,435 +173,34 @@ useSeoMeta({
             </p>
         </section>
 
-        <!-- Collaborations -->
-        <section class="max-w-5xl relative z-10">
+        <section class="max-w-6xl relative z-10">
             <h2
                 class="font-heading text-[24px] leading-relaxed text-text mb-6 inline-block"
             >
                 Hemos tenido la suerte de trabajar, entre otros, con:
             </h2>
             <ul
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 font-sans text-base leading-snug text-text mt-4"
+                class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-y-3 gap-x-10 font-sans text-[15px] leading-none text-text mt-4"
             >
-                <li>
+                <li
+                    v-for="collaborator in collaborators"
+                    :key="collaborator.name"
+                    class="min-w-0 whitespace-nowrap overflow-hidden text-ellipsis"
+                >
                     <a
-                        href="https://brokenwatermusic.bandcamp.com"
+                        v-if="collaborator.url"
+                        :href="collaborator.url"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Broken Water
+                        {{ collaborator.name }}
                     </a>
-                    <span class="text-gray-500">(Night People / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://www.nts.live/shows/alien-jams"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <span v-else>{{ collaborator.name }}</span>
+                    <span
+                        class="ml-1 align-baseline text-[11px] leading-none text-gray-500 sm:text-xs"
                     >
-                        Chloe Frieda
-                    </a>
-                    <span class="text-gray-500">(NTS / Alien Jams / UK)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://danielbachman.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Daniel Bachman
-                    </a>
-                    <span class="text-gray-500">(Three Lobed / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://soundcloud.com/dont-dj-1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Don't DJ
-                    </a>
-                    <span class="text-gray-500">(Berceuse Heroique / DE)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://www.dublab.cat"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Dublab Barcelona
-                        <span class="text-gray-500">(CAT)</span>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://gordonashworth.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Gordon Ashworth
-                    </a>
-                    <span class="text-gray-500">(Olvido Records / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://jamesblackshaw.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        James Blackshaw
-                    </a>
-                    <span class="text-gray-500">(Important / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://jungantagen.bandcamp.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Jung An Tagen
-                    </a>
-                    <span class="text-gray-500">(Mego Editions / AT)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://kioskradio.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Kiosk Radio
-                    </a>
-                    <span class="text-gray-500">(BE)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://marisaanderson.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Marisa Anderson
-                    </a>
-                    <span class="text-gray-500">(Thrill Jockey / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://maxwellaugustcroy.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Maxwell August Croy
-                    </a>
-                    <span class="text-gray-500">(Root Strata / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://mopegrooves.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Mope Grooves
-                    </a>
-                    <span class="text-gray-500">(See My Friends / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://mississippirecords.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Mississippi Records
-                    </a>
-                    <span class="text-gray-500">(US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://noveller.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Noveller
-                    </a>
-                    <span class="text-gray-500">(Fire Records / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://www.nts.live"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        NTS Radio
-                        <span class="text-gray-500">(UK)</span>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://paranoiseradio.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Paranoise Radio
-                        <span class="text-gray-500">(GR)</span>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://soundcloud.com/parris_dj"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Parris
-                    </a>
-                    <span class="text-gray-500"
-                        >(Idle Hands / Trilogy Tapes / UK)</span
-                    >
-                </li>
-                <li>
-                    <a
-                        href="https://shivafeshareki.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Shiva Feshareki
-                    </a>
-                    <span class="text-gray-500">(Matière Mémoire / UK)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://stevehauschildt.bandcamp.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Steve Hauschildt
-                    </a>
-                    <span class="text-gray-500">(Kranky / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://www.mountain-goats.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        The Mountain Goats
-                    </a>
-                    <span class="text-gray-500">(Merge / US)</span>
-                </li>
-                <li>
-                    <a
-                        href="https://woolenmen.bandcamp.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        The Woolen Men
-                    </a>
-                    <span class="text-gray-500">(Woodsist / US)</span>
-                </li>
-            </ul>
-            <ul
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 font-sans text-base leading-snug text-text mt-4"
-            >
-                <li>
-                    Able Noise
-                    <span class="text-gray-500">(World of Echo / NL-UK)</span>
-                </li>
-                <li>
-                    Adriaan de Roover
-                    <span class="text-gray-500">(Dauw / BE)</span>
-                </li>
-                <li>
-                    Dudal
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Aircode
-                    <span class="text-gray-500">(Alien Jams / UK)</span>
-                </li>
-                <li>
-                    Francisco Morgan
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Ana Roxanne
-                    <span class="text-gray-500">(Kranky / US)</span>
-                </li>
-                <li>
-                    Dania
-                    <span class="text-gray-500">(Geographic North / AU)</span>
-                </li>
-                <li>
-                    Big Blood
-                    <span class="text-gray-500">(Feeding Tube / US)</span>
-                </li>
-                <li>
-                    Thérése
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Bear Bones, Lay Low
-                    <span class="text-gray-500">(KRAAK / VE-BE)</span>
-                </li>
-                <li>
-                    Black Zone Myth Chant
-                    <span class="text-gray-500">(Editions Gravats / FR)</span>
-                </li>
-                <li>
-                    Uza.Zetangas
-                    <span class="text-gray-500">(Ind. / PE)</span>
-                </li>
-                <li>
-                    DJ Watusawa
-                    <span class="text-gray-500">(Red Light Radio / NL)</span>
-                </li>
-                <li>
-                    Céline Gillain
-                    <span class="text-gray-500">(Crammed Discs / BE)</span>
-                </li>
-                <li>
-                    Cole Pulice
-                    <span class="text-gray-500">(Leaving Records / US)</span>
-                </li>
-                <li>
-                    Jason Kolàr
-                    <span class="text-gray-500">(Stroom / ES)</span>
-                </li>
-                <li>
-                    Colleen
-                    <span class="text-gray-500">(Thrill Jockey / FR)</span>
-                </li>
-                <li>
-                    Ivan Zoloto
-                    <span class="text-gray-500">(School of the Arts / RU)</span>
-                </li>
-                <li>
-                    Pablo Volt
-                    <span class="text-gray-500">(Balmat / ES)</span>
-                </li>
-                <li>
-                    Rosso Polare
-                    <span class="text-gray-500">(Discrepant / IT)</span>
-                </li>
-                <li>
-                    Eric Chenaux
-                    <span class="text-gray-500">(Constellation / CA)</span>
-                </li>
-                <li>
-                    H Waas
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Goldblum
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Hekura
-                    <span class="text-gray-500">(Humo Internacional / ES)</span>
-                </li>
-                <li>
-                    Jordi Santanach
-                    <span class="text-gray-500">(Humo Internacional / ES)</span>
-                </li>
-                <li>
-                    Inturist
-                    <span class="text-gray-500">(Gost Zvuk / RU)</span>
-                </li>
-                <li>
-                    Dima Midborn
-                    <span class="text-gray-500">(Gost Zvuk / RU)</span>
-                </li>
-                <li>
-                    Jeremiah Chiu
-                    <span class="text-gray-500">(International Anthem / US)</span>
-                </li>
-                <li>
-                    Morita Vargas
-                    <span class="text-gray-500">(Hidden Harmony / AR)</span>
-                </li>
-                <li>
-                    Kou
-                    <span class="text-gray-500">(Discrepant / ES)</span>
-                </li>
-                <li>
-                    QBRNTHSS
-                    <span class="text-gray-500">(Gin&Platonic / ES)</span>
-                </li>
-                <li>
-                    Mecánica Clásica
-                    <span class="text-gray-500">(Abstrakce / ES)</span>
-                </li>
-                <li>
-                    Sentuhlà
-                    <span class="text-gray-500">(Humo Internacional / ES)</span>
-                </li>
-                <li>
-                    ---___--____
-                    <span class="text-gray-500">(Orange Milk / US)</span>
-                </li>
-                <li>
-                    Ex Continent
-                    <span class="text-gray-500">(Hivern Discs / ES)</span>
-                </li>
-                <li>
-                    Nick Malkin
-                    <span class="text-gray-500">(Geographic North / US)</span>
-                </li>
-                <li>
-                    J.G.G.
-                    <span class="text-gray-500">(Humo Internacional / ES)</span>
-                </li>
-                <li>
-                    Niecy Blues
-                    <span class="text-gray-500">(Kranky / US)</span>
-                </li>
-                <li>
-                    M. Mohamed Khtira
-                    <span class="text-gray-500">(Hive Mind / MA)</span>
-                </li>
-                <li>
-                    Passepartout Duo
-                    <span class="text-gray-500">(Cantaloupe Music / IT-US)</span>
-                </li>
-                <li>
-                    Bio DATA-X
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Patrick Shiroishi
-                    <span class="text-gray-500">(American Dreams / US)</span>
-                </li>
-                <li>
-                    The Devil, Probably
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Piotr Kurek
-                    <span class="text-gray-500">(Mondoj / PL)</span>
-                </li>
-                <li>
-                    Roméo Poirier
-                    <span class="text-gray-500">(Sferic / BE)</span>
-                </li>
-                <li>
-                    Taki Onqoy
-                    <span class="text-gray-500">(Ind. / AR)</span>
-                </li>
-                <li>
-                    Fassion Health
-                    <span class="text-gray-500">(Ind. / ES)</span>
-                </li>
-                <li>
-                    Új Bála
-                    <span class="text-gray-500">(Dalmata Daniel / HU)</span>
-                </li>
-                <li>
-                    DMRA
-                    <span class="text-gray-500">(Ind. / FR)</span>
-                </li>
-                <li>
-                    Vic Bang
-                    <span class="text-gray-500">(Orange Milk / AR)</span>
-                </li>
-                <li>
-                    Los Cuatro Amigos
-                    <span class="text-gray-500">(Ind. / ES)</span>
+                        ({{ collaborator.meta }})
+                    </span>
                 </li>
             </ul>
         </section>
