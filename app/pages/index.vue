@@ -122,6 +122,7 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
 const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
 
 const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
+const showCurrentEventPoster = false
 
 const archivedEvents = computed<ArchiveEvent[]>(() => {
     const expiredFutureEvents = (futureEvents.value ?? [])
@@ -231,6 +232,7 @@ const formatDate = (dateString?: string | null): string => {
 
         <!-- Current Event (featured) -->
         <section
+            v-if="showCurrentEventPoster"
             id="current-event"
             class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
         >

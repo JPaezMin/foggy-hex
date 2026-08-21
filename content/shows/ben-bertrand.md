@@ -1,7 +1,7 @@
 ---
 slug: 'ben-bertrand'
-title: 'Ben Bertrand (BE) - Live +'
-titleSubtitle: 'Presentación sello Angle Mort: DJ Blue Flowers (BCN) - Live + JK (BCN) - Live'
+title: 'Ben Bertrand (BE) +'
+titleSubtitle: 'Presentación sello Angle Mort: DJ Blue Flowers (BCN) + JK (BCN)'
 date: '31/10/26'
 time: '20:45'
 venue: 'Sinestesia'
