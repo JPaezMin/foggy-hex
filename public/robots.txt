@@ -1,4 +1,4 @@
 User-Agent: *
-Disallow:
+Disallow: /dj
 
 Sitemap: https://foggyhexbcn.com/sitemap.xml
