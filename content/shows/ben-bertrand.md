@@ -14,11 +14,11 @@ bands:
       image: '/images/shows/future/ben-bertrand.jpg'
       bandcamp: 'https://benbertrand.bandcamp.com/'
       description: |
-        <p>Ben Bertrand es un clarinetista bajo y compositor belga. Con su instrumento y un conjunto de máquinas, construye directos a partir de una red hipnótica de sonidos donde el clarinete, la electrónica y el procesamiento en vivo se expanden hasta formar un lenguaje propio.</p>
+        <p>Hay música que avanza en línea recta y otra que parece alterar la medida del tiempo. La de Ben Bertrand pertenece claramente a esta segunda categoría.</p>
 
-        <p>Su música conecta influencias diversas: músicas tradicionales y ancestrales, sensibilidad contemporánea y formas actuales de electrónica. En ese cruce, Bertrand tiende un puente entre una modernidad extrema y referencias al pasado, generando piezas suspendidas, de respiración lenta y cualidad casi marítima.</p>
+        <p>El compositor belga parte de un instrumento tan físico como el clarinete bajo -madera, aire, respiración- para llevarlo hacia lugares mucho más difíciles de situar. Lo hace mediante loops, pedales y una pequeña constelación de dispositivos electrónicos que multiplican cada gesto hasta convertirlo en otra cosa: notas que se reflejan sobre sí mismas, armónicos suspendidos, reverberaciones que crecen como nubes y sonidos que entran y salen lentamente del foco de atención.</p>
 
-        <p>Ha girado por Europa y pasado por espacios y festivales como Rewire, Cafe OTO, Ina GRM o Sonic Acts. Su música ha sonado en NTS, WFMU, BBC y France Musique. Ha publicado varios LPs en Stroom, participado en recopilatorios de sellos como Ultra Eczema, Osàre! Editions y Flee Project, y colaborado con Christina Vantzou en <em>N5</em>, editado por Kranky.</p>
+        <p>Sus dos trabajos más recientes, <em>Relic Radiation</em> y <em>Black Zodiac</em>, han aparecido en Stroom, sello belga por el que sentimos especial debilidad y casa también de artistas como Voice Actor, Felicity J Lord, Sofie Birch o Low Jack. En la música de Bertrand, el clarinete sigue siendo el centro gravitatorio: un instrumento capaz de refractar una sorprendente cantidad de colores a partir de una sola nota. Hay ecos de la suspensión de Jon Hassell, de las texturas de CV & Jab y Mats Erlandsson, o de esa manera tan particular de Gavin Bryars de hacer que unos pocos elementos parezcan contener muchísimo espacio. Pero Bertrand ocupa un territorio propio: acústico y electrónico al mismo tiempo, íntimo y extraño, cálido y ligeramente irreal.</p>
     - name: 'DJ Blue Flowers'
       label: 'Angle Mort'
       country: 'BCN'
