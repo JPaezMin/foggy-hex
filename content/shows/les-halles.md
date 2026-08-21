@@ -21,7 +21,4 @@ bands:
         <p>Quizá lo más bonito sea esa sensación de nostalgia que atraviesa su música sin dejar muy claro qué estamos echando de menos. Como reconocer un paisaje en el que nunca has estado, o recordar algo que quizá nunca ocurrió.</p>
 
         <p>Especialmente recomendado si alguno de esos nombres ya forma parte de tu mundo. Y si no conoces ninguno, tampoco pasa nada. A veces los conciertos que más se quedan contigo empiezan precisamente así. ¡Ven a descubrirlo con nosotros!</p>
-    - name: 'TBC'
-      image: '/images/shows/future/les-halles.jpg'
-      description: 'Artista por confirmar.'
 ---
