@@ -11,6 +11,53 @@
 </template>
 <script setup>
 const { $grained } = useNuxtApp()
+const route = useRoute()
+const siteUrl = 'https://foggyhexbcn.com'
+
+const canonicalUrl = computed(() => {
+    const path = route.path === '/' ? '/' : route.path.replace(/\/$/, '')
+    return `${siteUrl}${path}`
+})
+
+useHead(() => ({
+    link: [
+        {
+            rel: 'canonical',
+            href: canonicalUrl.value,
+        },
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify([
+                {
+                    '@context': 'https://schema.org',
+                    '@type': 'Organization',
+                    name: 'Foggy Hex',
+                    url: siteUrl,
+                    logo: `${siteUrl}/favicons/favicon-512x512.png`,
+                    sameAs: [
+                        'https://instagram.com/foggyhexbcn',
+                        'https://kioskradio.com/label/foggy-hex',
+                    ],
+                    areaServed: {
+                        '@type': 'City',
+                        name: 'Barcelona',
+                    },
+                    description:
+                        'Colectivo de Barcelona dedicado a conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
+                },
+                {
+                    '@context': 'https://schema.org',
+                    '@type': 'WebSite',
+                    name: 'Foggy Hex',
+                    url: siteUrl,
+                    inLanguage: 'es',
+                },
+            ]),
+        },
+    ],
+}))
 
 onMounted(() => {
     $grained('sections', {

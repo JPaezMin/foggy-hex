@@ -25,6 +25,18 @@ const { data: pastEvents } = await useAsyncData('past-events', () =>
     queryCollection('past').order('date', 'DESC').all()
 )
 
+useSeoMeta({
+    title: 'Foggy Hex | Conciertos experimentales en Barcelona',
+    description:
+        'Foggy Hex es un colectivo de Barcelona que organiza conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
+    ogTitle: 'Foggy Hex | Conciertos experimentales en Barcelona',
+    ogDescription:
+        'Conciertos y eventos de música experimental e independiente en Barcelona.',
+    ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
+    ogUrl: 'https://foggyhexbcn.com/',
+    twitterCard: 'summary_large_image',
+})
+
 const today = new Date()
 const startOfToday = new Date(
     today.getFullYear(),

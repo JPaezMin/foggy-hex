@@ -42,23 +42,25 @@ export default defineNuxtConfig({
             },
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Foggy Hex - Conciertos y más',
+            title: 'Foggy Hex - Conciertos experimentales en Barcelona',
             meta: [
                 {
                     name: 'description',
                     content:
-                        'Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan',
+                        'Foggy Hex es un colectivo de Barcelona dedicado a conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
                 },
 
                 // Open Graph defaults
                 { property: 'og:site_name', content: 'Foggy Hex' },
                 { property: 'og:type', content: 'website' },
-                { property: 'og:url', content: 'https://www.foggyhexbcn.com' },
+                { property: 'og:url', content: 'https://foggyhexbcn.com/' },
                 {
                     property: 'og:image',
-                    content: 'https://www.foggyhexbcn.com/og-image.jpg',
+                    content:
+                        'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
                 },
                 { property: 'og:locale', content: 'es_ES' },
+                { name: 'twitter:card', content: 'summary_large_image' },
             ],
             link: [
                 {

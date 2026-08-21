@@ -1,12 +1,14 @@
 <script setup>
 useSeoMeta({
     title: 'Foggy Hex DJs | Foggy Hex',
-    description: 'Conoce a Foggy Hex, nuestro colectivo con base en Barcelona.',
+    description:
+        'DJs de Foggy Hex en Barcelona: sesiones conectadas con música experimental, dub, leftfield pop, jazz, tradición y escenas independientes.',
     ogTitle: 'Foggy Hex DJs | Foggy Hex',
     ogDescription:
-        'Colectivo en Barcelona que celebra escenas en los márgenes.',
-    ogImage: 'https://www.foggyhexbcn.com/about-og.jpg',
-    ogUrl: 'https://www.foggyhexbcn.com/about',
+        'DJs del colectivo Foggy Hex en Barcelona.',
+    ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
+    ogUrl: 'https://foggyhexbcn.com/dj',
+    twitterCard: 'summary_large_image',
 })
 const djs = [
     {

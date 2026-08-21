@@ -1,12 +1,14 @@
 <script setup>
 useSeoMeta({
-    title: 'Espacios | Foggy Hex',
-    description: 'Espacios con los que hemos colaborado.',
-    ogTitle: 'Espacios con los que colaborámos | Foggy Hex',
+    title: 'Espacios autogestionados en Barcelona | Foggy Hex',
+    description:
+        'Espacios, salas y proyectos autogestionados de Barcelona con los que Foggy Hex colabora para organizar conciertos y eventos independientes.',
+    ogTitle: 'Espacios autogestionados en Barcelona | Foggy Hex',
     ogDescription:
-        'Foggy Hex — Un colectivo con base de operaciones en Barcelona que organiza conciertos y otros eventos relacionados a cosas que nos apasionan',
-    ogImage: 'https://www.foggyhexbcn.com/about-og.jpg',
-    ogUrl: 'https://www.foggyhexbcn.com/about',
+        'Salas y espacios independientes de Barcelona vinculados a la programación de Foggy Hex.',
+    ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
+    ogUrl: 'https://foggyhexbcn.com/spaces',
+    twitterCard: 'summary_large_image',
 })
 </script>
 
