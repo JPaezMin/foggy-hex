@@ -12,6 +12,7 @@ export const ShowSchema = z.object({
     venue: z.string(),
     ticketUrl: z.string().url().optional(),
     ticketUrlCasa: z.string().url().optional(),
+    posterImage: z.string().optional(),
     layoutVariant: z.enum(['split-venues', 'default']).optional(),
     schedule: z
         .array(
@@ -50,6 +51,7 @@ export default defineContentConfig({
                 venueUrl: z.string().url().optional(),
                 image: z.string(),
                 featuredPoster: z.string().optional(),
+                ticketUrl: z.string().url().optional(),
                 detailsPublic: z.boolean().optional(),
             }),
         }),
@@ -78,6 +80,7 @@ export default defineContentConfig({
                 venueUrl: z.string().optional(),
                 ticketUrl: z.string().optional(),
                 ticketUrlCasa: z.string().optional(),
+                posterImage: z.string().optional(),
                 detailsPublic: z.boolean().optional(),
                 layoutVariant: z.enum(['split-venues', 'default']).optional(),
                 schedule: z

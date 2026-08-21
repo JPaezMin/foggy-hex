@@ -24,6 +24,7 @@ interface Show {
     venueUrl?: string
     ticketUrl?: string
     ticketUrlCasa?: string
+    posterImage?: string
     bands: Band[]
     schedule?: ScheduleItem[]
     layoutVariant?: 'split-venues' | 'default'
@@ -79,6 +80,11 @@ const slotTicketUrl = (venue: string) => {
     if (lower.includes('casa')) return show.ticketUrlCasa
     if (lower.includes('laut')) return show.ticketUrl
     return show.ticketUrl
+}
+
+const formatEventTime = (time?: string) => {
+    if (!time) return ''
+    return time.trim().toLowerCase() === 'tbc' ? 'Hora por confirmar' : time
 }
 
 const formattedDate = computed(() => {
@@ -142,7 +148,7 @@ const formattedDate = computed(() => {
                     :key="slot.venue + slot.time"
                     class="flex flex-wrap items-center justify-center gap-2 font-sans text-lg text-center"
                 >
-                    <span>{{ slot.time }}</span>
+                    <span>{{ formatEventTime(slot.time) }}</span>
                     <span>-</span>
                     <span>{{ slot.venue }}</span>
                     <span v-if="slot.note" class="text-sm text-text/70">
@@ -167,7 +173,7 @@ const formattedDate = computed(() => {
                     <span class="font-heading text-xl font-bold text-accent">
                         {{ formattedDate }}
                     </span>
-                    - {{ event.time }} -
+                    - {{ formatEventTime(event.time) }} -
                     <a
                         v-if="event.venueUrl"
                         :href="event.venueUrl"
@@ -216,13 +222,25 @@ const formattedDate = computed(() => {
                             <p
                                 class="font-sans text-sm uppercase tracking-[0.2em] text-text/80 sm:text-right"
                             >
-                                {{ item.time }}
+                                {{ formatEventTime(item.time) }}
                             </p>
                         </li>
                     </ul>
                 </div>
             </div>
         </header>
+
+        <section
+            v-if="event.posterImage"
+            id="event-poster"
+            class="flex justify-center"
+        >
+            <img
+                :src="event.posterImage"
+                :alt="`Cartel de ${event.title}`"
+                class="w-full max-w-[520px] h-auto object-contain"
+            />
+        </section>
 
         <!-- Bands -->
         <section v-if="isSplitVenueEvent && primaryBand" class="grid gap-20">

@@ -60,6 +60,15 @@
                 </a>
                 <span v-else>{{ event.venue }}</span>
             </p>
+            <a
+                v-if="event.ticketUrl && !isExpired"
+                :href="event.ticketUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex self-center mt-4 px-5 py-2 border-2 border-text text-text font-sans text-sm hover:bg-text hover:text-background transition"
+            >
+                Entradas
+            </a>
         </div>
     </article>
 </template>
