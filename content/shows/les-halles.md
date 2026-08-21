@@ -8,6 +8,8 @@ venueUrl: 'https://www.lautomatica.org/es/'
 detailsPublic: true
 bands:
     - name: 'Les Halles'
+      label: 'Stroom, Not Not Fun, Constellation Tatsu'
+      country: 'FR'
       image: '/images/shows/future/les-halles.jpg'
       description: |
         <p>Detrás de Les Halles encontramos al compositor francés Baptiste Martin, quien lleva más de una década construyendo pequeños ecosistemas a partir de flautas, samples, grabaciones de campo y electrónica. Su música tiene algo de acogedora inmediatez, pero nunca termina de revelar del todo dónde estás, sus discos proponen melodías que aparecen como recuerdos a medio formar, superficies digitales que brillan apenas unos segundos y sonidos naturales que se mezclan con otros claramente artificiales hasta que la diferencia deja de importar.</p>
