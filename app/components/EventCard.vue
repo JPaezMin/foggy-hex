@@ -69,6 +69,12 @@
             >
                 Entradas
             </a>
+            <span
+                v-else-if="!isExpired"
+                class="inline-flex self-center mt-4 px-5 py-2 border-2 border-text/30 text-text/55 font-sans text-sm"
+            >
+                Entradas próximamente
+            </span>
         </div>
     </article>
 </template>
