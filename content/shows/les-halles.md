@@ -5,7 +5,7 @@ date: '04/12/26'
 time: 'TBC'
 venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
-detailsPublic: false
+detailsPublic: true
 bands:
     - name: 'Les Halles'
       image: '/images/shows/future/les-halles.jpg'

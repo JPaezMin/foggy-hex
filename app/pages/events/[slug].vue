@@ -50,10 +50,12 @@ const parseEventDate = (date: string, time: string) => {
 
     const [day, month, year] = parts
     const fullYear = year.length === 2 ? `20${year}` : year
-    return `${fullYear}-${month.padStart(2, '0')}-${day.padStart(
+    const isoDate = `${fullYear}-${month.padStart(2, '0')}-${day.padStart(
         2,
         '0'
-    )}T${time}:00+01:00`
+    )}`
+
+    return /^\d{2}:\d{2}$/.test(time) ? `${isoDate}T${time}:00+01:00` : isoDate
 }
 
 useSeoMeta({
