@@ -1,9 +1,49 @@
 <script setup>
 const collaborators = [
     {
+        name: '---___--____',
+        meta: 'Orange Milk / US',
+    },
+    {
+        name: 'Able Noise',
+        meta: 'World of Echo / NL-UK',
+    },
+    {
+        name: 'Adriaan de Roover',
+        meta: 'Dauw / BE',
+    },
+    {
+        name: 'Aircode',
+        meta: 'Alien Jams / SWE',
+    },
+    {
+        name: 'Ana Roxanne',
+        meta: 'Kranky / US',
+    },
+    {
+        name: 'Bear Bones, Lay Low',
+        meta: 'KRAAK / VE',
+    },
+    {
+        name: 'Big Blood',
+        meta: 'Feeding Tube / US',
+    },
+    {
+        name: 'Bio DATA-X',
+        meta: 'Ind. / BCN',
+    },
+    {
+        name: 'Black Zone Myth Chant',
+        meta: 'Editions Gravats / FR',
+    },
+    {
         name: 'Broken Water',
         meta: 'Night People / US',
         url: 'https://brokenwatermusic.bandcamp.com',
+    },
+    {
+        name: 'Céline Gillain',
+        meta: 'Cortizona / Lexi Disques / BE',
     },
     {
         name: 'Chloe Frieda',
@@ -11,12 +51,36 @@ const collaborators = [
         url: 'https://www.nts.live/shows/alien-jams',
     },
     {
+        name: 'Cole Pulice',
+        meta: 'Leaving Records / US',
+    },
+    {
+        name: 'Colleen',
+        meta: 'Thrill Jockey / FR',
+    },
+    {
+        name: 'Dania',
+        meta: 'Paralaxe Editions / BCN',
+    },
+    {
         name: 'Daniel Bachman',
         meta: 'Three Lobed / US',
         url: 'https://danielbachman.bandcamp.com',
     },
     {
-        name: "Don't DJ",
+        name: 'Dima Midborn',
+        meta: 'Ind. / RU',
+    },
+    {
+        name: 'DJ Watusawa',
+        meta: 'Zona Watusa / NL',
+    },
+    {
+        name: 'DMRA',
+        meta: 'International Winners / FR',
+    },
+    {
+        name: 'Don\'t DJ',
         meta: 'Berceuse Heroique / DE',
         url: 'https://soundcloud.com/dont-dj-1',
     },
@@ -26,9 +90,53 @@ const collaborators = [
         url: 'https://www.dublab.cat',
     },
     {
+        name: 'Dudal',
+        meta: 'Ind. / BE',
+    },
+    {
+        name: 'Eric Chenaux',
+        meta: 'Constellation / CA',
+    },
+    {
+        name: 'Ex Continent',
+        meta: 'Hivern Discs / CAT',
+    },
+    {
+        name: 'Fassion Health',
+        meta: 'Ind. / BCN',
+    },
+    {
+        name: 'Francisco Morgan',
+        meta: 'Loveless Records / PT',
+    },
+    {
+        name: 'Goldblum',
+        meta: 'Ind. / BCN',
+    },
+    {
         name: 'Gordon Ashworth',
         meta: 'Olvido Records / US',
         url: 'https://gordonashworth.bandcamp.com',
+    },
+    {
+        name: 'H Waas',
+        meta: 'Dublab BCN / BCN',
+    },
+    {
+        name: 'Hekura',
+        meta: 'Hegoa / BCN',
+    },
+    {
+        name: 'Inturist',
+        meta: 'Incompetence Records / RU',
+    },
+    {
+        name: 'Ivan Zoloto',
+        meta: 'School of the Arts / RU',
+    },
+    {
+        name: 'J.G.G.',
+        meta: 'Ediciones Populares / CAT',
     },
     {
         name: 'James Blackshaw',
@@ -36,11 +144,39 @@ const collaborators = [
         url: 'https://jamesblackshaw.bandcamp.com',
     },
     {
+        name: 'Jason Kolàr',
+        meta: 'Stroom / CAT',
+    },
+    {
+        name: 'Jeremiah Chiu',
+        meta: 'International Anthem / US',
+    },
+    {
+        name: 'Jordi Santanach',
+        meta: 'Cosima Pitz / BCN',
+    },
+    {
         name: 'Jung An Tagen',
         meta: 'Editions Mego / AT',
         url: 'https://jungantagen.bandcamp.com/',
     },
-    { name: 'Kiosk Radio', meta: 'BE', url: 'https://kioskradio.com/' },
+    {
+        name: 'Kiosk Radio',
+        meta: 'BE',
+        url: 'https://kioskradio.com/',
+    },
+    {
+        name: 'Kou',
+        meta: 'Ind. / BCN',
+    },
+    {
+        name: 'Los Cuatro Amigos',
+        meta: 'Ediciones Populares / VGO',
+    },
+    {
+        name: 'Maalem Mohamed Khtira',
+        meta: 'Gnawa Music / MA',
+    },
     {
         name: 'Marisa Anderson',
         meta: 'Thrill Jockey / US',
@@ -52,9 +188,8 @@ const collaborators = [
         url: 'https://maxwellaugustcroy.bandcamp.com',
     },
     {
-        name: 'Mope Grooves',
-        meta: 'See My Friends / US',
-        url: 'https://mopegrooves.bandcamp.com',
+        name: 'Mecánica Clásica',
+        meta: 'Abstrakce / Valencia',
     },
     {
         name: 'Mississippi Records',
@@ -62,16 +197,73 @@ const collaborators = [
         url: 'https://mississippirecords.bandcamp.com',
     },
     {
+        name: 'Mope Grooves',
+        meta: 'See My Friends / US',
+        url: 'https://mopegrooves.bandcamp.com',
+    },
+    {
+        name: 'Morita Vargas',
+        meta: 'Hidden Harmony / ARG',
+    },
+    {
+        name: 'Nick Malkin',
+        meta: 'Geographic North / US',
+    },
+    {
+        name: 'Niecy Blues',
+        meta: 'Kranky / US',
+    },
+    {
         name: 'Noveller',
         meta: 'Fire Records / US',
         url: 'https://noveller.bandcamp.com',
     },
-    { name: 'NTS Radio', meta: 'UK', url: 'https://www.nts.live' },
-    { name: 'Paranoise Radio', meta: 'GR', url: 'https://paranoiseradio.com' },
+    {
+        name: 'NTS Radio',
+        meta: 'UK',
+        url: 'https://www.nts.live',
+    },
+    {
+        name: 'Pablo Volt',
+        meta: 'Ediciones Populares / BCN',
+    },
+    {
+        name: 'Paranoise Radio',
+        meta: 'GR',
+        url: 'https://paranoiseradio.com',
+    },
     {
         name: 'Parris',
         meta: 'Idle Hands / The Trilogy Tapes / UK',
         url: 'https://soundcloud.com/parris_dj',
+    },
+    {
+        name: 'Passepartout Duo',
+        meta: 'Tonal Union / IT-US',
+    },
+    {
+        name: 'Patrick Shiroishi',
+        meta: 'American Dreams / US',
+    },
+    {
+        name: 'Piotr Kurek',
+        meta: 'Mondoj / PL',
+    },
+    {
+        name: 'QBRNTHSS',
+        meta: 'Interworld Media / BCN',
+    },
+    {
+        name: 'Roméo Poirier',
+        meta: 'Faitiche / BE',
+    },
+    {
+        name: 'Rosso Polare',
+        meta: 'Ind. / IT',
+    },
+    {
+        name: 'Sentuhlà',
+        meta: 'Abstrakce / Valencia',
     },
     {
         name: 'Shiva Feshareki',
@@ -84,6 +276,14 @@ const collaborators = [
         url: 'https://stevehauschildt.bandcamp.com',
     },
     {
+        name: 'Taki Onqoy',
+        meta: 'Foggy Hex / BCN',
+    },
+    {
+        name: 'The Devil, Probably',
+        meta: 'Urpa i musell / BCN',
+    },
+    {
         name: 'The Mountain Goats',
         meta: 'Merge / US',
         url: 'https://www.mountain-goats.com',
@@ -93,57 +293,22 @@ const collaborators = [
         meta: 'Woodsist / US',
         url: 'https://woolenmen.bandcamp.com/',
     },
-    { name: 'Able Noise', meta: 'World of Echo / NL-UK' },
-    { name: 'Adriaan de Roover', meta: 'Dauw / BE' },
-    { name: 'Dudal', meta: 'Ind. / BE' },
-    { name: 'Aircode', meta: 'Alien Jams / SWE' },
-    { name: 'Francisco Morgan', meta: 'Loveless Records / PT' },
-    { name: 'Ana Roxanne', meta: 'Kranky / US' },
-    { name: 'Dania', meta: 'Paralaxe Editions / BCN' },
-    { name: 'Big Blood', meta: 'Feeding Tube / US' },
-    { name: 'Thérèse', meta: 'Repetidor / ES' },
-    { name: 'Bear Bones, Lay Low', meta: 'KRAAK / VE' },
-    { name: 'Black Zone Myth Chant', meta: 'Editions Gravats / FR' },
-    { name: 'Uza.Zetangas', meta: 'Ind. / PE' },
-    { name: 'DJ Watusawa', meta: 'Zona Watusa / NL' },
-    { name: 'Céline Gillain', meta: 'Cortizona / Lexi Disques / BE' },
-    { name: 'Cole Pulice', meta: 'Leaving Records / US' },
-    { name: 'Jason Kolàr', meta: 'Stroom / CAT' },
-    { name: 'Colleen', meta: 'Thrill Jockey / FR' },
-    { name: 'Ivan Zoloto', meta: 'School of the Arts / RU' },
-    { name: 'Pablo Volt', meta: 'Ediciones Populares / BCN' },
-    { name: 'Rosso Polare', meta: 'Ind. / IT' },
-    { name: 'Eric Chenaux', meta: 'Constellation / CA' },
-    { name: 'H Waas', meta: 'Dublab BCN / BCN' },
-    { name: 'Goldblum', meta: 'Ind. / BCN' },
-    { name: 'Hekura', meta: 'Hegoa / BCN' },
-    { name: 'Jordi Santanach', meta: 'Cosima Pitz / BCN' },
-    { name: 'Inturist', meta: 'Incompetence Records / RU' },
-    { name: 'Dima Midborn', meta: 'Ind. / RU' },
-    { name: 'Jeremiah Chiu', meta: 'International Anthem / US' },
-    { name: 'Morita Vargas', meta: 'Hidden Harmony / ARG' },
-    { name: 'Kou', meta: 'Ind. / BCN' },
-    { name: 'QBRNTHSS', meta: 'Interworld Media / BCN' },
-    { name: 'Mecánica Clásica', meta: 'Abstrakce / Valencia' },
-    { name: 'Sentuhlà', meta: 'Abstrakce / Valencia' },
-    { name: '---___--____', meta: 'Orange Milk / US' },
-    { name: 'Ex Continent', meta: 'Hivern Discs / CAT' },
-    { name: 'Nick Malkin', meta: 'Geographic North / US' },
-    { name: 'J.G.G.', meta: 'Ediciones Populares / CAT' },
-    { name: 'Niecy Blues', meta: 'Kranky / US' },
-    { name: 'Maalem Mohamed Khtira', meta: 'Gnawa Music / MA' },
-    { name: 'Passepartout Duo', meta: 'Tonal Union / IT-US' },
-    { name: 'Bio DATA-X', meta: 'Ind. / BCN' },
-    { name: 'Patrick Shiroishi', meta: 'American Dreams / US' },
-    { name: 'The Devil, Probably', meta: 'Urpa i musell / BCN' },
-    { name: 'Piotr Kurek', meta: 'Mondoj / PL' },
-    { name: 'Roméo Poirier', meta: 'Faitiche / BE' },
-    { name: 'Taki Onqoy', meta: 'Foggy Hex / BCN' },
-    { name: 'Fassion Health', meta: 'Ind. / BCN' },
-    { name: 'Új Bála', meta: 'Baba Vanga / BE' },
-    { name: 'DMRA', meta: 'International Winners / FR' },
-    { name: 'Vic Bang', meta: 'Mondoj / ARG' },
-    { name: 'Los Cuatro Amigos', meta: 'Ediciones Populares / VGO' },
+    {
+        name: 'Thérèse',
+        meta: 'Repetidor / ES',
+    },
+    {
+        name: 'Új Bála',
+        meta: 'Baba Vanga / BE',
+    },
+    {
+        name: 'Uza.Zetangas',
+        meta: 'Ind. / PE',
+    },
+    {
+        name: 'Vic Bang',
+        meta: 'Mondoj / ARG',
+    },
 ]
 
 useSeoMeta({
