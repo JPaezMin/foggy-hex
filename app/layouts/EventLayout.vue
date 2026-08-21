@@ -60,7 +60,7 @@ const supportingBandLaut = supportingBand
 const primaryBand = computed(() => show.bands?.[0] ?? null)
 
 const titleParts = computed(() => {
-    if (show.title.includes('+')) {
+    if (show.title.includes('+') || show.titleSubtitle) {
         return {
             main: show.title,
             tag: '',
