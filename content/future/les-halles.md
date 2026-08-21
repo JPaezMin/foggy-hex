@@ -1,6 +1,6 @@
 ---
 slug: 'les-halles'
-title: 'Les Halles (FR) + TBC'
+title: 'Les Halles (FR)'
 date: '2026-12-04'
 venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
