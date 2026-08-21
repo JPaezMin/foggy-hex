@@ -5,6 +5,7 @@ type FutureGridEvent = FutureCollectionItem & {
     isExpired: boolean
     sortTimestamp: number
     artists?: string[]
+    featuredPoster?: string
     detailsPublic?: boolean
 }
 
@@ -122,7 +123,9 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
 const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
 
 const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
-const showCurrentEventPoster = false
+const upcomingFeaturedPoster = computed(
+    () => upcomingEvent.value?.featuredPoster?.trim() || ''
+)
 
 const archivedEvents = computed<ArchiveEvent[]>(() => {
     const expiredFutureEvents = (futureEvents.value ?? [])
@@ -232,7 +235,7 @@ const formatDate = (dateString?: string | null): string => {
 
         <!-- Current Event (featured) -->
         <section
-            v-if="showCurrentEventPoster"
+            v-if="upcomingEvent && upcomingFeaturedPoster"
             id="current-event"
             class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
         >
@@ -246,14 +249,14 @@ const formatDate = (dateString?: string | null): string => {
                 :to="`/events/${upcomingEvent.slug}`"
             >
                 <img
-                    src="/assets/images/current-event-poster.jpg"
+                    :src="upcomingFeaturedPoster"
                     alt="Cartel de nuestro próximo evento"
                     class="w-[478px] h-auto object-contain mt-8"
                 />
             </NuxtLink>
             <img
                 v-else-if="upcomingEvent"
-                src="/assets/images/current-event-poster.jpg"
+                :src="upcomingFeaturedPoster"
                 alt="Cartel de nuestro próximo evento"
                 class="w-[478px] h-auto object-contain mt-8"
             />

@@ -49,6 +49,7 @@ export default defineContentConfig({
                 venue: z.string(),
                 venueUrl: z.string().url().optional(),
                 image: z.string(),
+                featuredPoster: z.string().optional(),
                 detailsPublic: z.boolean().optional(),
             }),
         }),
