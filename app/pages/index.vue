@@ -26,12 +26,12 @@ const { data: pastEvents } = await useAsyncData('past-events', () =>
 )
 
 useSeoMeta({
-    title: 'Foggy Hex | Conciertos experimentales en Barcelona',
+    title: 'Foggy Hex | Música fuera de los márgenes en Barcelona',
     description:
-        'Foggy Hex es un colectivo de Barcelona que organiza conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
-    ogTitle: 'Foggy Hex | Conciertos experimentales en Barcelona',
+        'Foggy Hex es un colectivo de Barcelona que programa conciertos, escuchas y encuentros alrededor de músicas fuera del circuito habitual: experimental, ambient, electrónica e improvisación.',
+    ogTitle: 'Foggy Hex | Música fuera de los márgenes en Barcelona',
     ogDescription:
-        'Conciertos y eventos de música experimental e independiente en Barcelona.',
+        'Programación musical independiente en Barcelona para escenas y sonidos fuera del circuito habitual.',
     ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
     ogUrl: 'https://foggyhexbcn.com/',
     twitterCard: 'summary_large_image',

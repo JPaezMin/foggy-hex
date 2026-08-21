@@ -42,12 +42,12 @@ export default defineNuxtConfig({
             },
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Foggy Hex - Conciertos experimentales en Barcelona',
+            title: 'Foggy Hex - Música fuera de los márgenes en Barcelona',
             meta: [
                 {
                     name: 'description',
                     content:
-                        'Foggy Hex es un colectivo de Barcelona dedicado a conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
+                        'Foggy Hex es un colectivo de Barcelona que programa conciertos, escuchas y encuentros alrededor de músicas fuera del circuito habitual: experimental, ambient, electrónica e improvisación.',
                 },
 
                 // Open Graph defaults

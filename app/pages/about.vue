@@ -314,10 +314,10 @@ const collaborators = [
 useSeoMeta({
     title: 'Sobre Foggy Hex | Colectivo musical en Barcelona',
     description:
-        'Foggy Hex es un colectivo de Barcelona dedicado a conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
+        'Foggy Hex es un colectivo de Barcelona que programa conciertos, escuchas y encuentros alrededor de músicas fuera del circuito habitual.',
     ogTitle: 'Sobre Nosotros | Foggy Hex',
     ogDescription:
-        'Colectivo de Barcelona dedicado a conciertos y escenas musicales independientes.',
+        'Colectivo de Barcelona dedicado a escenas musicales independientes y sonidos fuera del circuito habitual.',
     ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
     ogUrl: 'https://foggyhexbcn.com/about',
     twitterCard: 'summary_large_image',

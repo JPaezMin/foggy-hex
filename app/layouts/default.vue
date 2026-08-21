@@ -45,7 +45,7 @@ useHead(() => ({
                         name: 'Barcelona',
                     },
                     description:
-                        'Colectivo de Barcelona dedicado a conciertos de música experimental, ambient, electrónica, improvisación y escenas independientes.',
+                        'Colectivo de Barcelona que programa conciertos, escuchas y encuentros alrededor de músicas fuera del circuito habitual.',
                 },
                 {
                     '@context': 'https://schema.org',
