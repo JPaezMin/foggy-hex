@@ -17,6 +17,7 @@ interface ScheduleItem {
 interface Show {
     slug: string
     title: string
+    titleSubtitle?: string
     date: string
     time: string
     venue: string
@@ -116,6 +117,12 @@ const formattedDate = computed(() => {
             <h1 class="font-heading text-[40px] leading-tight text-accent">
                 {{ titleParts.main }}
             </h1>
+            <p
+                v-if="show.titleSubtitle"
+                class="mt-3 font-heading text-2xl leading-tight text-text/80"
+            >
+                {{ show.titleSubtitle }}
+            </p>
             <p
                 v-if="titleParts.tag"
                 class="mt-1 text-lg font-heading text-text/80"

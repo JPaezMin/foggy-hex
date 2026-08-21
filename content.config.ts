@@ -4,6 +4,7 @@ import { z } from 'zod'
 export const ShowSchema = z.object({
     slug: z.string(),
     title: z.string(),
+    titleSubtitle: z.string().optional(),
     date: z.string(),
     time: z.string(),
     timeCasa: z.string().optional(),
@@ -43,6 +44,7 @@ export default defineContentConfig({
             schema: z.object({
                 slug: z.string(),
                 title: z.string(),
+                titleSubtitle: z.string().optional(),
                 date: z.string(),
                 venue: z.string(),
                 venueUrl: z.string().url().optional(),
@@ -66,6 +68,7 @@ export default defineContentConfig({
             schema: z.object({
                 slug: z.string(),
                 title: z.string(),
+                titleSubtitle: z.string().optional(),
                 date: z.string(),
                 time: z.string(),
                 timeCasa: z.string().optional(),
