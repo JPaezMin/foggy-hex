@@ -21,7 +21,7 @@
                     href="https://instagram.com/foggyhexbcn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="flex items-center text-text hover:text-link-hover transition-colors"
+                    class="flex min-w-11 min-h-11 items-center justify-center text-text hover:text-link-hover transition-colors"
                 >
                     <Icon name="mdi:instagram" size="32" />
                 </a>

@@ -17,7 +17,7 @@ const djs = [
     },
     {
         name: 'Taki Onqoy',
-        image: '/images/taki-onqoy.jpg',
+        image: '/images/shows/past/taki-onqoy-pr.jpg',
         description:
             "Founding member of the Barcelona collective Foggy Hex and music nerd, Jorge Páez began DJing the dark basements of his native city Líma, where he found a space of joy and universal connection in sound. After a long journey playing for free-form radio outlets and selecting music for curious crowds between Portland, Brussels, and Barcelona (where he's based at the moment), Páez now uses the moniker Taki Onqoy to navigate, with a naive sense of wonder, the intersection between dub, leftfield pop, and 'other music' influenced by all sorts of mysterious and global sounds.",
     },

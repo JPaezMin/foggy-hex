@@ -5,7 +5,7 @@
             <slot name="logo" />
 
             <!-- Desktop Nav -->
-            <ul class="hidden 2xl:flex gap-8 items-end flex-nowrap">
+            <ul class="hidden lg:flex gap-8 items-end flex-nowrap">
                 <li v-for="item in navItems" :key="item.name">
                     <!-- Internal link -->
                     <NuxtLink
@@ -31,7 +31,7 @@
 
             <!-- Burger Menu -->
             <button
-                class="2xl:hidden z-50"
+                class="lg:hidden z-50 min-w-11 min-h-11 flex items-center justify-center"
                 aria-label="Toggle menu"
                 @click="menuOpen = !menuOpen"
             >
@@ -59,7 +59,7 @@
         <transition name="fade">
             <ul
                 v-if="menuOpen"
-                class="absolute py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 2xl:hidden text-[24px] leading-normal font-sans"
+                class="absolute py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 lg:hidden text-[24px] leading-normal font-sans"
             >
                 <li
                     v-for="item in navItems"
