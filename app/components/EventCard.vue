@@ -24,29 +24,27 @@
 
         <!-- Text content -->
         <div class="flex-1 flex flex-col justify-between text-center">
-            <!-- Title (max 2 lines, fixed height) -->
             <NuxtLink
                 v-if="isLinkable"
                 :to="`/events/${event.slug}`"
-                class="font-heading text-2xl mb-2 line-clamp-2 underline decoration-inherit decoration-1 underline-offset-4"
+                class="font-heading text-2xl leading-tight mb-2 underline decoration-inherit decoration-1 underline-offset-4"
             >
-                {{ event.title }}
+                <span class="block">{{ event.title }}</span>
+                <span v-if="event.titleSubtitle" class="block">
+                    {{ event.titleSubtitle }}
+                </span>
             </NuxtLink>
-            <p
+            <div
                 v-else
-                class="font-heading text-2xl mb-2 line-clamp-2"
+                class="font-heading text-2xl leading-tight mb-2"
                 :class="isExpired ? 'opacity-70' : ''"
                 aria-disabled="true"
             >
-                {{ event.title }}
-            </p>
-            <p
-                v-if="event.titleSubtitle"
-                class="font-heading text-base leading-tight text-text/70 mb-2 line-clamp-2 min-h-[2.5rem]"
-            >
-                {{ event.titleSubtitle }}
-            </p>
-            <div v-else class="min-h-[2.5rem]" />
+                <span class="block">{{ event.title }}</span>
+                <span v-if="event.titleSubtitle" class="block">
+                    {{ event.titleSubtitle }}
+                </span>
+            </div>
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="font-sans text-base text-gray-600 min-h-[1.5rem]">
