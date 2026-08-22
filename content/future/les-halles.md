@@ -1,6 +1,6 @@
 ---
 slug: 'les-halles'
-title: 'Les Halles (FR)'
+title: 'Les Halles (FR) + Edu Pons (BCN)'
 date: '2026-12-04'
 venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
