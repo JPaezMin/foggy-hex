@@ -171,7 +171,7 @@ const titleSupport = computed(() => {
 
 .event-title-support {
     -webkit-line-clamp: 1;
-    font-size: 0.86rem;
+    font-size: clamp(1rem, 1.35vw, 1.12rem);
     line-height: 1.25;
 }
 
