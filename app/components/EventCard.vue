@@ -127,7 +127,10 @@ const titleMain = computed(() =>
 )
 
 const titleSupport = computed(() => {
-    if (props.event.titleSubtitle) return props.event.titleSubtitle.trim()
+    if (props.event.titleSubtitle) {
+        const subtitle = props.event.titleSubtitle.trim()
+        return subtitle.startsWith('+') ? subtitle : `+ ${subtitle}`
+    }
 
     const parts = props.event.title
         .replace(/\s*\+\s*$/, '')
