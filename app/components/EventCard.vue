@@ -1,13 +1,13 @@
 <template>
     <article
-        class="bg-white title-box p-4 flex flex-col transition relative"
+        class="bg-white title-box p-4 flex flex-col transition relative event-card"
         :class="[
             isExpired ? 'opacity-60' : '',
         ]"
         :aria-disabled="isExpired ? 'true' : 'false'"
     >
         <!-- Image -->
-        <div class="w-full aspect-[16/9] overflow-hidden mb-4 relative">
+        <div class="w-full aspect-[16/9] overflow-hidden mb-5 relative">
             <img
                 :src="event.image"
                 :alt="event.title"
@@ -23,32 +23,43 @@
         </div>
 
         <!-- Text content -->
-        <div class="flex-1 flex flex-col justify-between text-center">
+        <div class="flex-1 flex flex-col text-center">
             <NuxtLink
                 v-if="isLinkable"
                 :to="`/events/${event.slug}`"
-                class="font-heading text-2xl leading-tight mb-2 underline decoration-inherit decoration-1 underline-offset-4"
+                class="event-title-link"
             >
-                <span class="block">{{ event.title }}</span>
-                <span v-if="event.titleSubtitle" class="block">
-                    {{ event.titleSubtitle }}
+                <span class="event-title-primary font-heading text-accent">
+                    {{ titleMain }}
+                </span>
+                <span
+                    v-if="titleSupport"
+                    class="event-title-support font-sans text-text/70"
+                >
+                    {{ titleSupport }}
                 </span>
             </NuxtLink>
             <div
                 v-else
-                class="font-heading text-2xl leading-tight mb-2"
+                class="event-title-link"
                 :class="isExpired ? 'opacity-70' : ''"
                 aria-disabled="true"
             >
-                <span class="block">{{ event.title }}</span>
-                <span v-if="event.titleSubtitle" class="block">
-                    {{ event.titleSubtitle }}
+                <span class="event-title-primary font-heading text-accent">
+                    {{ titleMain }}
+                </span>
+                <span
+                    v-if="titleSupport"
+                    class="event-title-support font-sans text-text/70"
+                >
+                    {{ titleSupport }}
                 </span>
             </div>
 
             <!-- Subtitle (date + venue, fixed height) -->
-            <p class="font-sans text-base text-gray-600 min-h-[1.5rem]">
-                {{ formattedDate }} -
+            <p class="event-meta font-sans text-text/70">
+                <span>{{ formattedDate }}</span>
+                <span class="text-text/35">/</span>
                 <a
                     v-if="event.venueUrl"
                     :href="event.venueUrl"
@@ -107,4 +118,90 @@ const isExpired = computed(() => Boolean(props.isExpired))
 const isLinkable = computed(
     () => !isExpired.value && props.event.detailsPublic !== false
 )
+
+const titleMain = computed(() =>
+    props.event.title
+        .replace(/\s*\+\s*$/, '')
+        .split(/\s+\+\s+/)[0]
+        .trim()
+)
+
+const titleSupport = computed(() => {
+    if (props.event.titleSubtitle) return props.event.titleSubtitle.trim()
+
+    const parts = props.event.title
+        .replace(/\s*\+\s*$/, '')
+        .split(/\s+\+\s+/)
+        .map((part) => part.trim())
+        .filter(Boolean)
+
+    return parts.length > 1 ? `+ ${parts.slice(1).join(' + ')}` : ''
+})
 </script>
+
+<style scoped>
+.event-card {
+    min-height: 100%;
+}
+
+.event-title-link {
+    display: flex;
+    min-height: 4.85rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.event-title-primary,
+.event-title-support {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    text-wrap: balance;
+}
+
+.event-title-primary {
+    -webkit-line-clamp: 1;
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    line-height: 1.05;
+}
+
+.event-title-support {
+    -webkit-line-clamp: 1;
+    font-size: 0.86rem;
+    line-height: 1.25;
+}
+
+.event-title-link:hover .event-title-primary,
+.event-title-link:hover .event-title-support {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.event-meta {
+    display: flex;
+    min-height: 2.9rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-top: 1px solid rgb(0 0 0 / 0.12);
+    padding-top: 0.85rem;
+    font-size: 0.94rem;
+    line-height: 1.25;
+}
+
+@media (max-width: 420px) {
+    .event-title-link {
+        min-height: 5.25rem;
+    }
+
+    .event-meta {
+        flex-wrap: wrap;
+        row-gap: 0.25rem;
+    }
+}
+</style>
