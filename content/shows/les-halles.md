@@ -2,9 +2,10 @@
 slug: 'les-halles'
 title: 'Les Halles (FR) + Edu Pons (BCN)'
 date: '04/12/26'
-time: 'Hora por confirmar'
+time: '19:00'
 venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
+ticketUrl: 'https://entradium.com/events/les-halles-fr-edu-pons-bcn'
 detailsPublic: true
 bands:
     - name: 'Les Halles'
