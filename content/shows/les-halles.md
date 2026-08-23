@@ -17,7 +17,7 @@ bands:
 
         <p>Su último álbum, <em>Original Spirit</em>, fue editado por Stroom, después de una trayectoria que ha pasado por sellos tan queridos como Not Not Fun o Constellation Tatsu. El disco se mueve con una ligereza casi new age, entre pequeños destellos de glitch, texturas digitales y melodías que parecen suspendidas en algún punto entre la memoria y la imaginación. Hay algo muy sencillo en la música de Baptiste y -al mismo tiempo- bastante difícil de explicar. Quizá sea precisamente por eso que vuelve una y otra vez a la cabeza.</p>
 
-        <p>A ratos aparecen ecos de la serenidad de Hiroshi Yoshimura, del exotismo digital de Visible Cloaks, de los mundos alucinados de Spencer Clark o de esa sensibilidad de Green-House para encontrar algo extraño y precioso en sonidos aparentemente pequeños. Pero Les Halles tiene su propio lugar dentro de esa constelación: más borroso, más íntimo, ligeramente fuera del tiempo.</p>
+        <p>A ratos aparecen ecos de la serenidad de Hiroshi Yoshimura, del exotismo digital de Visible Cloaks, de los mundos alucinados de Spencer Clark o de esa sensibilidad de Green-House para encontrar algo extraño y precioso en sonidos de apariencia cotidiana. Pero Les Halles tiene su propio lugar dentro de esa constelación: más borroso, más íntimo, ligeramente fuera del tiempo.</p>
 
         <p>Quizá lo más bonito sea esa sensación de nostalgia que atraviesa su música sin dejar muy claro qué estamos echando de menos. Como reconocer un paisaje en el que nunca has estado, o recordar algo que quizá nunca ocurrió.</p>
 

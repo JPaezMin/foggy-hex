@@ -34,7 +34,7 @@ bands:
 
         <p>La propuesta de Blue Flowers se mueve entre el hip hop abstracto, la sampledelia, el collage, el amateurismo y un imaginario bizarro forjado tras deglutir, durante su educación sentimental, una sobredosis de sitcoms norteamericanas, libros de Louis-Ferdinand Céline, porno doblado, videojuegos de 8 bits, neorrealismo italiano, prensa deportiva y anime.</p>
     - name: 'jk'
-      label: 'Angle Mort'
+      label: 'Angle Mort, Stroom, Mondoj'
       country: 'BCN'
       image: '/images/shows/future/jk.jpg'
       bandcamp: 'https://jasonkolar.bandcamp.com/'
