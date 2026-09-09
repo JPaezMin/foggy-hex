@@ -44,7 +44,7 @@ useHead({
         {
             name: 'keywords',
             content:
-                'Taki Onqoy, Jorge Paez Minaya, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
+                'Taki Onqoy, Jorge Paez Minaya, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, Dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
         },
     ],
     script: [
@@ -215,14 +215,14 @@ useHead({
                     <p>
                         Radio has long been central to that practice. From 2017
                         to 2023, Páez hosted Pargueland, his monthly free-form
-                        show on dublab Barcelona, built around personal
+                        show on Dublab Barcelona, built around personal
                         selections and conversations with local and
                         international artists. His mixes have also appeared on
                         <a
                             href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >dublab Los Angeles</a>
+                        >Dublab L.A</a>
                         and
                         <a
                             href="https://freeformportland.org/"
