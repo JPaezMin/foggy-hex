@@ -203,14 +203,11 @@ useHead({
                         ethnographic and outernational sounds, leftfield
                         electronica, future folk and post-club forms, following
                         connections built around rhythm, texture and atmosphere
-                        rather than genre. Percussion often sits somewhere in
-                        the architecture, alongside low-end pressure, synthetic
-                        detail, displaced voices and music whose sense of place
-                        is difficult to pin down. Growing up in Perú remains
-                        part of that listening sensibility, one influence among
-                        many in a practice drawn to music that circulates
-                        between traditions, geographies and contemporary
-                        electronic forms.
+                        rather than genre. Percussion, low-end pressure and
+                        displaced voices recur throughout, carrying a listening
+                        sensibility shaped in part by growing up in Perú and by
+                        music that moves between traditions, geographies and
+                        contemporary electronic forms.
                     </p>
                     <p>
                         Radio has long been central to that practice. From 2017
@@ -250,11 +247,21 @@ useHead({
                         In Barcelona, he has opened for artists including Anna
                         Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
                         Passepartout Duo, playing across the city’s independent
-                        and leftfield music spaces, including Casa Montjuïc and
-                        El Pumarejo. In Portland, his selections have surfaced
-                        on Freeform Portland and in the intimate bars and
-                        underground spaces orbiting the city’s club-adjacent
-                        scene.
+                        and leftfield music spaces, including
+                        <a
+                            href="https://www.casamontjuic.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Casa Montjuïc</a>
+                        and
+                        <a
+                            href="https://elpumarejo.org/en/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >El Pumarejo</a>.
+                        In Portland, his selections have surfaced on Freeform
+                        Portland and in the intimate bars and underground spaces
+                        orbiting the city’s club-adjacent scene.
                         At the most recent edition of
                         <a
                             href="https://www.meakusma-festival.be/artists-2026/"
