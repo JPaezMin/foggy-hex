@@ -199,7 +199,7 @@ useHead({
                         with music took shape in Lima’s independent underground,
                         playing in bands and playing sets in small bars and
                         off-radar spaces before radio and curatorial work became
-                        part of the picture. His sets connect dub, ethnographic
+                        part of the picture. His DJ sets connect dub, ethnographic
                         and outernational sounds with leftfield electronica and
                         post-club rhythms, following connections built around
                         texture, atmosphere and movement rather than genre.
