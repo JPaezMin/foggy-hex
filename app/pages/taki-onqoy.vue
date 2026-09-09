@@ -273,7 +273,8 @@ useHead({
                             target="_blank"
                             rel="noopener noreferrer"
                         >Meakusma Festival</a>
-                        in September 2026, he closed the Heuboden stage, joining
+                        in Eupen, Belgium in September 2026, he closed the
+                        Heuboden stage, joining
                         a programme that over the weekend also passed through
                         the hands of Unchained, Gilb’R, Nosedrip, Time Is Away
                         and a wider cast of selectors and artists operating
