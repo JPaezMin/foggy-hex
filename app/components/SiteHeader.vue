@@ -1,6 +1,8 @@
 <template>
     <header class="w-full bg-zinc-100 px-6 py-8">
-        <div class="container mx-auto grid grid-cols-3 items-center">
+        <div
+            class="container mx-auto grid grid-cols-[1fr_auto_1fr] items-center gap-4"
+        >
             <!-- Left: Navigation -->
             <div class="flex justify-start">
                 <MainNavigation />

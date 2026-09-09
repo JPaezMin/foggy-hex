@@ -5,13 +5,13 @@
             <slot name="logo" />
 
             <!-- Desktop Nav -->
-            <ul class="hidden lg:flex gap-8 items-end flex-nowrap">
+            <ul class="hidden xl:flex gap-6 items-end flex-nowrap">
                 <li v-for="item in navItems" :key="item.name">
                     <!-- Internal link -->
                     <NuxtLink
                         v-if="!item.external"
                         :to="item.to"
-                        class="text-[22px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
+                        class="text-[20px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
                     >
                         {{ item.name }}
                     </NuxtLink>
@@ -22,7 +22,7 @@
                         :href="item.href"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-[22px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
+                        class="text-[20px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
                     >
                         {{ item.name }}
                     </a>
@@ -31,7 +31,7 @@
 
             <!-- Burger Menu -->
             <button
-                class="lg:hidden z-50 min-w-11 min-h-11 flex items-center justify-center"
+                class="xl:hidden z-50 min-w-11 min-h-11 flex items-center justify-center"
                 aria-label="Toggle menu"
                 @click="menuOpen = !menuOpen"
             >
@@ -59,7 +59,7 @@
         <transition name="fade">
             <ul
                 v-if="menuOpen"
-                class="absolute py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 lg:hidden text-[24px] leading-normal font-sans"
+                class="absolute z-40 py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 xl:hidden text-[24px] leading-normal font-sans"
             >
                 <li
                     v-for="item in navItems"
@@ -106,8 +106,8 @@ const navItems = [
         href: 'https://kioskradio.com/label/foggy-hex',
         external: true,
     },
+    { name: "Foggy Hex DJ's", to: '/taki-onqoy' },
     // { name: 'Agenda Local', to: '/agenda' },
-    // { name: 'Foggy Hex DJs', to: '/dj' },
 ]
 </script>
 
