@@ -88,6 +88,8 @@ useHead({
                             'https://www.instagram.com/takiononqoy/',
                             'https://soundcloud.com/takiononqoy',
                             'https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy',
+                            'https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19',
+                            'https://freeformportland.org/',
                         ],
                         memberOf: {
                             '@type': 'Organization',
@@ -108,6 +110,11 @@ useHead({
                             {
                                 '@type': 'RadioSeries',
                                 name: 'Tower Of Echo',
+                            },
+                            {
+                                '@type': 'RadioSeries',
+                                name: 'Freeform Portland Radio',
+                                url: 'https://freeformportland.org/',
                             },
                         ],
                     },
@@ -151,6 +158,23 @@ useHead({
 
                 <section class="bio-copy" aria-label="Taki Onqoy biography">
                     <h1 class="sr-only">Taki Onqoy</h1>
+                    <nav class="bio-links" aria-label="Taki Onqoy links">
+                        <a
+                            href="https://www.instagram.com/takiononqoy/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >https://www.instagram.com/takiononqoy/</a>
+                        <a
+                            href="https://soundcloud.com/takiononqoy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >https://soundcloud.com/takiononqoy</a>
+                        <a
+                            href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy</a>
+                    </nav>
                     <p>
                         <a
                             href="https://www.instagram.com/takiononqoy/"
@@ -186,11 +210,22 @@ useHead({
                             target="_blank"
                             rel="noopener noreferrer"
                         >mixes</a>
-                        have also appeared on dublab Los Angeles and Freeform
-                        Portland. For nearly three years, he has held an ongoing
-                        monthly residency on Paranoise Radio with Tower Of Echo,
-                        while since 2025 he has hosted and curated Foggy Hex’s
-                        monthly Outsider show on
+                        have also appeared on
+                        <a
+                            href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >dublab Los Angeles</a>
+                        and
+                        <a
+                            href="https://freeformportland.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Freeform Portland</a>.
+                        For nearly three years, he has held an ongoing monthly
+                        residency on Thessaloniki’s Paranoise Radio with Tower
+                        Of Echo, while since 2025 he has hosted and curated
+                        Foggy Hex’s monthly Outsider show on
                         <a
                             href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
                             target="_blank"
@@ -216,11 +251,17 @@ useHead({
                         Passepartout Duo, with appearances at spaces such as
                         Heliogàbal, NIU and Casa Montjuïc. In Portland, his
                         selections have surfaced at Tiga, Beech Street Parlor
-                        and Freeform Portland. In 2026, he closed the Heuboden
-                        stage at Meakusma Festival, joining a programme that
-                        over the weekend also passed through the hands of
-                        Unchained, Gilb’R, Nosedrip, Time Is Away and a wider
-                        cast of selectors and artists operating around the
+                        and
+                        <a
+                            href="https://freeformportland.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Freeform Portland</a>.
+                        At the most recent edition of Meakusma Festival in
+                        September 2026, he closed the Heuboden stage, joining a
+                        programme that over the weekend also passed through the
+                        hands of Unchained, Gilb’R, Nosedrip, Time Is Away and a
+                        wider cast of selectors and artists operating around the
                         festival’s outer edges.
                     </p>
                     <p>
@@ -271,6 +312,20 @@ useHead({
 .bio-copy {
     max-width: 760px;
     padding-top: 8px;
+}
+
+.bio-links {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 28px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: 0;
+}
+
+.bio-links a {
+    overflow-wrap: anywhere;
 }
 
 .bio-copy p {
