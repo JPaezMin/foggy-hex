@@ -297,14 +297,14 @@ useHead({
                                     href="https://soundcloud.com/takiononqoy/warm-up-set-for-colleens"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Warm-Up for Colleen’s <em>Libres Antes del Final</em> Release Show @ Casa Montjuïc</a>
+                                >Taki Onqoy : Warm-Up for Colleen’s <em>Libres Antes del Final</em> Release Show @ Casa Montjuïc (26 April 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://www.mixcloud.com/dublabes/pargueland-120118-tupper_4-w-lowtrux-dont-dj/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : B2B with Don’t DJ @ Tupper Festival</a>
+                                >Taki Onqoy : B2B with Don’t DJ @ Tupper Festival (12 January 2018)</a>
                             </li>
                         </ol>
                     </section>
