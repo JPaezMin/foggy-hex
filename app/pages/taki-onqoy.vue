@@ -199,15 +199,14 @@ useHead({
                         with music took shape in Lima’s independent underground,
                         playing in bands and making sets in small bars and
                         off-radar spaces before radio and curatorial work became
-                        part of the picture. His sets move through dub,
-                        ethnographic and outernational sounds, leftfield
-                        electronica, future folk and post-club forms, following
-                        connections built around rhythm, texture and atmosphere
-                        rather than genre. Percussion, low-end pressure and
-                        displaced voices recur throughout, carrying a listening
-                        sensibility shaped in part by growing up in Perú and by
-                        music that moves between traditions, geographies and
-                        contemporary electronic forms.
+                        part of the picture. His sets connect dub, ethnographic
+                        and outernational sounds with leftfield electronica and
+                        post-club rhythms, following connections built around
+                        texture, atmosphere and movement rather than genre.
+                        Andean folk and Afro-Peruvian traditions quietly inform
+                        the way Páez selects and sequences tracks, surfacing
+                        through cadence, repetition and rhythmic instinct rather
+                        than direct reference.
                     </p>
                     <p>
                         Radio has long been central to that practice. From 2017
