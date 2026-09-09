@@ -251,17 +251,21 @@ useHead({
                         Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
                         Passepartout Duo, playing across the city’s independent
                         and leftfield music spaces, including Casa Montjuïc and
-                        El Pumarejo. He has also appeared at Tupper Festival in
-                        a B2B with Berlin-based producer Don’t DJ. In Portland,
-                        his selections have surfaced on Freeform Portland and in
-                        the intimate bars and underground spaces orbiting the
-                        city’s club-adjacent scene.
-                        At the most recent edition of Meakusma Festival in
-                        September 2026, he closed the Heuboden stage, joining a
-                        programme that over the weekend also passed through the
-                        hands of Unchained, Gilb’R, Nosedrip, Time Is Away and a
-                        wider cast of selectors and artists operating around the
-                        festival’s outer edges.
+                        El Pumarejo. In Portland, his selections have surfaced
+                        on Freeform Portland and in the intimate bars and
+                        underground spaces orbiting the city’s club-adjacent
+                        scene.
+                        At the most recent edition of
+                        <a
+                            href="https://www.meakusma-festival.be/artists-2026/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Meakusma Festival</a>
+                        in September 2026, he closed the Heuboden stage, joining
+                        a programme that over the weekend also passed through
+                        the hands of Unchained, Gilb’R, Nosedrip, Time Is Away
+                        and a wider cast of selectors and artists operating
+                        around the festival’s outer edges.
                     </p>
                     <p>
                         Across radio, warm-up sets and longer sessions, Taki
@@ -294,6 +298,13 @@ useHead({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >Taki Onqoy : Warm-Up for Colleen’s <em>Libres Antes del Final</em> Release Show @ Casa Montjuïc</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.mixcloud.com/dublabes/pargueland-120118-tupper_4-w-lowtrux-dont-dj/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Taki Onqoy : B2B with Don’t DJ @ Tupper Festival</a>
                             </li>
                         </ol>
                     </section>
