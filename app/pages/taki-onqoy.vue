@@ -15,17 +15,17 @@ const sonicMarkers = [
 useSeoMeta({
     title: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
     description:
-        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and Foggy Hex curator Jorge Paez, moving through dub, ethnographic and outernational sounds.',
+        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and Foggy Hex curator Jorge Paez Minaya, moving through dub, ethnographic and outernational sounds.',
     ogTitle: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
     ogDescription:
-        'Profile of Taki Onqoy, the alias of Jorge Paez: Barcelona-based DJ, selector, radio host and founder-curator of Foggy Hex.',
+        'Profile of Taki Onqoy, the alias of Jorge Paez Minaya: Barcelona-based DJ, selector, radio host and founder-curator of Foggy Hex.',
     ogImage: imageUrl,
     ogUrl: pageUrl,
     ogType: 'profile',
     twitterCard: 'summary_large_image',
     twitterTitle: 'Taki Onqoy | Barcelona DJ, selector and curator',
     twitterDescription:
-        'Barcelona-based DJ profile for Taki Onqoy, selector Jorge Paez and host of Foggy Hex Outsider on Kiosk Radio.',
+        'Barcelona-based DJ profile for Taki Onqoy, selector Jorge Paez Minaya and host of Foggy Hex Outsider on Kiosk Radio.',
     twitterImage: imageUrl,
 })
 
@@ -44,7 +44,7 @@ useHead({
         {
             name: 'keywords',
             content:
-                'Taki Onqoy, Jorge Paez, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
+                'Taki Onqoy, Jorge Paez Minaya, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
         },
     ],
     script: [
@@ -60,13 +60,13 @@ useHead({
                     headline:
                         'Taki Onqoy, Barcelona DJ, selector, radio host and Foggy Hex curator',
                     description:
-                        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and curator Jorge Paez.',
+                        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and curator Jorge Paez Minaya.',
                     image: imageUrl,
                     inLanguage: 'en',
                     mainEntity: {
                         '@type': 'Person',
                         '@id': `${pageUrl}#taki-onqoy`,
-                        name: 'Jorge Paez',
+                        name: 'Jorge Paez Minaya',
                         alternateName: 'Taki Onqoy',
                         birthPlace: {
                             '@type': 'Place',
@@ -155,7 +155,7 @@ useHead({
                         src="/images/taki-onqoy.jpg"
                         width="1080"
                         height="1440"
-                        alt="Black and white portrait of Taki Onqoy, the Barcelona-based DJ and Foggy Hex curator Jorge Páez"
+                        alt="Black and white portrait of Taki Onqoy, the Barcelona-based DJ and Foggy Hex curator Jorge Páez Minaya"
                     />
                 </figure>
 
@@ -190,7 +190,7 @@ useHead({
                             rel="noopener noreferrer"
                         >Taki Onqoy</a>
                         is the alias of Lima-born, Barcelona-based selector,
-                        radio host and curator Jorge Páez. His relationship
+                        radio host and curator Jorge Páez Minaya. His relationship
                         with music took shape in Lima’s independent underground,
                         playing in bands and making sets in small bars and
                         off-radar spaces before radio and curatorial work became
@@ -244,14 +244,13 @@ useHead({
                         easy classification.
                     </p>
                     <p>
-                        In 2022, Páez founded
-                        <NuxtLink to="/">Foggy Hex</NuxtLink>, the Barcelona
-                        collective for which he leads the curatorial process,
-                        shaping programmes, selecting artists and developing
-                        events in close dialogue with musicians, agents and
-                        local venues. That work feeds directly back into Taki
-                        Onqoy: selection understood not simply as playing
-                        records, but as creating context around them.
+                        In 2022, Páez co-founded Foggy Hex alongside Alec Curtis
+                        (NTS Radio), and leads the collective’s curatorial
+                        process, shaping programmes, selecting artists and
+                        developing events in close dialogue with musicians,
+                        agents and local venues. That work feeds directly back
+                        into Taki Onqoy: selection understood not simply as
+                        playing records, but as creating context around them.
                     </p>
                     <p>
                         In Barcelona, he has opened for artists including Don’t
