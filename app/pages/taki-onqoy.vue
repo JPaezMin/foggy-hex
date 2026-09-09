@@ -168,6 +168,11 @@ useHead({
                             rel="noopener noreferrer"
                         >Instagram</a>
                         <a
+                            href="https://soundcloud.com/takiononqoy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >SoundCloud</a>
+                        <a
                             href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -212,13 +217,7 @@ useHead({
                         to 2023, Páez hosted Pargueland, his monthly free-form
                         show on dublab Barcelona, built around personal
                         selections and conversations with local and
-                        international artists. His
-                        <a
-                            href="https://soundcloud.com/takiononqoy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >mixes</a>
-                        have also appeared on
+                        international artists. His mixes have also appeared on
                         <a
                             href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
                             target="_blank"
@@ -233,15 +232,10 @@ useHead({
                         For nearly three years, he has held an ongoing monthly
                         residency on Thessaloniki’s Paranoise Radio with Tower
                         Of Echo, while since 2025 he has hosted and curated
-                        Foggy Hex’s monthly Outsider show on
-                        <a
-                            href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >Kiosk Radio</a>
-                        in Brussels, using the format as another space for
-                        unusual affinities, guest artists and music resistant to
-                        easy classification.
+                        Foggy Hex’s monthly Outsider show on Kiosk Radio in
+                        Brussels, using the format as another space for unusual
+                        affinities, guest artists and music resistant to easy
+                        classification.
                     </p>
                     <p>
                         In 2022, Páez co-founded Foggy Hex alongside Alec Curtis
@@ -253,17 +247,15 @@ useHead({
                         playing records, but as creating context around them.
                     </p>
                     <p>
-                        In Barcelona, he has opened for artists including Don’t
-                        DJ, Colleen, Céline Gillain, Jeremiah Chiu and
-                        Passepartout Duo, with appearances at spaces such as
-                        Heliogàbal, NIU and Casa Montjuïc. In Portland, his
-                        selections have surfaced at Tiga, Beech Street Parlor
-                        and
-                        <a
-                            href="https://freeformportland.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >Freeform Portland</a>.
+                        In Barcelona, he has opened for artists including Anna
+                        Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
+                        Passepartout Duo, playing across the city’s independent
+                        and leftfield music spaces, including Casa Montjuïc and
+                        El Pumarejo. He has also appeared at Tupper Festival in
+                        a B2B with Berlin-based producer Don’t DJ. In Portland,
+                        his selections have surfaced on Freeform Portland and in
+                        the intimate bars and underground spaces orbiting the
+                        city’s club-adjacent scene.
                         At the most recent edition of Meakusma Festival in
                         September 2026, he closed the Heuboden stage, joining a
                         programme that over the weekend also passed through the
@@ -360,7 +352,16 @@ useHead({
 }
 
 .bio-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     overflow-wrap: anywhere;
+}
+
+.bio-links a::after {
+    content: '↗';
+    font-size: 0.86em;
+    line-height: 1;
 }
 
 .selected-sets {
