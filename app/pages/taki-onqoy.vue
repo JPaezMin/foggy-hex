@@ -88,6 +88,9 @@ useHead({
                             'https://www.instagram.com/takiononqoy/',
                             'https://soundcloud.com/takiononqoy',
                             'https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy',
+                            'https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942',
+                            'https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942',
+                            'https://gate.sc/?url=https%3A%2F%2Fwww.dublab.cat%2Farxiu%2Fpargueland&token=200ac0-1-1788960584942',
                             'https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19',
                             'https://freeformportland.org/',
                         ],
@@ -163,17 +166,22 @@ useHead({
                             href="https://www.instagram.com/takiononqoy/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >https://www.instagram.com/takiononqoy/</a>
+                        >Instagram</a>
                         <a
-                            href="https://soundcloud.com/takiononqoy"
+                            href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >https://soundcloud.com/takiononqoy</a>
+                        >Kiosk Radio BXL</a>
                         <a
-                            href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
+                            href="https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy</a>
+                        >Paranoise Radio SKG</a>
+                        <a
+                            href="https://gate.sc/?url=https%3A%2F%2Fwww.dublab.cat%2Farxiu%2Fpargueland&token=200ac0-1-1788960584942"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Dublab BCN</a>
                     </nav>
                     <p>
                         <a
@@ -271,6 +279,33 @@ useHead({
                         always leaving enough space for a strange record to
                         change the direction of everything that follows.
                     </p>
+
+                    <section class="selected-sets" aria-labelledby="selected-sets-heading">
+                        <h2 id="selected-sets-heading">Selected sets</h2>
+                        <ol>
+                            <li>
+                                <a
+                                    href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Taki Onqoy : Foggy Hex @ Kiosk Radio (Staff Pick, September 2026)</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://soundcloud.com/takiononqoy/warm-up-for-pasepartout-duo"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Taki Onqoy : Warm-Up for Passepartout Duo @ Casa Montjuïc (20 June 2026)</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://soundcloud.com/takiononqoy/warm-up-set-for-colleens"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Taki Onqoy : Warm-Up for Colleen’s <em>Libres Antes del Final</em> Release Show @ Casa Montjuïc</a>
+                            </li>
+                        </ol>
+                    </section>
                 </section>
             </div>
         </div>
@@ -315,8 +350,9 @@ useHead({
 }
 
 .bio-links {
-    display: grid;
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
     margin-bottom: 28px;
     font-family: 'Source Code Pro', monospace;
     font-size: 14px;
@@ -326,6 +362,35 @@ useHead({
 
 .bio-links a {
     overflow-wrap: anywhere;
+}
+
+.selected-sets {
+    margin-top: 38px;
+    border-top: 1px solid currentColor;
+    padding-top: 18px;
+}
+
+.selected-sets h2 {
+    margin-bottom: 12px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+}
+
+.selected-sets ol {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 22px;
+}
+
+.selected-sets li {
+    padding-left: 4px;
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: 0;
 }
 
 .bio-copy p {
