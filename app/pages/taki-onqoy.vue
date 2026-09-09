@@ -197,7 +197,7 @@ useHead({
                         is the alias of Lima-born, Barcelona-based selector,
                         radio host and curator Jorge Páez Minaya. His relationship
                         with music took shape in Lima’s independent underground,
-                        playing in bands and making sets in small bars and
+                        playing in bands and playing sets in small bars and
                         off-radar spaces before radio and curatorial work became
                         part of the picture. His sets connect dub, ethnographic
                         and outernational sounds with leftfield electronica and
@@ -227,14 +227,20 @@ useHead({
                         >Freeform Portland</a>.
                         For nearly three years, he has held an ongoing monthly
                         residency on Thessaloniki’s Paranoise Radio with Tower
-                        Of Echo, while since 2025 he has hosted and curated
+                        Of Echo, and since 2025 he has hosted and curated
                         Foggy Hex’s monthly Outsider show on Kiosk Radio in
                         Brussels, using the format as another space for unusual
                         affinities, guest artists and music resistant to easy
                         classification.
                     </p>
                     <p>
-                        In 2022, Páez co-founded Foggy Hex alongside Alec Curtis
+                        In 2022, Páez co-founded
+                        <a
+                            href="https://foggyhexbcn.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Foggy Hex</a>
+                        alongside Alec Curtis
                         (NTS Radio), and leads the collective’s curatorial
                         process, shaping programmes, selecting artists and
                         developing events in close dialogue with musicians,
@@ -243,7 +249,7 @@ useHead({
                         playing records, but as creating context around them.
                     </p>
                     <p>
-                        In Barcelona, he has opened for artists including Anna
+                        In Barcelona, he has opened for artists including Ana
                         Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
                         Passepartout Duo, playing across the city’s independent
                         and leftfield music spaces, including
