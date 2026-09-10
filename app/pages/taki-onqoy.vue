@@ -216,7 +216,7 @@ useHead({
                             rel="noopener noreferrer"
                         >Paranoise Radio SKG</a>
                         <a
-                            href="https://gate.sc/?url=https%3A%2F%2Fwww.dublab.cat%2Farxiu%2Fpargueland&token=200ac0-1-1788960584942"
+                            href="https://dublab.cat/arxiu/pargueland"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Dublab BCN</a>
