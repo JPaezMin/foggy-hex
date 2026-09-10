@@ -1,39 +1,39 @@
 <script setup lang="ts">
 const siteUrl = 'https://foggyhexbcn.com'
-const pageUrl = `${siteUrl}/taki-onqoy`
-const spanishPageUrl = `${siteUrl}/es/taki-onqoy`
+const pageUrl = `${siteUrl}/es/taki-onqoy`
+const englishPageUrl = `${siteUrl}/taki-onqoy`
 const imageUrl = `${siteUrl}/images/taki-onqoy.jpg`
 
 const sonicMarkers = [
     'dub',
-    'ethnographic sounds',
-    'outernational music',
-    'leftfield electronica',
-    'future folk',
-    'post-club forms',
+    'sonidos etnográficos',
+    'electrónica leftfield',
+    'ritmos post-club',
+    'folclore andino',
+    'tradiciones afroperuanas',
 ]
 
 useSeoMeta({
-    title: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
+    title: 'Taki Onqoy | DJ, selector y programador de Foggy Hex en Barcelona',
     description:
-        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and Foggy Hex curator Jorge Paez Minaya, moving through dub, ethnographic and outernational sounds.',
-    ogTitle: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
+        'Taki Onqoy es el alias de Jorge Páez Minaya, selector, radio host y programador musical nacido en Lima y afincado en Barcelona.',
+    ogTitle: 'Taki Onqoy | DJ, selector y programador de Foggy Hex',
     ogDescription:
-        'Profile of Taki Onqoy, the alias of Jorge Paez Minaya: Barcelona-based DJ, selector, radio host and founder-curator of Foggy Hex.',
+        'Perfil en español de Taki Onqoy, alias de Jorge Páez Minaya: selector, radio host y programador musical afincado en Barcelona.',
     ogImage: imageUrl,
     ogUrl: pageUrl,
     ogType: 'profile',
-    ogLocale: 'en_US',
+    ogLocale: 'es_ES',
     twitterCard: 'summary_large_image',
-    twitterTitle: 'Taki Onqoy | Barcelona DJ, selector and curator',
+    twitterTitle: 'Taki Onqoy | DJ, selector y programador',
     twitterDescription:
-        'Barcelona-based DJ profile for Taki Onqoy, selector Jorge Paez Minaya and host of Foggy Hex Outsider on Kiosk Radio.',
+        'Perfil de Taki Onqoy, selector nacido en Lima y afincado en Barcelona, cofundador de Foggy Hex.',
     twitterImage: imageUrl,
 })
 
 useHead({
     htmlAttrs: {
-        lang: 'en',
+        lang: 'es',
     },
     link: [
         {
@@ -42,18 +42,18 @@ useHead({
         },
         {
             rel: 'alternate',
-            hreflang: 'en',
+            hreflang: 'es',
             href: pageUrl,
         },
         {
             rel: 'alternate',
-            hreflang: 'es',
-            href: spanishPageUrl,
+            hreflang: 'en',
+            href: englishPageUrl,
         },
         {
             rel: 'alternate',
             hreflang: 'x-default',
-            href: pageUrl,
+            href: englishPageUrl,
         },
         {
             rel: 'preload',
@@ -65,7 +65,15 @@ useHead({
         {
             name: 'keywords',
             content:
-                'Taki Onqoy, Jorge Paez Minaya, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, Dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
+                'Taki Onqoy, Jorge Páez Minaya, DJ Barcelona, selector Lima, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, Dublab Barcelona, dub, electrónica leftfield, sonidos etnográficos, post-club, folclore andino, tradiciones afroperuanas',
+        },
+        {
+            name: 'geo.region',
+            content: 'ES-CT',
+        },
+        {
+            name: 'geo.placename',
+            content: 'Barcelona',
         },
     ],
     script: [
@@ -79,19 +87,19 @@ useHead({
                     url: pageUrl,
                     name: 'Taki Onqoy',
                     headline:
-                        'Taki Onqoy, Barcelona DJ, selector, radio host and Foggy Hex curator',
+                        'Taki Onqoy, DJ, selector, radio host y programador musical afincado en Barcelona',
                     description:
-                        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and curator Jorge Paez Minaya.',
+                        'Taki Onqoy es el alias de Jorge Páez Minaya, selector, radio host y programador musical nacido en Lima y afincado en Barcelona.',
                     image: imageUrl,
-                    inLanguage: 'en',
+                    inLanguage: 'es',
                     mainEntity: {
                         '@type': 'Person',
                         '@id': `${pageUrl}#taki-onqoy`,
-                        name: 'Jorge Paez Minaya',
+                        name: 'Jorge Páez Minaya',
                         alternateName: 'Taki Onqoy',
                         birthPlace: {
                             '@type': 'Place',
-                            name: 'Lima, Peru',
+                            name: 'Lima, Perú',
                         },
                         homeLocation: {
                             '@type': 'City',
@@ -101,7 +109,7 @@ useHead({
                             'DJ',
                             'Selector',
                             'Radio host',
-                            'Curator',
+                            'Programador musical',
                         ],
                         image: imageUrl,
                         url: pageUrl,
@@ -124,7 +132,7 @@ useHead({
                         performerIn: [
                             {
                                 '@type': 'RadioSeries',
-                                name: 'Foggy Hex Outsider',
+                                name: 'Foggy Hex Outsiders',
                                 url: 'https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy',
                             },
                             {
@@ -136,9 +144,12 @@ useHead({
                                 name: 'Tower Of Echo',
                             },
                             {
-                                '@type': 'RadioSeries',
-                                name: 'Freeform Portland Radio',
-                                url: 'https://freeformportland.org/',
+                                '@type': 'MusicEvent',
+                                name: 'Meakusma Festival 2026',
+                                location: {
+                                    '@type': 'Place',
+                                    name: 'Eupen, Belgium',
+                                },
                             },
                         ],
                     },
@@ -176,13 +187,13 @@ useHead({
                         src="/images/taki-onqoy.jpg"
                         width="1080"
                         height="1440"
-                        alt="Black and white portrait of Taki Onqoy, the Barcelona-based DJ and Foggy Hex curator Jorge Páez Minaya"
+                        alt="Retrato en blanco y negro de Taki Onqoy, DJ y programador musical afincado en Barcelona"
                     />
                 </figure>
 
-                <section class="bio-copy" aria-label="Taki Onqoy biography">
+                <section class="bio-copy" aria-label="Biografía de Taki Onqoy">
                     <h1 class="sr-only">Taki Onqoy</h1>
-                    <nav class="bio-links" aria-label="Taki Onqoy links">
+                    <nav class="bio-links" aria-label="Enlaces de Taki Onqoy">
                         <a
                             href="https://www.instagram.com/takiononqoy/"
                             target="_blank"
@@ -211,18 +222,18 @@ useHead({
                     </nav>
                     <nav
                         class="language-switcher"
-                        aria-label="Taki Onqoy profile language"
+                        aria-label="Idioma del perfil de Taki Onqoy"
                     >
                         <NuxtLink
                             to="/es/taki-onqoy"
                             hreflang="es"
                             lang="es"
+                            aria-current="page"
                         >ES</NuxtLink>
                         <NuxtLink
                             to="/taki-onqoy"
                             hreflang="en"
                             lang="en"
-                            aria-current="page"
                         >EN</NuxtLink>
                     </nav>
                     <p>
@@ -231,130 +242,144 @@ useHead({
                             target="_blank"
                             rel="noopener noreferrer"
                         >Taki Onqoy</a>
-                        is the alias of Lima-born, Barcelona-based selector,
-                        radio host and curator Jorge Páez Minaya. His relationship
-                        with music took shape in Lima’s independent underground,
-                        playing in bands and playing sets in small bars and
-                        off-radar spaces before radio and curatorial work became
-                        part of the picture. His DJ sets connect dub, ethnographic
-                        and outernational sounds with leftfield electronica and
-                        post-club rhythms, following connections built around
-                        texture, atmosphere and movement rather than genre.
-                        Andean folk and Afro-Peruvian traditions quietly inform
-                        the way Páez selects and sequences tracks, surfacing
-                        through cadence, repetition and rhythmic instinct rather
-                        than direct reference.
+                        es el alias de Jorge Páez Minaya, selector, radio host y
+                        programador musical nacido en Lima y afincado en
+                        Barcelona. Su relación con la música empezó a tomar
+                        forma en el circuito independiente limeño, tocando en
+                        bandas y pinchando en pequeños bares y espacios
+                        underground antes de trasladar esa misma curiosidad a la
+                        radio y al trabajo curatorial. Sus sets trazan
+                        conexiones entre el dub, los sonidos etnográficos, la
+                        electrónica leftfield y los ritmos post-club, y se guían
+                        más por la textura, la atmósfera y el movimiento que por
+                        etiquetas de género. El folclore andino y las
+                        tradiciones afroperuanas se filtran de forma sutil en
+                        su manera de seleccionar y secuenciar discos, más como
+                        cadencia, repetición e instinto rítmico que como cita
+                        explícita.
                     </p>
                     <p>
-                        Radio has long been central to that practice. From 2017
-                        to 2023, Páez hosted Pargueland, his monthly free-form
-                        show on Dublab Barcelona, built around personal
-                        selections and conversations with local and
-                        international artists. His mixes have also appeared on
+                        La radio ha sido otro espacio natural para esa forma de
+                        escuchar. Entre 2017 y 2023, presentó “Pargueland”, un
+                        programa mensual de formato libre en Dublab Barcelona,
+                        construido a partir de selecciones personales y
+                        entrevistas con artistas locales e internacionales.
+                        También ha sido invitado a realizar sesiones para
                         <a
                             href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Dublab L.A</a>
-                        and
+                        >Dublab L.A.</a>
+                        y
                         <a
                             href="https://freeformportland.org/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Freeform Portland</a>.
-                        For nearly three years, he has held an ongoing monthly
-                        residency on Thessaloniki’s Paranoise Radio with Tower
-                        Of Echo, and since 2025 he has hosted and curated
-                        Foggy Hex’s monthly Outsider show on Kiosk Radio in
-                        Brussels, using the format as another space for unusual
-                        affinities, guest artists and music resistant to easy
-                        classification.
+                        >Freeform Portland Radio</a>.
+                        Desde hace casi tres años mantiene además una residencia
+                        mensual en
+                        <a
+                            href="https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Paranoise Radio</a>,
+                        emisora con base en Tesalónica, donde presenta y
+                        produce “Tower Of Echo” como una extensión de su trabajo
+                        como selector.
                     </p>
                     <p>
-                        In 2022, Páez co-founded
+                        En 2022, Taki Onqoy cofundó
                         <a
                             href="https://foggyhexbcn.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Foggy Hex</a>
-                        alongside Alec Curtis
-                        (NTS Radio), and leads the collective’s curatorial
-                        process, shaping programmes, selecting artists and
-                        developing events in close dialogue with musicians,
-                        agents and local venues. That work feeds directly back
-                        into Taki Onqoy: selection understood not simply as
-                        playing records, but as creating context around them.
+                        junto a Alec Curtis (NTS Radio) y desde entonces dirige
+                        el proceso curatorial del colectivo: programa,
+                        selecciona artistas y desarrolla eventos en diálogo
+                        directo con músicos, agentes, salas y espacios locales.
+                        El proyecto ha extendido también su actividad más allá
+                        de Barcelona: en 2025,
+                        <a
+                            href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Kiosk Radio</a>
+                        de Bruselas invitó a Foggy Hex a formar parte de su
+                        ciclo “Outsiders”, con una residencia mensual cuya
+                        curaduría y producción corren a cargo de Páez.
                     </p>
                     <p>
-                        In Barcelona, he has opened for artists including Ana
-                        Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
-                        Passepartout Duo, playing across the city’s independent
-                        and leftfield music spaces, including
+                        En Barcelona, se ha encargado del warm-up para artistas
+                        como Ana Roxanne, Colleen, Céline Gillain, Jeremiah Chiu
+                        y Passepartout Duo, moviéndose por la red de espacios
+                        independientes de la ciudad, entre ellos
                         <a
                             href="https://www.casamontjuic.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Casa Montjuïc</a>
-                        and
+                        y
                         <a
                             href="https://elpumarejo.org/en/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >El Pumarejo</a>.
-                        In Portland, his selections have surfaced on Freeform
-                        Portland and in the intimate bars and underground spaces
-                        orbiting the city’s club-adjacent scene.
-                        At the most recent edition of
+                        En Portland, sus selecciones se han escuchado en
+                        pequeños bares y espacios underground que orbitan la
+                        escena club de la ciudad.
+                    </p>
+                    <p>
+                        En la edición más reciente de
                         <a
                             href="https://www.meakusma-festival.be/artists-2026/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Meakusma Festival</a>
-                        in Eupen, Belgium in September 2026, he closed the
-                        Heuboden stage, joining
-                        a programme that over the weekend also passed through
-                        the hands of Unchained, Gilb’R, Nosedrip, Time Is Away
-                        and a wider cast of selectors and artists operating
-                        around the festival’s outer edges.
-                    </p>
-                    <p>
-                        Across radio, warm-up sets and longer sessions, Taki
-                        Onqoy approaches the room with the same free-form
-                        instinct: attentive to pacing and physicality, but
-                        always leaving enough space for a strange record to
-                        change the direction of everything that follows.
+                        >Meakusma Festival</a>,
+                        celebrada en Eupen, Bélgica, en septiembre de 2026,
+                        Taki Onqoy cerró el escenario Heuboden, dentro de una
+                        programación por la que durante el fin de semana también
+                        pasaron Big Hands, Gilb’R, Nosedrip, Loma Doom, Mr.
+                        Clarinet y otros selectores y artistas situados en los
+                        márgenes más abiertos del festival. Ya sea en la radio,
+                        en un warm-up set o en una sesión más larga, Taki Onqoy
+                        se acerca a la sala siempre con el mismo instinto:
+                        atento al ritmo y a su dimensión física, pero dejando
+                        siempre el margen suficiente para que un disco extraño
+                        pueda alterar por completo la dirección de lo que viene
+                        después.
                     </p>
 
                     <section class="selected-sets" aria-labelledby="selected-sets-heading">
-                        <h2 id="selected-sets-heading">Selected sets</h2>
+                        <h2 id="selected-sets-heading">Sets seleccionados</h2>
                         <ol>
                             <li>
                                 <a
                                     href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Foggy Hex @ Kiosk Radio (Staff Pick, September 2026)</a>
+                                >Taki Onqoy : Foggy Hex @ Kiosk Radio (Staff Pick, septiembre 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://soundcloud.com/takiononqoy/warm-up-for-pasepartout-duo"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Warm-Up for Passepartout Duo @ Casa Montjuïc (20 June 2026)</a>
+                                >Taki Onqoy : Warm-Up para Passepartout Duo @ Casa Montjuïc (20 junio 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://soundcloud.com/takiononqoy/warm-up-set-for-colleens"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Colleen Warm-Up @ Casa Montjuïc (26 April 2026)</a>
+                                >Taki Onqoy : Warm-Up para Colleen @ Casa Montjuïc (26 abril 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://www.mixcloud.com/dublabes/pargueland-120118-tupper_4-w-lowtrux-dont-dj/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : B2B with Don’t DJ @ Tupper Festival (12 January 2018)</a>
+                                >Taki Onqoy : B2B con Don’t DJ @ Tupper Festival (12 enero 2018)</a>
                             </li>
                         </ol>
                     </section>
