@@ -283,25 +283,33 @@ useHead({
                         classification.
                     </p>
                     <p>
-                        In 2022, Páez co-founded
+                        In 2022, Taki Onqoy co-founded
                         <a
                             href="https://foggyhexbcn.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Foggy Hex</a>
-                        alongside Alec Curtis
-                        (NTS Radio), and leads the collective’s curatorial
-                        process, shaping programmes, selecting artists and
-                        developing events in close dialogue with musicians,
-                        agents and local venues. That work feeds directly back
-                        into Taki Onqoy: selection understood not simply as
-                        playing records, but as creating context around them.
+                        alongside Alec Curtis (NTS Radio), and has since led the
+                        collective's curatorial process: programming, selecting
+                        artists and developing events in close dialogue with
+                        musicians, agents and local venues. The project has also
+                        extended its reach beyond Barcelona. In 2025, Kiosk Radio
+                        invited Foggy Hex to join its Outsiders programme with
+                        <a
+                            href="https://www.kioskradio.com/label/foggy-hex"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >a monthly residency</a>
+                        on the Brussels station, curated and produced by Taki
+                        Onqoy. That work feeds naturally back into his own
+                        practice, with selection understood not simply as playing
+                        records, but as creating the right context for them.
                     </p>
                     <p>
                         In Barcelona, he has opened for artists including Ana
                         Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
-                        Passepartout Duo, playing across the city’s independent
-                        and leftfield music spaces, including
+                        Passepartout Duo, moving through the city's network of
+                        independent and leftfield music spaces, including
                         <a
                             href="https://www.casamontjuic.com/"
                             target="_blank"
@@ -313,21 +321,20 @@ useHead({
                             target="_blank"
                             rel="noopener noreferrer"
                         >El Pumarejo</a>.
-                        In Portland, his selections have surfaced on Freeform
-                        Portland and in the intimate bars and underground spaces
-                        orbiting the city’s club-adjacent scene.
+                        In Portland, his selections have found their way into
+                        the small bars and underground spaces orbiting the
+                        city's club-adjacent scene.
                         At the most recent edition of
                         <a
                             href="https://www.meakusma-festival.be/artists-2026/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Meakusma Festival</a>
-                        in Eupen, Belgium in September 2026, he closed the
-                        Heuboden stage, joining
-                        a programme that over the weekend also passed through
-                        the hands of Unchained, Gilb’R, Nosedrip, Time Is Away
-                        and a wider cast of selectors and artists operating
-                        around the festival’s outer edges.
+                        >Meakusma Festival</a>,
+                        held in Eupen, Belgium in September 2026, Taki Onqoy
+                        closed the Heuboden stage, as part of a weekend
+                        programme that also featured Big Hands, Gilb'R,
+                        Nosedrip, Loma Doom, Mr. Clarinet and other selectors
+                        and artists working around the festival's outer edges.
                     </p>
                     <p>
                         Across radio, warm-up sets and longer sessions, Taki
