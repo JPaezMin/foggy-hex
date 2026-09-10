@@ -7,27 +7,27 @@ const imageUrl = `${siteUrl}/images/taki-onqoy.jpg`
 const sonicMarkers = [
     'dub',
     'ethnographic sounds',
-    'outernational music',
     'leftfield electronica',
-    'future folk',
-    'post-club forms',
+    'post-club rhythms',
+    'Andean folk',
+    'Afro-Peruvian traditions',
 ]
 
 useSeoMeta({
-    title: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
+    title: 'Taki Onqoy',
     description:
-        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and Foggy Hex curator Jorge Paez Minaya, moving through dub, ethnographic and outernational sounds.',
-    ogTitle: 'Taki Onqoy | Barcelona DJ, selector and Foggy Hex curator',
+        'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and curator Jorge Paez Minaya, connecting dub, ethnographic sounds, leftfield electronica and post-club rhythms.',
+    ogTitle: 'Taki Onqoy',
     ogDescription:
-        'Profile of Taki Onqoy, the alias of Jorge Paez Minaya: Barcelona-based DJ, selector, radio host and founder-curator of Foggy Hex.',
+        'Profile of Taki Onqoy, the alias of Jorge Paez Minaya: Lima-born, Barcelona-based selector, radio host and Foggy Hex curator.',
     ogImage: imageUrl,
     ogUrl: pageUrl,
     ogType: 'profile',
     ogLocale: 'en_US',
     twitterCard: 'summary_large_image',
-    twitterTitle: 'Taki Onqoy | Barcelona DJ, selector and curator',
+    twitterTitle: 'Taki Onqoy',
     twitterDescription:
-        'Barcelona-based DJ profile for Taki Onqoy, selector Jorge Paez Minaya and host of Foggy Hex Outsider on Kiosk Radio.',
+        'Barcelona-based profile for Taki Onqoy, selector Jorge Paez Minaya and host of Tower Of Echo on Paranoise Radio.',
     twitterImage: imageUrl,
 })
 
@@ -65,7 +65,7 @@ useHead({
         {
             name: 'keywords',
             content:
-                'Taki Onqoy, Jorge Paez Minaya, Barcelona DJ, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, Dublab Barcelona, dub, leftfield electronica, outernational music, future folk, post-club',
+                'Taki Onqoy, Jorge Paez Minaya, Barcelona selector, Lima selector, Foggy Hex, Kiosk Radio, Paranoise Radio, Tower Of Echo, Dublab Barcelona, dub, leftfield electronica, ethnographic sounds, post-club rhythms, Andean folk, Afro-Peruvian traditions',
         },
     ],
     script: [
@@ -78,8 +78,7 @@ useHead({
                     '@id': `${pageUrl}#profile`,
                     url: pageUrl,
                     name: 'Taki Onqoy',
-                    headline:
-                        'Taki Onqoy, Barcelona DJ, selector, radio host and Foggy Hex curator',
+                    headline: 'Taki Onqoy',
                     description:
                         'Taki Onqoy is the alias of Lima-born, Barcelona-based selector, radio host and curator Jorge Paez Minaya.',
                     image: imageUrl,
@@ -244,64 +243,66 @@ useHead({
                             rel="noopener noreferrer"
                         >Taki Onqoy</a>
                         is the alias of Lima-born, Barcelona-based selector,
-                        radio host and curator Jorge Páez Minaya. His relationship
-                        with music took shape in Lima’s independent underground,
-                        playing in bands and playing sets in small bars and
-                        off-radar spaces before radio and curatorial work became
-                        part of the picture. His DJ sets connect dub, ethnographic
-                        and outernational sounds with leftfield electronica and
-                        post-club rhythms, following connections built around
-                        texture, atmosphere and movement rather than genre.
-                        Andean folk and Afro-Peruvian traditions quietly inform
-                        the way Páez selects and sequences tracks, surfacing
-                        through cadence, repetition and rhythmic instinct rather
-                        than direct reference.
+                        radio host and curator Jorge Páez Minaya. His
+                        relationship with music took shape in Lima’s independent
+                        underground, playing in bands and selecting records in
+                        small bars and underground spaces before that same
+                        curiosity found its way into radio and curatorial work.
+                        His sets connect dub, ethnographic sounds, leftfield
+                        electronica and post-club rhythms, guided more by
+                        texture, atmosphere and movement than by genre. Andean
+                        folk and Afro-Peruvian traditions quietly filter into
+                        the way he selects and sequences records, more as
+                        cadence, repetition and rhythmic instinct than as direct
+                        quotation.
                     </p>
                     <p>
-                        Radio has long been central to that practice. From 2017
-                        to 2023, Páez hosted Pargueland, his monthly free-form
-                        show on Dublab Barcelona, built around personal
-                        selections and conversations with local and
-                        international artists. His mixes have also appeared on
+                        Radio has long been another natural outlet for that way
+                        of listening. From 2017 to 2023, he hosted
+                        <em>Pargueland</em>, a monthly free-form show on Dublab
+                        Barcelona built around personal selections and
+                        interviews with local and international artists. He has
+                        also been invited to contribute guest sessions to
                         <a
                             href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Dublab L.A</a>
+                        >Dublab L.A.</a>
                         and
                         <a
                             href="https://freeformportland.org/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Freeform Portland</a>.
-                        For nearly three years, he has held an ongoing monthly
-                        residency on Thessaloniki’s Paranoise Radio with Tower
-                        Of Echo, and since 2025 he has hosted and curated
-                        Foggy Hex’s monthly Outsider show on Kiosk Radio in
-                        Brussels, using the format as another space for unusual
-                        affinities, guest artists and music resistant to easy
-                        classification.
+                        For nearly three years, he has held a monthly residency
+                        on Thessaloniki’s Paranoise Radio, where he hosts and
+                        produces <em>Tower Of Echo</em> as an extension of his
+                        work as a selector.
                     </p>
                     <p>
-                        In 2022, Páez co-founded
+                        In 2022, Taki Onqoy co-founded
                         <a
                             href="https://foggyhexbcn.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Foggy Hex</a>
-                        alongside Alec Curtis
-                        (NTS Radio), and leads the collective’s curatorial
-                        process, shaping programmes, selecting artists and
-                        developing events in close dialogue with musicians,
-                        agents and local venues. That work feeds directly back
-                        into Taki Onqoy: selection understood not simply as
-                        playing records, but as creating context around them.
+                        alongside Alec Curtis (NTS Radio), and has since led the
+                        collective’s curatorial process: programming, selecting
+                        artists and developing events in close dialogue with
+                        musicians, agents and local venues. The project has also
+                        extended its reach beyond Barcelona. In 2025, Kiosk
+                        Radio invited Foggy Hex to join its <em>Outsiders</em>
+                        programme with a monthly residency on the Brussels
+                        station, curated and produced by Taki Onqoy. That work
+                        feeds naturally back into his own practice, with
+                        selection understood not simply as playing records, but
+                        as creating the right context for them.
                     </p>
                     <p>
                         In Barcelona, he has opened for artists including Ana
                         Roxanne, Colleen, Céline Gillain, Jeremiah Chiu and
-                        Passepartout Duo, playing across the city’s independent
-                        and leftfield music spaces, including
+                        Passepartout Duo, moving through the city’s network of
+                        independent and leftfield music spaces, including
                         <a
                             href="https://www.casamontjuic.com/"
                             target="_blank"
@@ -313,28 +314,29 @@ useHead({
                             target="_blank"
                             rel="noopener noreferrer"
                         >El Pumarejo</a>.
-                        In Portland, his selections have surfaced on Freeform
-                        Portland and in the intimate bars and underground spaces
-                        orbiting the city’s club-adjacent scene.
+                        In Portland, his selections have found their way into
+                        the small bars and underground spaces orbiting the
+                        city’s club-adjacent scene.
+                    </p>
+                    <p>
                         At the most recent edition of
                         <a
                             href="https://www.meakusma-festival.be/artists-2026/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >Meakusma Festival</a>
-                        in Eupen, Belgium in September 2026, he closed the
-                        Heuboden stage, joining
-                        a programme that over the weekend also passed through
-                        the hands of Unchained, Gilb’R, Nosedrip, Time Is Away
-                        and a wider cast of selectors and artists operating
-                        around the festival’s outer edges.
+                        >Meakusma Festival</a>,
+                        held in Eupen, Belgium in September 2026, Taki Onqoy
+                        closed the Heuboden stage, as part of a weekend
+                        programme that also featured Big Hands, Gilb’R,
+                        Nosedrip, Loma Doom, Mr. Clarinet and other selectors
+                        and artists working around the festival’s outer edges.
                     </p>
                     <p>
-                        Across radio, warm-up sets and longer sessions, Taki
-                        Onqoy approaches the room with the same free-form
-                        instinct: attentive to pacing and physicality, but
-                        always leaving enough space for a strange record to
-                        change the direction of everything that follows.
+                        Across radio, warm-up sets and longer sessions, he
+                        approaches the room with the same instinct: attentive to
+                        pacing and physicality, while always leaving enough
+                        space for a strange record to alter the direction of
+                        whatever comes next.
                     </p>
 
                     <section class="selected-sets" aria-labelledby="selected-sets-heading">
