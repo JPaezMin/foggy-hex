@@ -259,9 +259,9 @@ useHead({
                     </p>
                     <p>
                         Radio has long been central to that practice. From 2017
-                        to 2023, Páez hosted Pargueland, his monthly free-form
+                        to 2023, Páez hosted "Pargueland", a monthly free-form
                         show on Dublab Barcelona, built around personal
-                        selections and conversations with local and
+                        selections and interviews with local and
                         international artists. His mixes have also appeared on
                         <a
                             href="https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19"
@@ -275,12 +275,9 @@ useHead({
                             rel="noopener noreferrer"
                         >Freeform Portland</a>.
                         For nearly three years, he has held an ongoing monthly
-                        residency on Thessaloniki’s Paranoise Radio with Tower
-                        Of Echo, and since 2025 he has hosted and curated
-                        Foggy Hex’s monthly Outsider show on Kiosk Radio in
-                        Brussels, using the format as another space for unusual
-                        affinities, guest artists and music resistant to easy
-                        classification.
+                        residency on Thessaloniki's Paranoise Radio, where he
+                        hosts and produces "Tower Of Echo" as an extension of his
+                        work as a selector.
                     </p>
                     <p>
                         In 2022, Taki Onqoy co-founded
