@@ -2,6 +2,7 @@
 const siteUrl = 'https://foggyhexbcn.com'
 const pageUrl = `${siteUrl}/taki-onqoy`
 const spanishPageUrl = `${siteUrl}/es/taki-onqoy`
+const catalanPageUrl = `${siteUrl}/cat/taki-onqoy`
 const imageUrl = `${siteUrl}/images/taki-onqoy.jpg`
 
 const sonicMarkers = [
@@ -49,6 +50,11 @@ useHead({
             rel: 'alternate',
             hreflang: 'es',
             href: spanishPageUrl,
+        },
+        {
+            rel: 'alternate',
+            hreflang: 'ca',
+            href: catalanPageUrl,
         },
         {
             rel: 'alternate',
@@ -231,6 +237,11 @@ useHead({
                             lang="es"
                         >ES</NuxtLink>
                         <NuxtLink
+                            to="/cat/taki-onqoy"
+                            hreflang="ca"
+                            lang="ca"
+                        >CAT</NuxtLink>
+                        <NuxtLink
                             to="/taki-onqoy"
                             hreflang="en"
                             lang="en"
@@ -275,7 +286,12 @@ useHead({
                             rel="noopener noreferrer"
                         >Freeform Portland</a>.
                         For nearly three years, he has held an ongoing monthly
-                        residency on Thessaloniki's Paranoise Radio, where he
+                        residency on Thessaloniki's
+                        <a
+                            href="https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >Paranoise Radio</a>, where he
                         hosts and produces "Tower Of Echo" as an extension of his
                         work as a selector.
                     </p>
@@ -290,14 +306,14 @@ useHead({
                         collective's curatorial process: programming, selecting
                         artists and developing events in close dialogue with
                         musicians, agents and local venues. The project has also
-                        extended its reach beyond Barcelona. In 2025, Kiosk Radio
-                        invited Foggy Hex to join its Outsiders programme with
+                        extended its reach beyond Barcelona. In 2025,
                         <a
-                            href="https://www.kioskradio.com/label/foggy-hex"
+                            href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >a monthly residency</a>
-                        on the Brussels station, curated and produced by Taki
+                        >Kiosk Radio</a>
+                        invited Foggy Hex to join its Outsiders programme with
+                        a monthly residency on the Brussels station, curated and produced by Taki
                         Onqoy. That work feeds naturally back into his own
                         practice, with selection understood not simply as playing
                         records, but as creating the right context for them.

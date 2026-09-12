@@ -21,8 +21,9 @@
     <loc>https://foggyhexbcn.com/taki-onqoy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://foggyhexbcn.com/taki-onqoy" />
     <xhtml:link rel="alternate" hreflang="es" href="https://foggyhexbcn.com/es/taki-onqoy" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://foggyhexbcn.com/cat/taki-onqoy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://foggyhexbcn.com/taki-onqoy" />
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -30,8 +31,19 @@
     <loc>https://foggyhexbcn.com/es/taki-onqoy</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://foggyhexbcn.com/es/taki-onqoy" />
     <xhtml:link rel="alternate" hreflang="en" href="https://foggyhexbcn.com/taki-onqoy" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://foggyhexbcn.com/cat/taki-onqoy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://foggyhexbcn.com/taki-onqoy" />
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://foggyhexbcn.com/cat/taki-onqoy</loc>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://foggyhexbcn.com/cat/taki-onqoy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://foggyhexbcn.com/es/taki-onqoy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://foggyhexbcn.com/taki-onqoy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://foggyhexbcn.com/taki-onqoy" />
+    <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
