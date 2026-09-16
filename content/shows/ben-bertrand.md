@@ -7,6 +7,7 @@ time: '20:45'
 venue: 'Sinestesia'
 venueUrl: 'https://www.instagram.com/sinestesia.barcelona'
 ticketUrl: 'https://entradium.com/events/ben-bertrand-be-presentacion-sello-angle-mort-dj-blue-flowers-bcn-jk-bcn'
+posterImage: '/images/shows/future/ben-bertrand-poster.jpg'
 detailsPublic: true
 bands:
     - name: 'Ben Bertrand'

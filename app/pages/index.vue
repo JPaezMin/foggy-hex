@@ -138,6 +138,17 @@ const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
 const upcomingFeaturedPoster = computed(
     () => upcomingEvent.value?.featuredPoster?.trim() || ''
 )
+const upcomingEventPath = computed(() => {
+    if (!upcomingEvent.value || upcomingEvent.value.detailsPublic === false) {
+        return ''
+    }
+    return `/events/${upcomingEvent.value.slug}`
+})
+const upcomingPosterAlt = computed(() =>
+    upcomingEvent.value
+        ? `Cartel de ${upcomingEvent.value.title}`
+        : 'Cartel de nuestro próximo evento'
+)
 
 const archivedEvents = computed<ArchiveEvent[]>(() => {
     const expiredFutureEvents = (futureEvents.value ?? [])
@@ -257,20 +268,22 @@ const formatDate = (dateString?: string | null): string => {
                 Próximamente
             </h2>
             <NuxtLink
-                v-if="upcomingEvent && upcomingEvent.detailsPublic !== false"
-                :to="`/events/${upcomingEvent.slug}`"
+                v-if="upcomingEventPath"
+                :to="upcomingEventPath"
+                class="featured-poster-link"
+                :aria-label="`Ver detalles de ${upcomingEvent?.title}`"
             >
                 <img
                     :src="upcomingFeaturedPoster"
-                    alt="Cartel de nuestro próximo evento"
-                    class="w-[478px] h-auto object-contain mt-8"
+                    :alt="upcomingPosterAlt"
+                    class="featured-poster-image"
                 />
             </NuxtLink>
             <img
                 v-else-if="upcomingEvent"
                 :src="upcomingFeaturedPoster"
-                alt="Cartel de nuestro próximo evento"
-                class="w-[478px] h-auto object-contain mt-8"
+                :alt="upcomingPosterAlt"
+                class="featured-poster-image"
             />
         </section>
 
@@ -396,5 +409,29 @@ const formatDate = (dateString?: string | null): string => {
 .past-event-card img {
     filter: grayscale(100%);
     transition: filter 0.3s ease;
+}
+
+.featured-poster-link {
+    display: block;
+    width: min(100%, clamp(18rem, 44vw, 34rem));
+    margin-top: 2rem;
+}
+
+.featured-poster-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 6px;
+}
+
+.featured-poster-image {
+    display: block;
+    width: min(100%, clamp(18rem, 44vw, 34rem));
+    margin-top: 2rem;
+    height: auto;
+    object-fit: contain;
+}
+
+.featured-poster-link .featured-poster-image {
+    width: 100%;
+    margin-top: 0;
 }
 </style>
