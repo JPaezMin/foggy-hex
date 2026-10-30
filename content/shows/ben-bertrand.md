@@ -8,6 +8,15 @@ venue: 'Sinestesia'
 venueUrl: 'https://www.instagram.com/sinestesia.barcelona'
 ticketUrl: 'https://entradium.com/events/ben-bertrand-be-presentacion-sello-angle-mort-dj-blue-flowers-bcn-jk-bcn'
 detailsPublic: true
+schedule:
+    - title: 'Puertas'
+      time: '20:15'
+    - title: 'DJ Blue Flowers'
+      time: '21:00 - 21:30'
+    - title: 'jk'
+      time: '21:40 - 22:10'
+    - title: 'Ben Bertrand'
+      time: '22:20 - 23:00'
 bands:
     - name: 'Ben Bertrand'
       label: 'Stroom'
