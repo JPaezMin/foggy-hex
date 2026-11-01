@@ -10,6 +10,7 @@ type FutureGridEvent = FutureCollectionItem & {
 }
 
 type ArchiveEvent = {
+    slug?: string
     title: string
     date?: string | null
     venue: string
@@ -37,12 +38,20 @@ useSeoMeta({
     twitterCard: 'summary_large_image',
 })
 
-const today = new Date()
-const startOfToday = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-)
+const getMadridToday = () =>
+    new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
+
+// Hydrate with the prerendered date before applying the visitor's current day.
+const today = useState('homepage-today', getMadridToday)
+const startOfToday = computed(() => new Date(`${today.value}T00:00:00`))
+let dateRefreshTimer: ReturnType<typeof setInterval> | undefined
+onMounted(() => {
+    today.value = getMadridToday()
+    dateRefreshTimer = setInterval(() => {
+        today.value = getMadridToday()
+    }, 60_000)
+})
+onUnmounted(() => clearInterval(dateRefreshTimer))
 
 const parseEventDate = (dateString?: string | null): Date | null => {
     if (!dateString) return null
@@ -116,7 +125,7 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
         .map((event) => {
             const eventDate = parseEventDate(event.date)
             const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
-            const isExpired = Boolean(eventDate && eventDate < startOfToday)
+            const isExpired = Boolean(eventDate && eventDate < startOfToday.value)
             return {
                 ...event,
                 isExpired,
@@ -156,12 +165,13 @@ const archivedEvents = computed<ArchiveEvent[]>(() => {
             const eventDate = parseEventDate(event.date)
             const sortTimestamp = eventDate?.getTime() ?? 0
             return {
+                slug: event.detailsPublic !== false ? event.slug : undefined,
                 title: event.title,
                 date: event.date,
                 venue: event.venue,
                 image: event.image,
                 sortTimestamp,
-                isExpired: Boolean(eventDate && eventDate < startOfToday),
+                isExpired: Boolean(eventDate && eventDate < startOfToday.value),
             }
         })
         .filter((event) => event.isExpired)
@@ -169,7 +179,7 @@ const archivedEvents = computed<ArchiveEvent[]>(() => {
     const historicalEvents = (pastEvents.value ?? [])
         .filter((event) => {
             const eventDate = parseEventDate(event.date)
-            return !eventDate || eventDate < startOfToday
+            return !eventDate || eventDate < startOfToday.value
         })
         .map((event) => {
             const eventDate = parseEventDate(event.date)
@@ -269,6 +279,7 @@ const formatDate = (dateString?: string | null): string => {
             </h2>
             <NuxtLink
                 v-if="upcomingEventPath"
+                :key="upcomingEvent?.slug"
                 :to="upcomingEventPath"
                 class="featured-poster-link"
                 :aria-label="`Ver detalles de ${upcomingEvent?.title}`"
@@ -390,7 +401,12 @@ const formatDate = (dateString?: string | null): string => {
                         />
                     </div>
                     <h3 class="font-heading text-lg mt-2 text-center truncate">
-                        {{ event.title }}
+                        <NuxtLink
+                            v-if="event.slug"
+                            :to="`/events/${event.slug}`"
+                            class="hover:underline focus-visible:underline"
+                        >{{ event.title }}</NuxtLink>
+                        <template v-else>{{ event.title }}</template>
                     </h3>
                     <p class="font-sans text-sm text-center text-gray-600">
                         {{ formatDate(event.date) }} — {{ event.venue }}
