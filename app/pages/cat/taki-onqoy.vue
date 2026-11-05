@@ -381,35 +381,42 @@ useHead({
                                     href="https://www.dublab.com/archive/taki-onqoy-guest-session-10-21-26"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Sessió convidada @ Dublab L.A. (21 octubre 2026)</a>
+                                >Sessió convidada @ Dublab L.A. (21 octubre 2026)</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://soundcloud.com/studioneau/taki-onqoy-meakusma-festival?in=studioneau/sets/meakusma-festival-2026"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >DJ Set @ Meakusma Festival (setembre 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Foggy Hex @ Kiosk Radio (Staff Pick, setembre 2026)</a>
+                                >Foggy Hex @ Kiosk Radio (Staff Pick, setembre 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://soundcloud.com/takiononqoy/warm-up-for-pasepartout-duo"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Warm-Up per a Passepartout Duo @ Casa Montjuïc (20 juny 2026)</a>
+                                >Warm-Up per a Passepartout Duo @ Casa Montjuïc (20 juny 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://soundcloud.com/takiononqoy/warm-up-set-for-colleens"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : Warm-Up per a Colleen @ Casa Montjuïc (26 abril 2026)</a>
+                                >Warm-Up per a Colleen @ Casa Montjuïc (26 abril 2026)</a>
                             </li>
                             <li>
                                 <a
                                     href="https://www.mixcloud.com/dublabes/pargueland-120118-tupper_4-w-lowtrux-dont-dj/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                >Taki Onqoy : B2B amb Don’t DJ @ Tupper Festival (12 gener 2018)</a>
+                                >B2B amb Don’t DJ @ Tupper Festival (12 gener 2018)</a>
                             </li>
                         </ol>
                     </section>
