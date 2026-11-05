@@ -362,6 +362,13 @@ useHead({
                         <ol>
                             <li>
                                 <a
+                                    href="https://www.dublab.com/archive/taki-onqoy-guest-session-10-21-26"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Taki Onqoy : Guest Session @ Dublab L.A. (21 October 2026)</a>
+                            </li>
+                            <li>
+                                <a
                                     href="https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy"
                                     target="_blank"
                                     rel="noopener noreferrer"
