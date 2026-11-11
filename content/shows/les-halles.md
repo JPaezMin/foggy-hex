@@ -7,6 +7,7 @@ venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
 ticketUrl: 'https://entradium.com/events/les-halles-fr-edu-pons-bcn'
 detailsPublic: true
+posterImage: '/images/shows/future/halles-blue.png'
 bands:
     - name: 'Les Halles'
       label: 'Stroom, Not Not Fun, Constellation Tatsu'
