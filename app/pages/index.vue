@@ -141,9 +141,12 @@ const futureGridEvents = computed<FutureGridEvent[]>(() => {
         })
 })
 
-const futureGridTop = computed(() => futureGridEvents.value.slice(0, 3))
 
 const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
+const otherUpcomingEvents = computed(() => futureGridEvents.value.slice(1, 3))
+const upcomingTitle = computed(() =>
+    [upcomingEvent.value?.title, upcomingEvent.value?.titleSubtitle].filter(Boolean).join(' ')
+)
 const upcomingFeaturedPoster = computed(
     () => upcomingEvent.value?.featuredPoster?.trim() || ''
 )
@@ -159,14 +162,26 @@ const upcomingPosterAlt = computed(() =>
         : 'Cartel de nuestro próximo evento'
 )
 
+const { data: showIndex } = await useAsyncData('archive-show-index', () =>
+    queryCollection('shows').order('slug', 'ASC').all().then((shows) =>
+        shows.filter((show) => show.detailsPublic !== false).map(({ slug, time }) => ({ slug, time }))
+    )
+)
+
+const upcomingTime = computed(() => {
+    const time = showIndex.value?.find((show) => show.slug === upcomingEvent.value?.slug)?.time
+    return /^\d{2}:\d{2}$/.test(time ?? '') ? time : ''
+})
+
 const archivedEvents = computed<ArchiveEvent[]>(() => {
+    const publicShows = new Set(showIndex.value?.map(({ slug }) => slug))
     const expiredFutureEvents = (futureEvents.value ?? [])
         .map((event) => {
             const eventDate = parseEventDate(event.date)
             const sortTimestamp = eventDate?.getTime() ?? 0
             return {
-                slug: event.detailsPublic !== false ? event.slug : undefined,
-                title: event.title,
+                slug: event.detailsPublic !== false && publicShows.has(event.slug) ? event.slug : undefined,
+                title: event.archiveTitle || event.title,
                 date: event.date,
                 venue: event.venue,
                 image: event.image,
@@ -184,6 +199,7 @@ const archivedEvents = computed<ArchiveEvent[]>(() => {
         .map((event) => {
             const eventDate = parseEventDate(event.date)
             return {
+                slug: event.slug && publicShows.has(event.slug) ? event.slug : undefined,
                 title: event.title,
                 date: event.date,
                 venue: event.venue,
@@ -198,6 +214,16 @@ const archivedEvents = computed<ArchiveEvent[]>(() => {
         }
         return a.title.localeCompare(b.title)
     })
+})
+
+const archiveYears = computed(() => {
+    const years = new Map<string, ArchiveEvent[]>()
+    for (const event of archivedEvents.value) {
+        const year = String(parseEventDate(event.date)?.getFullYear() ?? 'Sin fecha')
+        if (!years.has(year)) years.set(year, [])
+        years.get(year)?.push(event)
+    }
+    return Array.from(years, ([year, events]) => ({ year, events }))
 })
 
 const formatDate = (dateString?: string | null): string => {
@@ -236,6 +262,7 @@ const formatDate = (dateString?: string | null): string => {
 
 <template>
     <div class="container mx-auto min-h-screen text-text space-y-6 py-10">
+        <h1 class="sr-only">Foggy Hex — conciertos en Barcelona</h1>
         <!-- About Section -->
         <section id="about" class="container py-12">
             <div
@@ -266,188 +293,266 @@ const formatDate = (dateString?: string | null): string => {
             </div>
         </section>
 
-        <!-- Current Event (featured) -->
-        <section
-            v-if="upcomingEvent && upcomingFeaturedPoster"
-            id="current-event"
-            class="container mx-auto flex flex-col items-center justify-center px-6 py-6"
-        >
-            <h2
-                class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
-            >
-                Próximamente
-            </h2>
-            <NuxtLink
-                v-if="upcomingEventPath"
-                :key="upcomingEvent?.slug"
-                :to="upcomingEventPath"
-                class="featured-poster-link"
-                :aria-label="`Ver detalles de ${upcomingEvent?.title}`"
-            >
-                <img
-                    :src="upcomingFeaturedPoster"
-                    :alt="upcomingPosterAlt"
-                    class="featured-poster-image"
-                />
-            </NuxtLink>
-            <img
-                v-else-if="upcomingEvent"
-                :src="upcomingFeaturedPoster"
-                :alt="upcomingPosterAlt"
-                class="featured-poster-image"
-            />
-        </section>
-
-        <!-- Future Events -->
-        <section id="future-events" class="container mx-auto px-6 py-6">
-            <h2
-                class="text-[32px] bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
-            >
-                Próximos Eventos
-            </h2>
-
-            <div
-                v-if="futureGridTop.length"
-                :class="[
-                    'grid gap-8',
-                    futureGridTop.length === 1
-                        ? 'grid-cols-1'
-                        : futureGridTop.length === 2
-                          ? 'grid-cols-1 md:grid-cols-2'
-                          : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-                ]"
-            >
-                <EventCard
-                    v-for="event in futureGridTop"
-                    :key="event.slug"
-                    :event="event"
-                    :is-expired="event.isExpired"
-                />
-            </div>
-
-            <p v-else class="text-center text-lg font-sans text-gray-600">
-                No hay próximos eventos por ahora. ¡Vuelve pronto!
-            </p>
-        </section>
-
-        <!-- Newsletter Subscription -->
-        <section id="newsletter" class="container mx-auto px-6 py-6">
-            <div
-                class="border-t border border-text mx-auto py-8 px-8 lg:px-16 lg:py-16"
-            >
-                <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-                    <!-- Text column -->
-                    <div class="text-left">
-                        <h2 class="font-heading text-3xl mb-4">
-                            Suscríbete a nuestra newsletter.
-                        </h2>
-                        <p class="text-lg text-gray-700 max-w-md">
-                            Únete a nuestra lista de correo para enterarte
-                            primero de los próximos conciertos, novedades y
-                            noticias de Foggy Hex.
+        <div class="homepage">
+            <hr v-if="upcomingEvent" class="programme-divider" />
+            <section v-if="upcomingEvent" id="future-events" aria-labelledby="upcoming-heading">
+                <article class="featured-event">
+                    <div class="featured-copy">
+                        <p id="upcoming-heading" class="font-sans text-sm uppercase tracking-widest">Próximo concierto</p>
+                        <h2 class="featured-title font-heading leading-tight">{{ upcomingTitle }}</h2>
+                        <p class="font-sans text-lg">
+                            <time :datetime="upcomingEvent.date">{{ formatDate(upcomingEvent.date) }}</time>
+                            <span v-if="upcomingTime"> · <time :datetime="upcomingTime">{{ upcomingTime }}</time></span>
+                            · {{ upcomingEvent.venue }}
                         </p>
+                        <div class="featured-actions flex flex-wrap items-center">
+                            <a v-if="upcomingEvent.ticketUrl" :href="upcomingEvent.ticketUrl" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center min-h-11 border-2 border-text px-4 hover:bg-text hover:!text-background">
+                                Entradas
+                            </a>
+                            <span v-else class="text-sm">Entradas próximamente</span>
+                            <NuxtLink v-if="upcomingEventPath" :to="upcomingEventPath"
+                                class="inline-flex items-center min-h-11 underline underline-offset-4">
+                                Más información
+                            </NuxtLink>
+                        </div>
                     </div>
+                    <img
+                        :src="upcomingFeaturedPoster || upcomingEvent.image"
+                        :alt="upcomingFeaturedPoster ? upcomingPosterAlt : ''"
+                        class="featured-poster-image"
+                        fetchpriority="high"
+                    />
+                </article>
 
-                    <!-- Form column -->
-                    <div class="w-full">
-                        <form
-                            action="https://foggyhexbcn.us13.list-manage.com/subscribe/post?u=3bf61944f37a5e219e4fdccda&amp;id=c32ef2e9a5&amp;f_id=001b02e9f0"
-                            method="post"
-                            target="_blank"
-                            novalidate
-                            class="flex flex-col sm:flex-row w-full md:max-w-md"
-                        >
-                            <input
-                                type="email"
-                                name="EMAIL"
-                                placeholder="Tu correo electrónico"
-                                required
-                                class="flex-grow px-4 py-3 border border-gray-400 sm:rounded-l sm:rounded-r-none rounded focus:outline-none focus:ring-2 focus:ring-sky-400"
-                            />
-                            <button
-                                type="submit"
-                                class="bg-black text-white px-6 py-3 sm:rounded-r sm:rounded-l-none rounded font-medium hover:bg-gray-800 transition mt-2 sm:mt-0"
-                            >
-                                Suscribirse
-                            </button>
-                        </form>
+                <div v-if="otherUpcomingEvents.length" class="mt-10">
+                    <h2 class="font-heading text-2xl mb-5">Más conciertos</h2>
+                    <div class="grid gap-8 md:grid-cols-2">
+                        <EventCard v-for="event in otherUpcomingEvents" :key="event.slug" :event="event" />
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Past Events -->
-        <section id="past-events" class="container mx-auto px-6 py-12">
-            <h2
-                class="text-4xl bg-sky-50 font-heading mb-8 text-center title-box px-6 py-2 border-1 border-text"
-            >
-                Eventos Pasados
-            </h2>
-
-            <div
-                v-if="archivedEvents && archivedEvents.length"
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
+            <!-- Newsletter Subscription -->
+            <section id="newsletter" class="newsletter-section">
                 <div
-                    v-for="event in archivedEvents"
-                    :key="event.title"
-                    class="flex flex-col"
+                    class="border border-text newsletter-panel"
                 >
-                    <div class="w-full aspect-[16/9] overflow-hidden rounded">
-                        <img
-                            :src="`${event.image}`"
-                            :alt="event.title"
-                            class="w-full h-full object-cover grayscale transition"
-                        />
-                    </div>
-                    <h3 class="font-heading text-lg mt-2 text-center truncate">
-                        <NuxtLink
-                            v-if="event.slug"
-                            :to="`/events/${event.slug}`"
-                            class="hover:underline focus-visible:underline"
-                        >{{ event.title }}</NuxtLink>
-                        <template v-else>{{ event.title }}</template>
-                    </h3>
-                    <p class="font-sans text-sm text-center text-gray-600">
-                        {{ formatDate(event.date) }} — {{ event.venue }}
-                    </p>
-                </div>
-            </div>
+                    <div class="newsletter-grid">
+                        <!-- Text column -->
+                        <div class="text-left">
+                            <h2 class="font-heading text-3xl mb-4">
+                                Suscríbete a nuestra newsletter.
+                            </h2>
+                            <p class="text-lg text-gray-700 max-w-md">
+                                Únete a nuestra lista de correo para enterarte
+                                primero de los próximos conciertos, novedades y
+                                noticias de Foggy Hex.
+                            </p>
+                        </div>
 
-            <p v-else class="text-center text-lg font-sans text-gray-600">
-                No hay eventos pasados registrados.
-            </p>
-        </section>
+                        <!-- Form column -->
+                        <div class="w-full">
+                            <form
+                                action="https://foggyhexbcn.us13.list-manage.com/subscribe/post?u=3bf61944f37a5e219e4fdccda&amp;id=c32ef2e9a5&amp;f_id=001b02e9f0"
+                                method="post"
+                                target="_blank"
+                                novalidate
+                                class="newsletter-form"
+                            >
+                                <input
+                                    type="email"
+                                    name="EMAIL"
+                                    placeholder="Tu correo electrónico"
+                                    required
+                                    class="min-w-0 flex-auto px-4 py-3 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400"
+                                />
+                                <button
+                                    type="submit"
+                                    class="bg-black text-white px-6 py-3 font-medium hover:bg-gray-800 transition"
+                                >
+                                    Suscribirse
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Past Events -->
+            <section id="past-events">
+                <h2
+                    class="archive-heading bg-sky-50 font-heading text-center title-box px-6 py-2 border-1 border-text"
+                >
+                    Eventos Pasados
+                </h2>
+
+                <template v-if="archiveYears.length">
+                    <nav aria-label="Años del archivo" class="archive-years flex flex-wrap border-y border-text/30">
+                        <a v-for="{ year } in archiveYears" :key="year" :href="'#archivo-' + year"
+                            class="inline-flex items-center min-h-11 px-2 font-heading underline underline-offset-4">
+                            {{ year }}
+                        </a>
+                    </nav>
+                    <section v-for="{ year, events } in archiveYears" :key="year"
+                        class="archive-year" :aria-labelledby="'archivo-' + year">
+                        <h3 :id="'archivo-' + year" tabindex="-1" class="archive-year-title font-heading text-3xl">{{ year }}</h3>
+                        <div class="archive-grid">
+                            <article v-for="event in events" :key="event.title + event.date" class="archive-card">
+                                <div class="w-full aspect-[16/9] overflow-hidden">
+                                    <img :src="event.image" alt="" loading="lazy"
+                                        class="w-full h-full object-cover grayscale" />
+                                </div>
+                                <h4 class="archive-card-title font-heading" :title="event.title">{{ event.title }}</h4>
+                                <p class="archive-card-meta font-sans text-sm text-gray-700">
+                                    <span>{{ formatDate(event.date) }}</span> — {{ event.venue }}
+                                </p>
+                                <NuxtLink v-if="event.slug" :to="'/events/' + event.slug"
+                                    :aria-label="'Más información sobre ' + event.title"
+                                    class="archive-card-action">
+                                    Más información
+                                </NuxtLink>
+                            </article>
+                        </div>
+                    </section>
+                </template>
+
+                <p v-else class="text-center text-lg font-sans text-gray-600">
+                    No hay eventos pasados registrados.
+                </p>
+            </section>
+        </div>
     </div>
 </template>
 
 <style scoped>
-.past-event-card img {
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+.homepage {
+    display: grid;
+    gap: var(--fh-space-4);
+    padding: 0 var(--fh-space-2) var(--fh-space-4);
 }
 
-.featured-poster-link {
-    display: block;
-    width: min(100%, clamp(18rem, 44vw, 34rem));
-    margin-top: 2rem;
+.programme-divider {
+    width: clamp(3rem, 8vw, 7rem);
+    margin-inline: auto;
+    border: 0;
+    border-top: 1px solid currentColor;
+    opacity: 0.45;
 }
 
-.featured-poster-link:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 6px;
+.featured-title {
+    font-size: clamp(1.85rem, 1.2rem + 2.25vw, 3rem);
+}
+
+.featured-actions {
+    column-gap: var(--fh-space-2);
+    row-gap: var(--fh-space-1);
+}
+
+.newsletter-panel {
+    padding: var(--fh-space-3);
+}
+
+.newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr));
+    gap: var(--fh-space-2);
+    align-items: center;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fh-space-1);
+}
+
+.archive-heading {
+    font-size: clamp(1.9rem, 1.55rem + 1.2vw, 2.25rem);
+    margin-bottom: var(--fh-space-2);
+}
+
+.archive-years {
+    column-gap: var(--fh-space-1);
+}
+
+.archive-year {
+    margin-top: var(--fh-space-3);
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
+    row-gap: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    column-gap: var(--fh-space-2);
+    margin-top: var(--fh-space-2);
+}
+
+.archive-year-title {
+    scroll-margin-block-start: var(--fh-space-2);
+}
+
+.archive-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.archive-card-title {
+    margin-top: var(--fh-space-1);
+    font-size: 1rem;
+    letter-spacing: -0.025em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.archive-card-meta {
+    letter-spacing: normal;
+    overflow-wrap: anywhere;
+}
+
+.archive-card-meta span {
+    white-space: nowrap;
+}
+
+.archive-card-action {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    min-height: 44px;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+}
+
+.featured-event {
+    display: grid;
+    gap: var(--fh-space-3);
+    align-items: center;
+    max-width: 72rem;
+    margin-inline: auto;
+}
+
+.featured-copy {
+    display: grid;
+    gap: var(--fh-space-1);
+    border-left: 1px solid currentColor;
+    padding-inline-start: var(--fh-space-2);
 }
 
 .featured-poster-image {
     display: block;
-    width: min(100%, clamp(18rem, 44vw, 34rem));
-    margin-top: 2rem;
+    width: min(100%, 30rem);
     height: auto;
+    max-height: 32rem;
     object-fit: contain;
+    justify-self: center;
 }
 
-.featured-poster-link .featured-poster-image {
-    width: 100%;
-    margin-top: 0;
+@media (min-width: 768px) {
+    .featured-event {
+        grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr);
+    }
 }
 </style>

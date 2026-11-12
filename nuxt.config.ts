@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
-    devtools: { enabled: true },
+    ...(process.env.FOGGY_HEX_PREVIEW_DB ? {
+        content: {
+            _localDatabase: { type: 'sqlite', filename: process.env.FOGGY_HEX_PREVIEW_DB },
+        },
+    } : {}),
+    devtools: { enabled: !process.env.FOGGY_HEX_PREVIEW_DB },
     css: [
         '~/assets/scss/main.scss',
         '~/assets/scss/grain.scss',

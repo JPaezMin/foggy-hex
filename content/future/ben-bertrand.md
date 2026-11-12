@@ -1,6 +1,7 @@
 ---
 slug: 'ben-bertrand'
 title: 'Ben Bertrand (BE) +'
+archiveTitle: 'Ben Bertrand (BE) + Jk + DJ Blue Flowers'
 titleSubtitle: 'Presentación sello Angle Mort: DJ Blue Flowers (BCN) + JK (BCN)'
 date: '2026-10-31'
 venue: 'Sinestesia'

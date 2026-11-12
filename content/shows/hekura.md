@@ -1,4 +1,5 @@
 ---
+detailsPublic: true
 slug: 'hekura-jordi-santanach'
 title: 'Hekura (BCN) presenta: "Two Lonely Space Pilots" + Jordi Santanach (BCN) presenta: "Strata"'
 date: '11/12/25'

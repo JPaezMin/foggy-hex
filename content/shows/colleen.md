@@ -1,4 +1,5 @@
 ---
+detailsPublic: true
 slug: 'colleen'
 title: 'Colleen presenta: "Libres antes del final" (doble concierto)'
 date: '26/04/26'
@@ -34,7 +35,7 @@ bands:
       country: 'BCN'
       image: '/images/shows/past/taki-onqoy-pr.jpg'
       description: |
-          <p>Miembro fundador y actual host de la <a href="https://kioskradio.com/label/foggy-hex" target="_blank">residencia Outsiders de Foggy Hex en la radio belga Kiosk</a>, Taki Onqoy concibe sus sesiones como un terreno de exploración guiado por la intuición. Sus sets trazan conexiones entre la música tradicional, el jazz improvisado y el noise, y se proyectan hacia el dub y la bass music, dando lugar a espacios de sonido abiertos al baile y la psicodélia.</p>
+          <p>Miembro fundador y actual host de la <a href="https://kioskradio.com/label/foggy-hex" target="_blank" rel="noopener noreferrer">residencia Outsiders de Foggy Hex en la radio belga Kiosk</a>, Taki Onqoy concibe sus sesiones como un terreno de exploración guiado por la intuición. Sus sets trazan conexiones entre la música tradicional, el jazz improvisado y el noise, y se proyectan hacia el dub y la bass music, dando lugar a espacios de sonido abiertos al baile y la psicodélia.</p>
 
 ---
 

@@ -1,103 +1,19 @@
 <template>
-    <nav class="relative px-4 py-6 font-sans text-text">
-        <div class="flex justify-between items-center">
-            <!-- Logo Placeholder (handled separately) -->
-            <slot name="logo" />
-
-            <!-- Desktop Nav -->
-            <ul class="hidden xl:flex gap-6 items-end flex-nowrap">
-                <li v-for="item in navItems" :key="item.name">
-                    <!-- Internal link -->
-                    <NuxtLink
-                        v-if="!item.external"
-                        :to="item.to"
-                        class="text-[20px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
-                    >
-                        {{ item.name }}
-                    </NuxtLink>
-
-                    <!-- External link -->
-                    <a
-                        v-else
-                        :href="item.href"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-[20px] leading-normal border-b-2 border-current pb-2 whitespace-nowrap"
-                    >
-                        {{ item.name }}
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Burger Menu -->
-            <button
-                class="xl:hidden z-50 min-w-11 min-h-11 flex items-center justify-center"
-                aria-label="Toggle menu"
-                @click="menuOpen = !menuOpen"
-            >
-                <svg
-                    class="w-8 h-8 text-text"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        :d="
-                            menuOpen
-                                ? 'M6 18L18 6M6 6l12 12'
-                                : 'M4 6h16M4 12h16M4 18h16'
-                        "
-                    />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Nav -->
-        <transition name="fade">
-            <ul
-                v-if="menuOpen"
-                class="absolute z-40 py-6 px-6 bg-stone-950 flex flex-col gap-6 mt-4 xl:hidden text-[24px] leading-normal font-sans"
-            >
-                <li
-                    v-for="item in navItems"
-                    :key="item.name"
-                    class="text-white"
-                >
-                    <!-- Internal link -->
-                    <NuxtLink
-                        v-if="!item.external"
-                        :to="item.to"
-                        class="block border-b-2 border-current pb-4 whitespace-nowrap"
-                        @click="menuOpen = false"
-                    >
-                        {{ item.name }}
-                    </NuxtLink>
-
-                    <!-- External link -->
-                    <a
-                        v-else
-                        :href="item.href"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="block border-b-2 border-current pb-4 whitespace-nowrap"
-                        @click="menuOpen = false"
-                    >
-                        {{ item.name }}
-                    </a>
-                </li>
-            </ul>
-        </transition>
+    <nav aria-label="Navegación principal">
+        <ul class="site-nav">
+            <li v-for="item in navItems" :key="item.name">
+                <NuxtLink v-if="!item.external" :to="item.to" class="site-nav-link">
+                    {{ item.name }}
+                </NuxtLink>
+                <a v-else :href="item.href" target="_blank" rel="noopener noreferrer" class="site-nav-link">
+                    {{ item.name }}
+                </a>
+            </li>
+        </ul>
     </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const menuOpen = ref(false)
-
 const navItems = [
     { name: 'Nosotros', to: '/about' },
     { name: 'Espacios', to: '/spaces' },
@@ -112,13 +28,27 @@ const navItems = [
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: all 0.3s ease;
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: var(--fh-space-1);
 }
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-    transform: translateY(-10px);
+
+.site-nav-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    padding-inline: 0.125rem;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.4em;
+}
+
+@media (min-width: 75rem) {
+    .site-nav {
+        justify-content: flex-start;
+    }
 }
 </style>

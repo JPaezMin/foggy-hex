@@ -6,6 +6,11 @@ time: '19:00'
 venue: "L'Automatica"
 venueUrl: 'https://www.lautomatica.org/es/'
 ticketUrl: 'https://entradium.com/events/les-halles-fr-edu-pons-bcn'
+venueAddress: 'Carrer de la Legalitat, 18 · Gràcia, Barcelona'
+mapUrl: 'https://www.google.com/maps/search/?api=1&query=Carrer+de+la+Legalitat+18%2C+Barcelona'
+ticketPriceLabels:
+    - 'Anticipadas · 10,24 €'
+    - 'En Taquilla · 12 €'
 detailsPublic: true
 bands:
     - name: 'Les Halles'

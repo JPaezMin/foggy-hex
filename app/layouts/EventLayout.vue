@@ -22,6 +22,11 @@ interface Show {
     time: string
     venue: string
     venueUrl?: string
+    venueAddress?: string
+    mapUrl?: string
+    ticketPriceLabels?: string[]
+    timeCasa?: string
+    timeLaut?: string
     ticketUrl?: string
     ticketUrlCasa?: string
     posterImage?: string
@@ -32,6 +37,15 @@ interface Show {
 
 const props = defineProps<{ event: Show }>()
 const show = props.event
+const today = useState('homepage-today', () =>
+    new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
+)
+const isPast = computed(() => {
+    const [day, month, year] = show.date.split('/')
+    if (!day || !month || !year) return false
+    const fullYear = year.length === 2 ? '20' + year : year
+    return fullYear + '-' + month.padStart(2, '0') + '-' + day.padStart(2, '0') < today.value
+})
 
 const isSplitVenueEvent = computed(() => show.layoutVariant === 'split-venues')
 
@@ -112,15 +126,10 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-    <article
-        :class="[
-            'container mx-auto px-6 py-16 event-article',
-            isSplitVenueEvent ? 'space-y-10' : 'space-y-24',
-        ]"
-    >
+    <article class="container mx-auto event-article" :class="{ 'event-article-split': isSplitVenueEvent }">
         <!-- Header -->
         <header class="text-center" id="event-header">
-            <h1 class="font-heading text-[40px] leading-tight text-accent">
+            <h1 class="event-title font-heading leading-tight text-accent">
                 {{ titleParts.main }}
             </h1>
             <p
@@ -154,18 +163,16 @@ const formattedDate = computed(() => {
                     <span v-if="slot.note" class="text-sm text-text/70">
                         {{ slot.note }}
                     </span>
-                    <template v-if="slotTicketUrl(slot.venue)">
+                    <template v-if="!isPast && slotTicketUrl(slot.venue)">
                         <span>-</span>
                         <a
-                            :href="slotTicketUrl(slot.venue)"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            :href="slotTicketUrl(slot.venue)" target="_blank" rel="noopener noreferrer"
                             class="underline decoration-inherit underline-offset-4 hover:text-accent transition"
                         >
                             Entradas
                         </a>
                     </template>
-                    <span v-else>- Entradas Próximamente</span>
+                    <span v-else-if="!isPast">· Entradas próximamente</span>
                 </div>
             </div>
             <template v-else>
@@ -185,19 +192,19 @@ const formattedDate = computed(() => {
                     </a>
                     <span v-else>{{ event.venue }}</span>
                 </p>
-                <a
-                    v-if="event.ticketUrl"
-                    :href="event.ticketUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-block mt-6 px-6 py-2 border-2 border-text text-text font-sans hover:bg-text hover:text-background transition"
-                >
+                <p v-if="event.venueAddress" class="mt-2 font-sans text-base">
+                    {{ event.venueAddress }}
+                    <a v-if="event.mapUrl" :href="event.mapUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-11 ml-2 underline underline-offset-4">Ver mapa</a>
+                </p>
+                <ul v-if="!isPast && event.ticketPriceLabels?.length" class="event-prices">
+                    <li v-for="price in event.ticketPriceLabels" :key="price">{{ price }}</li>
+                </ul>
+                <a v-if="!isPast && event.ticketUrl" :href="event.ticketUrl" target="_blank" rel="noopener noreferrer" class="event-ticket">
                     Entradas
                 </a>
-                <p v-else class="mt-6 font-sans text-base text-text">
-                    Entradas Próximamente
-                </p>
+                <p v-else-if="!isPast" class="mt-6 font-sans text-base">Entradas próximamente</p>
             </template>
+            <p v-if="isPast" class="mt-4 font-heading text-sm uppercase tracking-widest">Concierto pasado</p>
             <div v-if="event.schedule?.length" class="mt-10" id="event-schedule">
                 <div
                     class="max-w-2xl mx-auto border border-text/10 bg-white/80 shadow-sm"
@@ -243,7 +250,7 @@ const formattedDate = computed(() => {
         </section>
 
         <!-- Bands -->
-        <section v-if="isSplitVenueEvent && primaryBand" class="grid gap-20">
+        <section v-if="isSplitVenueEvent && primaryBand" class="grid event-programme">
             <div
                 class="relative grid grid-cols-1 lg:grid-cols-12 gap-4 items-start feature-row"
             >
@@ -290,7 +297,7 @@ const formattedDate = computed(() => {
                         </p>
                     </div>
                     <div
-                        class="font-sans text-base leading-relaxed max-w-prose mt-8 description-html"
+                        class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
                         v-html="primaryBand.description"
                     />
                 </div>
@@ -299,11 +306,11 @@ const formattedDate = computed(() => {
                 <div class="absolute top-0 h-full w-1 bg-accent feature-accent" />
             </div>
         </section>
-        <section v-else class="grid gap-20">
+        <section v-else class="grid event-programme">
             <div
                 v-for="(band, i) in event.bands"
                 :key="band.name"
-                class="relative grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14 items-start default-event-row"
+                class="relative grid grid-cols-1 event-row-gap lg:grid-cols-12 items-start default-event-row"
             >
                 <!-- Image -->
                 <div
@@ -354,7 +361,7 @@ const formattedDate = computed(() => {
                         </p>
                     </div>
                     <div
-                        class="font-sans text-base leading-relaxed max-w-prose mt-8 description-html"
+                        class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
                         :class="i % 2 === 1 ? 'lg:ml-auto' : ''"
                         v-html="band.description"
                     />
@@ -431,10 +438,70 @@ const formattedDate = computed(() => {
                 />
             </div>
         </section>
+        <footer v-if="!isPast && (event.ticketUrl || event.ticketUrlCasa)"
+            class="border-t border-text/30 pt-5 text-center">
+            <template v-if="isSplitVenueEvent">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a v-for="slot in splitVenueSlots.filter((slot) => slotTicketUrl(slot.venue))"
+                        :key="slot.venue" :href="slotTicketUrl(slot.venue)" class="event-ticket">
+                        {{ slot.venue }} · Entradas
+                    </a>
+                </div>
+            </template>
+            <a v-else-if="event.ticketUrl" :href="event.ticketUrl" target="_blank" rel="noopener noreferrer" class="event-ticket">
+                Entradas
+            </a>
+        </footer>
     </article>
 </template>
 
 <style scoped>
+.event-article {
+    display: grid;
+    gap: var(--fh-space-4);
+    padding: var(--fh-space-3) var(--fh-space-2) var(--fh-space-4);
+}
+
+.event-article-split {
+    gap: var(--fh-space-3);
+}
+
+.event-title {
+    font-size: clamp(1.8rem, 1.35rem + 1.75vw, 2.5rem);
+    text-wrap: balance;
+}
+
+.event-prices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: var(--fh-space-2);
+    row-gap: 0.25rem;
+    margin-top: var(--fh-space-1);
+}
+
+.event-programme {
+    gap: var(--fh-space-4);
+}
+
+.event-row-gap {
+    gap: var(--fh-space-2) var(--fh-space-3);
+}
+
+.event-ticket {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid currentColor;
+}
+.event-ticket:hover {
+    color: #fff;
+    background: #181818;
+    border-color: #181818;
+}
+
 .description-html :deep(p) {
     margin-bottom: 8px;
 }

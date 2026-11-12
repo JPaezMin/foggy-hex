@@ -32,7 +32,7 @@ async function homepage(renderedDay, instant) {
         setInterval: (fn) => intervals.push(fn),
         clearInterval: () => {},
         useAsyncData: async (_key, fn) => ({ data: ref(await fn()) }),
-        queryCollection: (collection) => ({ order: () => ({ all: async () => collection === 'future' ? future : [] }) }),
+        queryCollection: (collection) => ({ order: () => ({ all: async () => collection === 'future' ? future : collection === 'shows' ? future : [] }) }),
     })
     const state = await vm.runInContext(`(async () => { ${source}
         return { futureGridEvents, archivedEvents, upcomingEventPath, upcomingFeaturedPoster };

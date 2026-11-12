@@ -20,7 +20,8 @@ export default defineNuxtPlugin(() => {
         if (element.style.position !== 'absolute') {
             element.style.position = 'relative'
         }
-        element.style.overflow = 'hidden'
+        // Clip the grain without making the page wrapper scrollable.
+        element.style.overflow = 'clip'
 
         const prefixes = ['', '-moz-', '-o-animation-', '-webkit-', '-ms-']
 

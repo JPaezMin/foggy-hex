@@ -325,7 +325,7 @@ useSeoMeta({
 </script>
 
 <template>
-    <article class="relative container mx-auto px-6 py-16 space-y-8 text-left">
+    <article class="relative container mx-auto px-[var(--fh-space-2)] py-[var(--fh-space-4)] space-y-[var(--fh-space-3)] text-left">
         <section class="max-w-4xl relative z-10">
             <h1
                 class="font-heading text-[40px] leading-tight text-accent mb-8 border-l-4 border-text pl-4"
@@ -347,12 +347,12 @@ useSeoMeta({
                 Hemos tenido la suerte de trabajar, entre otros, con:
             </h2>
             <ul
-                class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-y-3 gap-x-10 font-sans text-[15px] leading-none text-text mt-4"
+                class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-y-[var(--fh-space-1)] gap-x-[var(--fh-space-3)] font-sans text-[15px] leading-snug text-text mt-4"
             >
                 <li
                     v-for="collaborator in collaborators"
                     :key="collaborator.name"
-                    class="min-w-0 whitespace-nowrap overflow-hidden text-ellipsis"
+                    class="min-w-0 break-words"
                 >
                     <a
                         v-if="collaborator.url"
