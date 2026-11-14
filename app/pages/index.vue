@@ -164,14 +164,18 @@ const upcomingPosterAlt = computed(() =>
 
 const { data: showIndex } = await useAsyncData('archive-show-index', () =>
     queryCollection('shows').order('slug', 'ASC').all().then((shows) =>
-        shows.filter((show) => show.detailsPublic !== false).map(({ slug, time }) => ({ slug, time }))
+        shows.filter((show) => show.detailsPublic !== false).map(({ slug, time, timeLabel }) => ({ slug, time, timeLabel }))
     )
 )
 
-const upcomingTime = computed(() => {
-    const time = showIndex.value?.find((show) => show.slug === upcomingEvent.value?.slug)?.time
-    return /^\d{2}:\d{2}$/.test(time ?? '') ? time : ''
-})
+function showTiming(slug: string) {
+    const show = showIndex.value?.find((item) => item.slug === slug)
+    return show?.time && /^\d{2}:\d{2}$/.test(show.time) ? show : undefined
+}
+
+const upcomingTiming = computed(() =>
+    upcomingEvent.value ? showTiming(upcomingEvent.value.slug) : undefined
+)
 
 const archivedEvents = computed<ArchiveEvent[]>(() => {
     const publicShows = new Set(showIndex.value?.map(({ slug }) => slug))
@@ -302,7 +306,9 @@ const formatDate = (dateString?: string | null): string => {
                         <h2 class="featured-title font-heading leading-tight">{{ upcomingTitle }}</h2>
                         <p class="font-sans text-lg">
                             <time :datetime="upcomingEvent.date">{{ formatDate(upcomingEvent.date) }}</time>
-                            <span v-if="upcomingTime"> · <time :datetime="upcomingTime">{{ upcomingTime }}</time></span>
+                            <span v-if="upcomingTiming">
+                                · {{ upcomingTiming.timeLabel ? upcomingTiming.timeLabel + ' ' : '' }}<time :datetime="upcomingTiming.time">{{ upcomingTiming.time }}</time>
+                            </span>
                             · {{ upcomingEvent.venue }}
                         </p>
                         <div class="featured-actions flex flex-wrap items-center">
@@ -326,9 +332,10 @@ const formatDate = (dateString?: string | null): string => {
                 </article>
 
                 <div v-if="otherUpcomingEvents.length" class="mt-10">
-                    <h2 class="font-heading text-2xl mb-5">Más conciertos</h2>
-                    <div class="grid gap-8 md:grid-cols-2">
-                        <EventCard v-for="event in otherUpcomingEvents" :key="event.slug" :event="event" />
+                    <h2 class="section-heading bg-sky-50 font-heading text-center title-box px-6 py-2 border-1 border-text">Próximamente</h2>
+                    <div class="grid gap-8" :class="{ 'md:grid-cols-2': otherUpcomingEvents.length > 1 }">
+                        <EventCard v-for="event in otherUpcomingEvents" :key="event.slug" :event="event"
+                            :timing="showTiming(event.slug)" />
                     </div>
                 </div>
             </section>
@@ -382,7 +389,7 @@ const formatDate = (dateString?: string | null): string => {
             <!-- Past Events -->
             <section id="past-events">
                 <h2
-                    class="archive-heading bg-sky-50 font-heading text-center title-box px-6 py-2 border-1 border-text"
+                    class="section-heading bg-sky-50 font-heading text-center title-box px-6 py-2 border-1 border-text"
                 >
                     Eventos Pasados
                 </h2>
@@ -466,7 +473,7 @@ const formatDate = (dateString?: string | null): string => {
     gap: var(--fh-space-1);
 }
 
-.archive-heading {
+.section-heading {
     font-size: clamp(1.9rem, 1.55rem + 1.2vw, 2.25rem);
     margin-bottom: var(--fh-space-2);
 }

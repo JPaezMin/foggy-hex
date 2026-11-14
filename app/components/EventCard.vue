@@ -1,17 +1,17 @@
 <template>
     <article
-        class="bg-white title-box p-4 flex flex-col transition relative event-card"
+        class="bg-white title-box p-4 grid items-center gap-[var(--fh-space-2)] relative event-card"
         :class="[
             isExpired ? 'opacity-60' : '',
         ]"
         :aria-disabled="isExpired ? 'true' : 'false'"
     >
         <!-- Image -->
-        <div class="w-full aspect-[16/9] overflow-hidden mb-5 relative">
+        <div class="w-full aspect-[4/3] sm:aspect-square overflow-hidden relative">
             <img
                 :src="event.image"
                 :alt="event.title"
-                class="w-full h-full object-cover transition duration-300"
+                class="w-full h-full object-cover object-[50%_63%] transition duration-300"
                 :class="isExpired ? 'grayscale scale-105' : ''"
             />
             <div
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Text content -->
-        <div class="flex-1 flex flex-col text-center">
+        <div class="flex-1 flex flex-col text-left">
             <NuxtLink
                 v-if="isLinkable"
                 :to="`/events/${event.slug}`"
@@ -58,7 +58,8 @@
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="event-meta font-sans text-text/70">
-                <span>{{ formattedDate }}</span>
+                <time :datetime="event.date">{{ formattedDate }}</time>
+                <span v-if="timing">{{ timing.timeLabel }} <time :datetime="timing.time">{{ timing.time }}</time></span>
                 <span class="text-text/35">/</span>
                 <a
                     v-if="event.venueUrl"
@@ -71,16 +72,21 @@
                 </a>
                 <span v-else>{{ event.venue }}</span>
             </p>
+            <NuxtLink v-if="isLinkable" :to="'/events/' + event.slug"
+                :aria-label="'Más información sobre ' + event.title"
+                class="inline-flex self-start min-h-11 items-center underline underline-offset-4">
+                Más información
+            </NuxtLink>
             <a
                 v-if="event.ticketUrl && !isExpired"
                 :href="event.ticketUrl" target="_blank" rel="noopener noreferrer"
-                class="inline-flex self-center mt-4 px-5 py-2 border-2 border-text text-text font-sans text-sm hover:bg-text hover:!text-background transition"
+                class="inline-flex self-start mt-4 px-5 py-2 border-2 border-text text-text font-sans text-sm hover:bg-text hover:!text-background transition"
             >
                 Entradas
             </a>
             <span
                 v-else-if="!isExpired"
-                class="inline-flex self-center mt-4 px-5 py-2 border-2 border-text/30 text-text/55 font-sans text-sm"
+                class="inline-flex self-start mt-4 px-5 py-2 border-2 border-text/30 text-text/55 font-sans text-sm"
             >
                 Entradas próximamente
             </span>
@@ -93,6 +99,7 @@ import type { FutureCollectionItem } from '@nuxt/content'
 
 const props = defineProps<{
     event: FutureCollectionItem
+    timing?: { time: string; timeLabel?: string }
     isExpired?: boolean
 }>()
 
@@ -142,12 +149,19 @@ const titleSupport = computed(() => {
 
 <style scoped>
 .event-card {
-    min-height: 100%;
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+}
+
+@media (min-width: 42rem) {
+    .event-card {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    }
 }
 
 .event-title-link {
     display: flex;
-    min-height: 4.85rem;
     flex-direction: column;
     justify-content: center;
     gap: 0.35rem;
@@ -185,7 +199,7 @@ const titleSupport = computed(() => {
     display: flex;
     min-height: 2.9rem;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.55rem;
     border-top: 1px solid rgb(0 0 0 / 0.12);
     padding-top: 0.85rem;
@@ -194,10 +208,6 @@ const titleSupport = computed(() => {
 }
 
 @media (max-width: 420px) {
-    .event-title-link {
-        min-height: 5.25rem;
-    }
-
     .event-meta {
         flex-wrap: wrap;
         row-gap: 0.25rem;

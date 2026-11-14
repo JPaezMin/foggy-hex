@@ -2,7 +2,8 @@
 interface Band {
     name: string
     image: string
-    bandcamp: string
+    imageCredit?: string
+    bandcamp?: string
     description: string
     label?: string
     country?: string
@@ -20,6 +21,7 @@ interface Show {
     titleSubtitle?: string
     date: string
     time: string
+    timeLabel?: string
     venue: string
     venueUrl?: string
     venueAddress?: string
@@ -180,7 +182,7 @@ const formattedDate = computed(() => {
                     <span class="font-heading text-xl font-bold text-accent">
                         {{ formattedDate }}
                     </span>
-                    - {{ formatEventTime(event.time) }} -
+                    - {{ event.timeLabel ? event.timeLabel + ' ' : '' }}{{ formatEventTime(event.time) }} -
                     <a
                         v-if="event.venueUrl"
                         :href="event.venueUrl"
@@ -315,15 +317,16 @@ const formattedDate = computed(() => {
                 <!-- Image -->
                 <div
                     class="lg:col-span-5 flex justify-center default-image-col"
-                    :class="i % 2 === 1 ? 'lg:order-2' : ''"
+                    :class="{ 'lg:order-2': i % 2 === 1, 'flex-col': band.imageCredit }"
                 >
-                    <div class="overflow-hidden default-image-frame">
+                    <div class="overflow-hidden default-image-frame" :class="{ 'portrait-image': band.imageCredit }">
                         <img
                             :src="band.image"
                             :alt="band.name"
                             class="w-full h-full object-cover transition duration-500 default-image"
                         />
                     </div>
+                    <p v-if="band.imageCredit" class="mt-2 text-center text-sm">{{ band.imageCredit }}</p>
                 </div>
 
                 <!-- Text -->
@@ -544,6 +547,12 @@ const formattedDate = computed(() => {
     width: min(100%, 36rem);
     margin: 0 auto;
     aspect-ratio: 4 / 3;
+}
+
+.default-image-frame.portrait-image {
+    aspect-ratio: 2 / 3;
+    height: auto;
+    min-height: 0;
 }
 
 .default-image {

@@ -7,6 +7,7 @@ export const ShowSchema = z.object({
     titleSubtitle: z.string().optional(),
     date: z.string(),
     time: z.string(),
+    timeLabel: z.string().optional(),
     timeCasa: z.string().optional(),
     timeLaut: z.string().optional(),
     venue: z.string(),
@@ -30,6 +31,7 @@ export const ShowSchema = z.object({
         z.object({
             name: z.string(),
             image: z.string(),
+            imageCredit: z.string().optional(),
             bandcamp: z.string().url().optional(),
             description: z.string(),
             label: z.string().optional(),
@@ -79,6 +81,7 @@ export default defineContentConfig({
                 titleSubtitle: z.string().optional(),
                 date: z.string(),
                 time: z.string(),
+                timeLabel: z.string().optional(),
                 timeCasa: z.string().optional(),
                 timeLaut: z.string().optional(),
                 venue: z.string(),
