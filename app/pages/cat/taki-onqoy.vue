@@ -135,9 +135,9 @@ useHead({
                             'https://www.instagram.com/takiononqoy/',
                             'https://soundcloud.com/takiononqoy',
                             'https://www.kioskradio.com/episode/2026-09-01/foggy-hex-w-taki-onqoy',
-                            'https://kioskradio.com/label/foggy-hex',
+                            'https://www.kioskradio.com/label/foggy-hex',
                             'https://www.paranoiseradio.com/residents/taki-onqoy',
-                            'https://www.dublab.cat/arxiu/pargueland',
+                            'https://dublab.cat/archive/pargueland',
                             'https://www.dublab.com/archive/jorge-paez-guest-dj-set-04-24-19',
                             'https://freeformportland.org/',
                         ],
@@ -223,17 +223,17 @@ useHead({
                             rel="noopener noreferrer"
                         >SoundCloud</a>
                         <a
-                            href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
+                            href="https://www.kioskradio.com/label/foggy-hex"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Kiosk Radio BXL</a>
                         <a
-                            href="https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942"
+                            href="https://www.paranoiseradio.com/residents/taki-onqoy"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Paranoise Radio SKG</a>
                         <a
-                            href="https://dublab.cat/arxiu/pargueland"
+                            href="https://dublab.cat/archive/pargueland"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Dublab BCN</a>
@@ -303,7 +303,7 @@ useHead({
                         Des de fa gairebé tres anys manté a més una residència
                         mensual a
                         <a
-                            href="https://gate.sc/?url=https%3A%2F%2Fwww.paranoiseradio.com%2Fresidents%2Ftaki-onqoy&token=5d6706-1-1788960584942"
+                            href="https://www.paranoiseradio.com/residents/taki-onqoy"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Paranoise Ràdio</a>,
@@ -325,7 +325,7 @@ useHead({
                         sales i espais locals. El projecte ha estès també la
                         seva activitat més enllà de Barcelona: el 2025,
                         <a
-                            href="https://gate.sc/?url=https%3A%2F%2Fkioskradio.com%2Flabel%2Ffoggy-hex&token=4982fd-1-1788960584942"
+                            href="https://www.kioskradio.com/label/foggy-hex"
                             target="_blank"
                             rel="noopener noreferrer"
                         >Kiosk Ràdio</a>
