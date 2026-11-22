@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
@@ -21,6 +23,13 @@ export default defineNuxtConfig({
         '@nuxt/scripts',
         '@nuxtjs/tailwindcss',
     ],
+    postcss: {
+        plugins: {
+            // Nuxt's ESM loader requires the explicit Tailwind 3 nesting entry point.
+            'tailwindcss/nesting': false,
+            'tailwindcss/nesting/index.js': {},
+        },
+    },
     googleFonts: {
         families: {
             'Source+Code+Pro': [400, 700],

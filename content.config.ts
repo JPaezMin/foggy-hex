@@ -1,23 +1,32 @@
 import { defineContentConfig, defineCollection } from '@nuxt/content'
 import { z } from 'zod'
 
-export const ShowSchema = z.object({
+const showSchema = z.object({
     slug: z.string(),
     title: z.string(),
     titleSubtitle: z.string().optional(),
     date: z.string(),
     time: z.string(),
     timeLabel: z.string().optional(),
-    timeCasa: z.string().optional(),
-    timeLaut: z.string().optional(),
     venue: z.string(),
     venueAddress: z.string().optional(),
     mapUrl: z.string().url().optional(),
     ticketPriceLabels: z.array(z.string()).optional(),
-    ticketUrl: z.string().url().optional(),
-    ticketUrlCasa: z.string().url().optional(),
+    venueUrl: z.string().optional(),
+    ticketUrl: z.string().optional(),
     posterImage: z.string().optional(),
+    detailsPublic: z.boolean().optional(),
     layoutVariant: z.enum(['split-venues', 'default']).optional(),
+    sessions: z.array(z.object({
+        id: z.string(),
+        venue: z.string(),
+        time: z.string(),
+        ticketUrl: z.string().url().optional(),
+        note: z.string().optional(),
+        supportingArtistId: z.string().optional(),
+        supportingArtistAffiliation: z.string().optional(),
+        supportingArtistRole: z.string().optional(),
+    })).min(1).optional(),
     schedule: z
         .array(
             z.object({
@@ -29,18 +38,17 @@ export const ShowSchema = z.object({
         .optional(),
     bands: z.array(
         z.object({
+            id: z.string().optional(),
             name: z.string(),
             image: z.string(),
             imageCredit: z.string().optional(),
-            bandcamp: z.string().url().optional(),
+            bandcamp: z.string().optional(),
             description: z.string(),
             label: z.string().optional(),
             country: z.string().optional(),
         })
     ),
 })
-
-export type Show = z.infer<typeof ShowSchema>
 
 export default defineContentConfig({
     collections: {
@@ -75,45 +83,7 @@ export default defineContentConfig({
         shows: defineCollection({
             type: 'data',
             source: 'shows/*.md',
-            schema: z.object({
-                slug: z.string(),
-                title: z.string(),
-                titleSubtitle: z.string().optional(),
-                date: z.string(),
-                time: z.string(),
-                timeLabel: z.string().optional(),
-                timeCasa: z.string().optional(),
-                timeLaut: z.string().optional(),
-                venue: z.string(),
-                venueAddress: z.string().optional(),
-                mapUrl: z.string().url().optional(),
-                ticketPriceLabels: z.array(z.string()).optional(),
-                venueUrl: z.string().optional(),
-                ticketUrl: z.string().optional(),
-                ticketUrlCasa: z.string().optional(),
-                posterImage: z.string().optional(),
-                detailsPublic: z.boolean().optional(),
-                layoutVariant: z.enum(['split-venues', 'default']).optional(),
-                schedule: z
-                    .array(
-                        z.object({
-                            title: z.string(),
-                            subtitle: z.string().optional(),
-                            time: z.string(),
-                        })
-                    )
-                    .optional(),
-                bands: z.array(
-                    z.object({
-                        name: z.string(),
-                        image: z.string(),
-                        bandcamp: z.string().optional(),
-                        description: z.string(),
-                        label: z.string().optional(),
-                        country: z.string().optional(),
-                    })
-                ),
-            }),
+            schema: showSchema,
         }),
         agenda: defineCollection({
             type: 'data',

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import EventLayout from '~/layouts/EventLayout.vue'
 
 const route = useRoute()
 const slug = String(route.params.slug)
@@ -49,6 +48,7 @@ const parseEventDate = (date: string, time: string) => {
     if (parts.length !== 3) return date
 
     const [day, month, year] = parts
+    if (!day || !month || !year) return date
     const fullYear = year.length === 2 ? `20${year}` : year
     const isoDate = `${fullYear}-${month.padStart(2, '0')}-${day.padStart(
         2,
@@ -68,6 +68,10 @@ useSeoMeta({
     ogType: 'article',
     twitterCard: 'summary_large_image',
 })
+
+const ticketUrls = show.layoutVariant === 'split-venues'
+    ? (show.sessions ?? []).flatMap((session) => session.ticketUrl ? [session.ticketUrl] : [])
+    : show.ticketUrl ? [show.ticketUrl] : []
 
 useHead({
     script: [
@@ -107,12 +111,12 @@ useHead({
                     url: siteUrl,
                     sameAs: 'https://instagram.com/foggyhexbcn',
                 },
-                offers: show.ticketUrl
-                    ? {
+                offers: ticketUrls.length
+                    ? ticketUrls.map((url) => ({
                           '@type': 'Offer',
-                          url: show.ticketUrl,
+                          url,
                           availability: 'https://schema.org/InStock',
-                      }
+                      }))
                     : undefined,
             }),
         },
@@ -121,5 +125,5 @@ useHead({
 </script>
 
 <template>
-    <EventLayout v-if="event" :event="event" />
+    <EventDetail v-if="event" :event="event" />
 </template>

@@ -103,21 +103,7 @@ const props = defineProps<{
     isExpired?: boolean
 }>()
 
-const formattedDate = computed(() => {
-    if (!props.event?.date) return ''
-
-    const parts = props.event.date.split('-').map(Number)
-    if (parts.length !== 3) return props.event.date // fallback
-
-    const [year, month, day] = parts
-    if (!day || !month || !year) return props.event.date // safeguard
-
-    const dd = String(day).padStart(2, '0')
-    const mm = String(month).padStart(2, '0')
-    const yyyy = String(year)
-
-    return `${dd}/${mm}/${yyyy}`
-})
+const formattedDate = computed(() => formatEventDateShort(props.event.date))
 
 const isExpired = computed(() => Boolean(props.isExpired))
 const isLinkable = computed(
@@ -127,8 +113,7 @@ const isLinkable = computed(
 const titleMain = computed(() =>
     props.event.title
         .replace(/\s*\+\s*$/, '')
-        .split(/\s+\+\s+/)[0]
-        .trim()
+        .split(/\s+\+\s+/)[0]?.trim() ?? ''
 )
 
 const titleSupport = computed(() => {

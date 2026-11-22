@@ -1,6 +1,4 @@
 export default defineNuxtPlugin(() => {
-    if (process.server) return
-
     function grained(ele, opt) {
         const doc = document
         let element = null

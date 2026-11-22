@@ -1,130 +1,54 @@
 <script setup lang="ts">
-interface Band {
-    name: string
-    image: string
-    imageCredit?: string
-    bandcamp?: string
-    description: string
-    label?: string
-    country?: string
-}
+import type { ShowsCollectionItem } from '@nuxt/content'
 
-interface ScheduleItem {
-    title: string
-    subtitle?: string
-    time: string
-}
-
-interface Show {
-    slug: string
-    title: string
-    titleSubtitle?: string
-    date: string
-    time: string
-    timeLabel?: string
-    venue: string
-    venueUrl?: string
-    venueAddress?: string
-    mapUrl?: string
-    ticketPriceLabels?: string[]
-    timeCasa?: string
-    timeLaut?: string
-    ticketUrl?: string
-    ticketUrlCasa?: string
-    posterImage?: string
-    bands: Band[]
-    schedule?: ScheduleItem[]
-    layoutVariant?: 'split-venues' | 'default'
-}
-
-const props = defineProps<{ event: Show }>()
-const show = props.event
-const today = useState('homepage-today', () =>
-    new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
-)
+const props = defineProps<{ event: ShowsCollectionItem }>()
+const eventCalendarDate = useEventCalendarDate()
 const isPast = computed(() => {
-    const [day, month, year] = show.date.split('/')
-    if (!day || !month || !year) return false
-    const fullYear = year.length === 2 ? '20' + year : year
-    return fullYear + '-' + month.padStart(2, '0') + '-' + day.padStart(2, '0') < today.value
+    const eventDate = parseEventCalendarDate(props.event.date)
+    const today = parseEventCalendarDate(eventCalendarDate.value)
+    return Boolean(eventDate && today && eventDate < today)
 })
 
-const isSplitVenueEvent = computed(() => show.layoutVariant === 'split-venues')
+const isSplitVenueEvent = computed(() => props.event.layoutVariant === 'split-venues')
 
-const splitVenueSlots = computed(() => [
-    {
-        time: show.timeCasa || show.time || '18:00',
-        venue: 'Casa Montjuic',
-        note: '+ Taki Onqoy (Warm up DJ set)',
-    },
-    {
-        time: show.timeLaut || show.time || '21:00',
-        venue: 'Laut',
-        note: '+ Francisco Sosa (Live modular set)',
-    },
-])
+const venueSessions = computed(() => props.event.sessions ?? [])
 
-const supportingBand = computed(() =>
-    show.bands.find((band) =>
-        band.name.toLowerCase().includes('francisco sosa')
-    )
+const supportingPerformances = computed(() =>
+    venueSessions.value.flatMap((session) => {
+        const artist = props.event.bands.find((band) =>
+            band.id && band.id === session.supportingArtistId
+        )
+        return artist ? [{ session, artist }] : []
+    })
 )
-const supportingBandCasa = computed(() =>
-    show.bands.find((band) => band.name.toLowerCase().includes('taki onqoy'))
-)
-const supportingBandLaut = supportingBand
 
-const primaryBand = computed(() => show.bands?.[0] ?? null)
+const primaryBand = computed(() => props.event.bands?.[0] ?? null)
 
 const titleParts = computed(() => {
-    if (show.title.includes('+') || show.titleSubtitle) {
+    if (props.event.title.includes('+') || props.event.titleSubtitle) {
         return {
-            main: show.title,
+            main: props.event.title,
             tag: '',
         }
     }
 
-    const match = show.title.match(/^(.*?)(?:\s*\(([^)]*)\))?$/)
+    const match = props.event.title.match(/^(.*?)(?:\s*\(([^)]*)\))?$/)
     return {
-        main: (match?.[1] ?? show.title).trim(),
+        main: (match?.[1] ?? props.event.title).trim(),
         tag: (match?.[2] ?? '').trim(),
     }
 })
 
-const slotTicketUrl = (venue: string) => {
-    const lower = venue.toLowerCase()
-    if (lower.includes('casa')) return show.ticketUrlCasa
-    if (lower.includes('laut')) return show.ticketUrl
-    return show.ticketUrl
-}
+const ticketedVenueSlots = computed(() =>
+    venueSessions.value.filter((slot) => slot.ticketUrl)
+)
 
 const formatEventTime = (time?: string) => {
     if (!time) return ''
     return time.trim().toLowerCase() === 'tbc' ? 'Hora por confirmar' : time
 }
 
-const formattedDate = computed(() => {
-    if (!show.date) return ''
-
-    const parts = show.date.split('/').map(Number)
-    if (parts.length !== 3) return show.date // fallback to raw string
-
-    const [day, month, year] = parts
-    if (!day || !month || !year) return show.date // safeguard
-
-    const fullYear = year < 100 ? 2000 + year : year
-
-    const date = new Date(fullYear, month - 1, day)
-
-    return new Intl.DateTimeFormat('es-ES', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-    })
-        .format(date)
-        .replace(/^\w/, (c) => c.toUpperCase()) // capitalize first letter
-})
+const formattedDate = computed(() => formatEventDateLong(props.event.date))
 </script>
 
 <template>
@@ -135,10 +59,10 @@ const formattedDate = computed(() => {
                 {{ titleParts.main }}
             </h1>
             <p
-                v-if="show.titleSubtitle"
+                v-if="event.titleSubtitle"
                 class="mt-3 font-heading text-2xl leading-tight text-text/80"
             >
-                {{ show.titleSubtitle }}
+                {{ event.titleSubtitle }}
             </p>
             <p
                 v-if="titleParts.tag"
@@ -155,8 +79,8 @@ const formattedDate = computed(() => {
                     {{ formattedDate }}
                 </p>
                 <div
-                    v-for="slot in splitVenueSlots"
-                    :key="slot.venue + slot.time"
+                    v-for="slot in venueSessions"
+                    :key="slot.id"
                     class="flex flex-wrap items-center justify-center gap-2 font-sans text-lg text-center"
                 >
                     <span>{{ formatEventTime(slot.time) }}</span>
@@ -165,10 +89,10 @@ const formattedDate = computed(() => {
                     <span v-if="slot.note" class="text-sm text-text/70">
                         {{ slot.note }}
                     </span>
-                    <template v-if="!isPast && slotTicketUrl(slot.venue)">
+                    <template v-if="!isPast && slot.ticketUrl">
                         <span>-</span>
                         <a
-                            :href="slotTicketUrl(slot.venue)" target="_blank" rel="noopener noreferrer"
+                            :href="slot.ticketUrl" target="_blank" rel="noopener noreferrer"
                             class="underline decoration-inherit underline-offset-4 hover:text-accent transition"
                         >
                             Entradas
@@ -298,9 +222,9 @@ const formattedDate = computed(() => {
                             )
                         </p>
                     </div>
-                    <div
+                    <ArtistBiography
                         class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
-                        v-html="primaryBand.description"
+                        :html="primaryBand.description"
                     />
                 </div>
 
@@ -309,144 +233,59 @@ const formattedDate = computed(() => {
             </div>
         </section>
         <section v-else class="grid event-programme">
-            <div
-                v-for="(band, i) in event.bands"
-                :key="band.name"
-                class="relative grid grid-cols-1 event-row-gap lg:grid-cols-12 items-start default-event-row"
-            >
-                <!-- Image -->
-                <div
-                    class="lg:col-span-5 flex justify-center default-image-col"
-                    :class="{ 'lg:order-2': i % 2 === 1, 'flex-col': band.imageCredit }"
-                >
-                    <div class="overflow-hidden default-image-frame" :class="{ 'portrait-image': band.imageCredit }">
-                        <img
-                            :src="band.image"
-                            :alt="band.name"
-                            class="w-full h-full object-cover transition duration-500 default-image"
-                        />
-                    </div>
-                    <p v-if="band.imageCredit" class="mt-2 text-center text-sm">{{ band.imageCredit }}</p>
-                </div>
-
-                <!-- Text -->
-                <div
-                    class="lg:col-span-7 default-text-col"
-                    :class="i % 2 === 1 ? 'lg:order-1 lg:text-right' : ''"
-                >
-                    <div>
-                        <h2 class="font-heading text-3xl relative inline-block">
-                            <template v-if="band.bandcamp">
-                                <a
-                                    :href="band.bandcamp"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
-                                >
-                                    {{ band.name }}
-                                </a>
-                            </template>
-                            <template v-else>
-                                <span class="border-text pb-1 decoration-1 underline-offset-4">
-                                    {{ band.name }}
-                                </span>
-                            </template>
-                        </h2>
-                        <p
-                            v-if="band.label || band.country"
-                            class="mt-1 font-sans text-base text-text/60"
-                        >
-                            (
-                            <span v-if="band.label">{{ band.label }}</span>
-                            <span v-if="band.label && band.country"> / </span>
-                            <span v-if="band.country">{{ band.country }}</span>
-                            )
-                        </p>
-                    </div>
-                    <div
-                        class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
-                        :class="i % 2 === 1 ? 'lg:ml-auto' : ''"
-                        v-html="band.description"
-                    />
-                </div>
-
-                <!-- Accent bar -->
-                <div
-                    class="absolute top-0 h-full w-1 bg-accent"
-                    :class="i % 2 === 1 ? 'right-0' : 'left-0'"
-                />
-            </div>
+            <EventArtistBio
+                v-for="(artist, index) in event.bands"
+                :key="artist.name"
+                :artist="artist"
+                :reversed="index % 2 === 1"
+            />
         </section>
 
         <!-- Split-venue supporting artists -->
         <section
-            v-if="isSplitVenueEvent && supportingBandCasa && supportingBandLaut"
+            v-if="isSplitVenueEvent && supportingPerformances.length"
             class="grid gap-12 md:gap-16 md:grid-cols-2 w-full max-w-5xl mx-auto"
             id="split-venue-support"
         >
-            <div class="space-y-4 w-full">
+            <div
+                v-for="{ session, artist } in supportingPerformances"
+                :key="session.id"
+                class="space-y-4 w-full"
+            >
                 <div class="flex flex-col items-start gap-1.5">
                     <h3
                         class="font-heading text-[26px] leading-tight text-accent m-0 underline decoration-1 underline-offset-4 decoration-current"
                     >
-                        Casa Montjuic
+                        {{ session.venue }}
                     </h3>
                     <span
                         class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 support-subtitle"
                     >
-                        Taki Onqoy (Foggy Hex / Kiosk Radio)
+                        {{ artist.name }}<template v-if="session.supportingArtistAffiliation"> ({{ session.supportingArtistAffiliation }})</template>
                     </span>
-                    <span class="text-sm font-sans text-text/60">
-                        Warm up DJ Set
-                    </span>
-                </div>
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-sm">
-                    <img
-                        :src="supportingBandCasa.image"
-                        :alt="supportingBandCasa.name"
-                        class="w-full h-full object-cover"
-                    />
-                </div>
-                <div
-                    class="font-sans text-base leading-relaxed description-html text-left w-full"
-                    v-html="supportingBandCasa.description"
-                />
-            </div>
-            <div class="space-y-4 w-full">
-                <div class="flex flex-col items-start gap-1.5">
-                    <h3
-                        class="font-heading text-[26px] leading-tight text-accent m-0 underline decoration-1 underline-offset-4 decoration-current"
-                    >
-                        Laut
-                    </h3>
-                    <span
-                        class="inline-flex items-baseline text-sm font-semibold tracking-[0.03em] text-text/80 support-subtitle"
-                    >
-                        Francisco Sosa (Barcelona Modular Society / Restless Music)
-                    </span>
-                    <span class="text-sm font-sans text-text/60">
-                        Live modular set
+                    <span v-if="session.supportingArtistRole" class="text-sm font-sans text-text/60">
+                        {{ session.supportingArtistRole }}
                     </span>
                 </div>
                 <div class="w-full aspect-[4/3] overflow-hidden rounded-sm">
                     <img
-                        :src="supportingBandLaut.image"
-                        :alt="supportingBandLaut.name"
+                        :src="artist.image"
+                        :alt="artist.name"
                         class="w-full h-full object-cover"
-                    />
+                    >
                 </div>
-                <div
+                <ArtistBiography
                     class="font-sans text-base leading-relaxed description-html text-left w-full"
-                    v-html="supportingBandLaut.description"
+                    :html="artist.description"
                 />
             </div>
         </section>
-        <footer v-if="!isPast && (event.ticketUrl || event.ticketUrlCasa)"
+        <footer v-if="!isPast && (isSplitVenueEvent ? ticketedVenueSlots.length : event.ticketUrl)"
             class="border-t border-text/30 pt-5 text-center">
             <template v-if="isSplitVenueEvent">
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a v-for="slot in splitVenueSlots.filter((slot) => slotTicketUrl(slot.venue))"
-                        :key="slot.venue" :href="slotTicketUrl(slot.venue)" class="event-ticket">
+                    <a v-for="slot in ticketedVenueSlots"
+                        :key="slot.id" :href="slot.ticketUrl" target="_blank" rel="noopener noreferrer" class="event-ticket">
                         {{ slot.venue }} · Entradas
                     </a>
                 </div>
@@ -487,9 +326,7 @@ const formattedDate = computed(() => {
     gap: var(--fh-space-4);
 }
 
-.event-row-gap {
-    gap: var(--fh-space-2) var(--fh-space-3);
-}
+
 
 .event-ticket {
     display: inline-flex;
@@ -541,50 +378,6 @@ const formattedDate = computed(() => {
 .support-subtitle {
     white-space: normal;
     word-break: break-word;
-}
-
-.default-image-frame {
-    width: min(100%, 36rem);
-    margin: 0 auto;
-    aspect-ratio: 4 / 3;
-}
-
-.default-image-frame.portrait-image {
-    aspect-ratio: 2 / 3;
-    height: auto;
-    min-height: 0;
-}
-
-.default-image {
-    object-position: center;
-}
-
-@media (min-width: 640px) {
-    .default-image-frame {
-        aspect-ratio: 3 / 2;
-    }
-}
-
-@media (min-width: 1024px) {
-    .default-event-row {
-        align-items: stretch;
-    }
-
-    .default-image-col {
-        align-items: stretch;
-        justify-content: stretch;
-    }
-
-    .default-image-frame {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: auto;
-        min-height: clamp(360px, 42vw, 620px);
-    }
-
-    .default-text-col {
-        min-width: 0;
-    }
 }
 
 /* Split-venue template adjustments for landscape orientation */

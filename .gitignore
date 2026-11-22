@@ -38,3 +38,6 @@ favicons/
 fonts/
 /images/
 spaces/
+
+# Nitro generated metadata
+/nitro.json

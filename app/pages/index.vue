@@ -1,22 +1,5 @@
 <script setup lang="ts">
-import type { FutureCollectionItem } from '@nuxt/content'
-
-type FutureGridEvent = FutureCollectionItem & {
-    isExpired: boolean
-    sortTimestamp: number
-    artists?: string[]
-    featuredPoster?: string
-    detailsPublic?: boolean
-}
-
-type ArchiveEvent = {
-    slug?: string
-    title: string
-    date?: string | null
-    venue: string
-    image: string
-    sortTimestamp: number
-}
+import type { ArchivedEvent } from '~/types/events'
 
 const { data: futureEvents } = await useAsyncData('future-events', () =>
     queryCollection('future').order('date', 'ASC').all()
@@ -38,112 +21,15 @@ useSeoMeta({
     twitterCard: 'summary_large_image',
 })
 
-const getMadridToday = () =>
-    new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
+const eventCalendarDate = useEventCalendarDate()
 
-// Hydrate with the prerendered date before applying the visitor's current day.
-const today = useState('homepage-today', getMadridToday)
-const startOfToday = computed(() => new Date(`${today.value}T00:00:00`))
-let dateRefreshTimer: ReturnType<typeof setInterval> | undefined
-onMounted(() => {
-    today.value = getMadridToday()
-    dateRefreshTimer = setInterval(() => {
-        today.value = getMadridToday()
-    }, 60_000)
-})
-onUnmounted(() => clearInterval(dateRefreshTimer))
-
-const parseEventDate = (dateString?: string | null): Date | null => {
-    if (!dateString) return null
-    const raw = dateString.trim()
-    if (!raw) return null
-
-    if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
-        const iso = raw.split('T')[0] ?? ''
-        const parts = iso.split('-').map((part) => part.trim())
-        if (parts.length === 3) {
-            const [y, m, d] = parts
-            const year = Number.parseInt(y, 10)
-            const month = Number.parseInt(m, 10)
-            const day = Number.parseInt(d, 10)
-            if (
-                Number.isInteger(year) &&
-                Number.isInteger(month) &&
-                Number.isInteger(day) &&
-                year >= 1900 &&
-                year <= 3000 &&
-                month >= 1 &&
-                month <= 12 &&
-                day >= 1 &&
-                day <= 31
-            ) {
-                const parsed = new Date(year, month - 1, day)
-                if (!Number.isNaN(parsed.getTime())) {
-                    return parsed
-                }
-            }
-        }
-    }
-
-    if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(raw)) {
-        const [dd, mm, yy] = raw.split('/').map((part) => part.trim())
-        const day = Number.parseInt(dd, 10)
-        const month = Number.parseInt(mm, 10)
-        const year = Number.parseInt(yy.length === 2 ? `20${yy}` : yy, 10)
-        if (
-            Number.isInteger(year) &&
-            Number.isInteger(month) &&
-            Number.isInteger(day) &&
-            year >= 1900 &&
-            year <= 3000 &&
-            month >= 1 &&
-            month <= 12 &&
-            day >= 1 &&
-            day <= 31
-        ) {
-            const parsed = new Date(year, month - 1, day)
-            if (!Number.isNaN(parsed.getTime())) {
-                return parsed
-            }
-        }
-    }
-
-    const fallback = new Date(raw)
-    if (Number.isNaN(fallback.getTime())) {
-        return null
-    }
-    const fallbackYear = fallback.getFullYear()
-    if (fallbackYear < 1900 || fallbackYear > 3000) {
-        return null
-    }
-    return fallback
-}
-
-const futureGridEvents = computed<FutureGridEvent[]>(() => {
-    const source = futureEvents.value ?? []
-    return source
-        .map((event) => {
-            const eventDate = parseEventDate(event.date)
-            const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
-            const isExpired = Boolean(eventDate && eventDate < startOfToday.value)
-            return {
-                ...event,
-                isExpired,
-                sortTimestamp: timestamp,
-            }
-        })
-        .filter((event) => !event.isExpired)
-        .sort((a, b) => {
-            if (a.sortTimestamp !== b.sortTimestamp) {
-                return a.sortTimestamp - b.sortTimestamp
-            }
-            return a.title.localeCompare(b.title)
-        })
-})
+const upcomingEvents = computed(() =>
+    getUpcomingEvents(futureEvents.value ?? [], eventCalendarDate.value)
+)
 
 
-const upcomingEvent = computed(() => futureGridEvents.value[0] ?? null)
-const otherUpcomingEvents = computed(() => futureGridEvents.value.slice(1, 3))
+const upcomingEvent = computed(() => upcomingEvents.value[0] ?? null)
+const otherUpcomingEvents = computed(() => upcomingEvents.value.slice(1, 3))
 const upcomingTitle = computed(() =>
     [upcomingEvent.value?.title, upcomingEvent.value?.titleSubtitle].filter(Boolean).join(' ')
 )
@@ -177,91 +63,23 @@ const upcomingTiming = computed(() =>
     upcomingEvent.value ? showTiming(upcomingEvent.value.slug) : undefined
 )
 
-const archivedEvents = computed<ArchiveEvent[]>(() => {
-    const publicShows = new Set(showIndex.value?.map(({ slug }) => slug))
-    const expiredFutureEvents = (futureEvents.value ?? [])
-        .map((event) => {
-            const eventDate = parseEventDate(event.date)
-            const sortTimestamp = eventDate?.getTime() ?? 0
-            return {
-                slug: event.detailsPublic !== false && publicShows.has(event.slug) ? event.slug : undefined,
-                title: event.archiveTitle || event.title,
-                date: event.date,
-                venue: event.venue,
-                image: event.image,
-                sortTimestamp,
-                isExpired: Boolean(eventDate && eventDate < startOfToday.value),
-            }
-        })
-        .filter((event) => event.isExpired)
-
-    const historicalEvents = (pastEvents.value ?? [])
-        .filter((event) => {
-            const eventDate = parseEventDate(event.date)
-            return !eventDate || eventDate < startOfToday.value
-        })
-        .map((event) => {
-            const eventDate = parseEventDate(event.date)
-            return {
-                slug: event.slug && publicShows.has(event.slug) ? event.slug : undefined,
-                title: event.title,
-                date: event.date,
-                venue: event.venue,
-                image: event.image,
-                sortTimestamp: eventDate?.getTime() ?? 0,
-            }
-        })
-
-    return [...expiredFutureEvents, ...historicalEvents].sort((a, b) => {
-        if (a.sortTimestamp !== b.sortTimestamp) {
-            return b.sortTimestamp - a.sortTimestamp
-        }
-        return a.title.localeCompare(b.title)
-    })
-})
+const archivedEvents = computed(() => getArchivedEvents(
+    futureEvents.value ?? [],
+    pastEvents.value ?? [],
+    showIndex.value?.map(({ slug }) => slug) ?? [],
+    eventCalendarDate.value,
+))
 
 const archiveYears = computed(() => {
-    const years = new Map<string, ArchiveEvent[]>()
+    const years = new Map<string, ArchivedEvent[]>()
     for (const event of archivedEvents.value) {
-        const year = String(parseEventDate(event.date)?.getFullYear() ?? 'Sin fecha')
+        const year = String(parseEventCalendarDate(event.date)?.getUTCFullYear() ?? 'Sin fecha')
         if (!years.has(year)) years.set(year, [])
         years.get(year)?.push(event)
     }
     return Array.from(years, ([year, events]) => ({ year, events }))
 })
 
-const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return ''
-
-    const raw = dateString.trim()
-
-    // Handle ISO (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ)
-    if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
-        const iso = raw.split('T')[0] ?? ''
-        const parts = iso.split('-').map((part) => part.trim())
-        if (parts.length === 3) {
-            const [y, m, d] = parts
-            const formattedDay = d.padStart(2, '0')
-            const formattedMonth = m.padStart(2, '0')
-            return formattedDay + '/' + formattedMonth + '/' + y
-        }
-    }
-
-    // Handle DD/MM/YYYY or DD/MM/YY
-    const parts = raw.split('/').map((part) => part.trim())
-    if (parts.length === 3) {
-        const [dd, mm, yy] = parts
-        if (dd && mm && yy) {
-            const fullYear = yy.length === 2 ? '20' + yy : yy
-            const formattedDay = dd.padStart(2, '0')
-            const formattedMonth = mm.padStart(2, '0')
-            return formattedDay + '/' + formattedMonth + '/' + fullYear
-        }
-    }
-
-    // Fallback: return as-is
-    return raw
-}
 </script>
 
 <template>
@@ -305,7 +123,7 @@ const formatDate = (dateString?: string | null): string => {
                         <p id="upcoming-heading" class="font-sans text-sm uppercase tracking-widest">Próximo concierto</p>
                         <h2 class="featured-title font-heading leading-tight">{{ upcomingTitle }}</h2>
                         <p class="font-sans text-lg">
-                            <time :datetime="upcomingEvent.date">{{ formatDate(upcomingEvent.date) }}</time>
+                            <time :datetime="upcomingEvent.date">{{ formatEventDateShort(upcomingEvent.date) }}</time>
                             <span v-if="upcomingTiming">
                                 · {{ upcomingTiming.timeLabel ? upcomingTiming.timeLabel + ' ' : '' }}<time :datetime="upcomingTiming.time">{{ upcomingTiming.time }}</time>
                             </span>
@@ -412,7 +230,7 @@ const formatDate = (dateString?: string | null): string => {
                                 </div>
                                 <h4 class="archive-card-title font-heading" :title="event.title">{{ event.title }}</h4>
                                 <p class="archive-card-meta font-sans text-sm text-gray-700">
-                                    <span>{{ formatDate(event.date) }}</span> — {{ event.venue }}
+                                    <span>{{ formatEventDateShort(event.date) }}</span> — {{ event.venue }}
                                 </p>
                                 <NuxtLink v-if="event.slug" :to="'/events/' + event.slug"
                                     :aria-label="'Más información sobre ' + event.title"
