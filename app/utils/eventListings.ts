@@ -1,80 +1,64 @@
-import type { FutureCollectionItem, PastCollectionItem } from '@nuxt/content'
-import type { ArchivedEvent, UpcomingEvent } from '~/types/events'
+import type { PastCollectionItem } from '@nuxt/content'
+import type { ArchivedEvent, EventSummary, UpcomingEvent } from '~/types/events'
 import { parseEventCalendarDate } from './eventDates'
 
-// Includes today's concerts and keeps undated listings after dated ones.
+// Includes today's concerts and keeps undated shows after dated ones.
 export function getUpcomingEvents(
-    futureEvents: readonly FutureCollectionItem[],
+    shows: readonly EventSummary[],
     calendarDate: string,
 ): UpcomingEvent[] {
     const startOfToday = new Date(calendarDate + 'T00:00:00Z')
-    const source = futureEvents
-    return source
-        .map((event) => {
-            const eventDate = parseEventCalendarDate(event.date)
-            const timestamp = eventDate?.getTime() ?? Number.POSITIVE_INFINITY
-            const isExpired = Boolean(eventDate && eventDate < startOfToday)
+    return shows
+        .map((show) => {
+            const eventDate = parseEventCalendarDate(show.date)
             return {
-                ...event,
-                isExpired,
-                sortTimestamp: timestamp,
+                ...show,
+                title: show.listingTitle || show.title,
+                date: eventDate?.toISOString().slice(0, 10) ?? show.date,
+                sortTimestamp: eventDate?.getTime() ?? Number.POSITIVE_INFINITY,
             }
         })
-        .filter((event) => !event.isExpired)
-        .sort((a, b) => {
-            if (a.sortTimestamp !== b.sortTimestamp) {
-                return a.sortTimestamp - b.sortTimestamp
-            }
-            return a.title.localeCompare(b.title)
-        })
+        .filter((event) => event.sortTimestamp >= startOfToday.getTime())
+        .sort((a, b) => a.sortTimestamp - b.sortTimestamp || a.title.localeCompare(b.title))
 }
 
-// Builds the concert archive from expired announcements and historical events, newest first.
+// Combines expired complete shows with card-only history, newest first.
 export function getArchivedEvents(
-    futureEvents: readonly FutureCollectionItem[],
+    shows: readonly EventSummary[],
     pastEvents: readonly PastCollectionItem[],
-    publicShowSlugs: readonly string[],
     calendarDate: string,
 ): ArchivedEvent[] {
     const startOfToday = new Date(calendarDate + 'T00:00:00Z')
-    const publicShows = new Set(publicShowSlugs)
-    const expiredFutureEvents = futureEvents
-        .map((event) => {
-            const eventDate = parseEventCalendarDate(event.date)
-            const sortTimestamp = eventDate?.getTime() ?? 0
-            return {
-                slug: event.detailsPublic !== false && publicShows.has(event.slug) ? event.slug : undefined,
-                title: event.archiveTitle || event.title,
-                date: event.date,
-                venue: event.venue,
-                image: event.image,
-                sortTimestamp,
-                isExpired: Boolean(eventDate && eventDate < startOfToday),
-            }
-        })
-        .filter((event) => event.isExpired)
+    const showSlugs = new Set(shows.map((show) => show.slug))
+    const archivedShows = shows.flatMap((show) => {
+        const date = parseEventCalendarDate(show.date)
+        if (!date || date >= startOfToday) return []
 
-    const historicalEvents = pastEvents
-        .filter((event) => {
-            const eventDate = parseEventCalendarDate(event.date)
-            return !eventDate || eventDate < startOfToday
-        })
-        .map((event) => {
-            const eventDate = parseEventCalendarDate(event.date)
-            return {
-                slug: event.slug && publicShows.has(event.slug) ? event.slug : undefined,
-                title: event.title,
-                date: event.date,
-                venue: event.venue,
-                image: event.image,
-                sortTimestamp: eventDate?.getTime() ?? 0,
-            }
-        })
-
-    return [...expiredFutureEvents, ...historicalEvents].sort((a, b) => {
-        if (a.sortTimestamp !== b.sortTimestamp) {
-            return b.sortTimestamp - a.sortTimestamp
-        }
-        return a.title.localeCompare(b.title)
+        return [{
+            slug: show.slug,
+            title: show.archiveTitle || show.listingTitle || show.title,
+            date: show.date,
+            venue: show.archiveVenue || show.venue,
+            image: show.image,
+            sortTimestamp: date.getTime(),
+        }]
     })
+    const historicalEvents = pastEvents.flatMap((event) => {
+        if (event.slug && showSlugs.has(event.slug)) return []
+
+        const date = parseEventCalendarDate(event.date)
+        if (date && date >= startOfToday) return []
+
+        return [{
+            title: event.title,
+            date: event.date,
+            venue: event.venue,
+            image: event.image,
+            sortTimestamp: date?.getTime() ?? 0,
+        }]
+    })
+
+    return [...archivedShows, ...historicalEvents].sort((a, b) =>
+        b.sortTimestamp - a.sortTimestamp || a.title.localeCompare(b.title)
+    )
 }

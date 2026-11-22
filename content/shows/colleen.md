@@ -1,6 +1,8 @@
 ---
-detailsPublic: true
 slug: 'colleen'
+image: "/images/shows/past/colleen.jpg"
+archiveTitle: "Colleen presenta: \"Libres antes del final\""
+archiveVenue: "Doble concierto: Casa Montjuic + Laut"
 title: 'Colleen presenta: "Libres antes del final" (doble concierto)'
 date: '26/04/26'
 time: '18:00'

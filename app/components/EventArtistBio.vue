@@ -31,35 +31,7 @@ defineProps<{
             class="lg:col-span-7 default-text-col"
             :class="reversed ? 'lg:order-1 lg:text-right' : ''"
         >
-            <div>
-                <h2 class="font-heading text-3xl relative inline-block">
-                    <template v-if="artist.bandcamp">
-                        <a
-                            :href="artist.bandcamp"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
-                        >
-                            {{ artist.name }}
-                        </a>
-                    </template>
-                    <template v-else>
-                        <span class="border-text pb-1 decoration-1 underline-offset-4">
-                            {{ artist.name }}
-                        </span>
-                    </template>
-                </h2>
-                <p
-                    v-if="artist.label || artist.country"
-                    class="mt-1 font-sans text-base text-text/60"
-                >
-                    (
-                    <span v-if="artist.label">{{ artist.label }}</span>
-                    <span v-if="artist.label && artist.country"> / </span>
-                    <span v-if="artist.country">{{ artist.country }}</span>
-                    )
-                </p>
-            </div>
+            <EventArtistHeading :artist="artist" />
             <ArtistBiography
                 class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
                 :class="reversed ? 'lg:ml-auto' : ''"

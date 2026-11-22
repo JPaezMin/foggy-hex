@@ -1,5 +1,8 @@
 ---
 slug: 'ben-bertrand'
+image: "/images/shows/future/ben-bertrand.jpg"
+featuredPoster: "/images/shows/future/ben-bertrand-poster.jpg"
+archiveTitle: "Ben Bertrand (BE) + Jk + DJ Blue Flowers"
 title: 'Ben Bertrand (BE) +'
 titleSubtitle: 'Presentación sello Angle Mort: DJ Blue Flowers (BCN) + JK (BCN)'
 date: '31/10/26'
@@ -7,7 +10,6 @@ time: '20:45'
 venue: 'Sinestesia'
 venueUrl: 'https://www.instagram.com/sinestesia.barcelona'
 ticketUrl: 'https://entradium.com/events/ben-bertrand-be-presentacion-sello-angle-mort-dj-blue-flowers-bcn-jk-bcn'
-detailsPublic: true
 schedule:
     - title: 'Puertas'
       time: '20:15'

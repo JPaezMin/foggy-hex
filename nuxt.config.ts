@@ -1,14 +1,9 @@
-import process from 'node:process'
+const siteUrl = 'https://foggyhexbcn.com'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
-    ...(process.env.FOGGY_HEX_PREVIEW_DB ? {
-        content: {
-            _localDatabase: { type: 'sqlite', filename: process.env.FOGGY_HEX_PREVIEW_DB },
-        },
-    } : {}),
-    devtools: { enabled: !process.env.FOGGY_HEX_PREVIEW_DB },
+    devtools: { enabled: true },
     css: [
         '~/assets/scss/main.scss',
         '~/assets/scss/grain.scss',
@@ -46,7 +41,7 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            googleCalendarApiKey: process.env.NUXT_PUBLIC_GOOGLE_CALENDAR_API_KEY,
+            siteUrl,
         },
     },
     app: {
@@ -67,11 +62,11 @@ export default defineNuxtConfig({
                 // Open Graph defaults
                 { property: 'og:site_name', content: 'Foggy Hex' },
                 { property: 'og:type', content: 'website' },
-                { property: 'og:url', content: 'https://foggyhexbcn.com/' },
+                { property: 'og:url', content: `${siteUrl}/` },
                 {
                     property: 'og:image',
                     content:
-                        'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
+                        `${siteUrl}/favicons/favicon-1024x1024.png`,
                 },
                 { property: 'og:locale', content: 'es_ES' },
                 { name: 'twitter:card', content: 'summary_large_image' },

@@ -53,3 +53,16 @@ export function formatEventDateShort(value?: string | null): string {
         timeZone: 'UTC',
     }).format(date)
 }
+
+// Search engines infer the timezone from the event's physical location.
+// Unknown times remain date-only so metadata does not invent a start time.
+export function formatEventStartDate(value: string, time?: string): string | undefined {
+    const date = parseEventCalendarDate(value)
+    if (!date) return undefined
+
+    const isoDate = date.toISOString().slice(0, 10)
+    const localTime = time?.trim()
+    return localTime && /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(localTime)
+        ? `${isoDate}T${localTime}:00`
+        : isoDate
+}

@@ -1,10 +1,6 @@
 <template>
     <article
         class="bg-white title-box p-4 grid items-center gap-[var(--fh-space-2)] relative event-card"
-        :class="[
-            isExpired ? 'opacity-60' : '',
-        ]"
-        :aria-disabled="isExpired ? 'true' : 'false'"
     >
         <!-- Image -->
         <div class="w-full aspect-[4/3] sm:aspect-square overflow-hidden relative">
@@ -12,49 +8,27 @@
                 :src="event.image"
                 :alt="event.title"
                 class="w-full h-full object-cover object-[50%_63%] transition duration-300"
-                :class="isExpired ? 'grayscale scale-105' : ''"
-            />
-            <div
-                v-if="isExpired"
-                class="absolute inset-0 bg-black/65 text-white font-heading text-sm uppercase tracking-[0.3em] flex items-center justify-center"
             >
-                Evento pasado
-            </div>
         </div>
 
         <!-- Text content -->
         <div class="flex-1 flex flex-col text-left">
-            <NuxtLink
-                v-if="isLinkable"
-                :to="`/events/${event.slug}`"
-                class="event-title-link"
-            >
-                <span class="event-title-primary font-heading text-accent">
-                    {{ titleMain }}
-                </span>
-                <span
-                    v-if="titleSupport"
-                    class="event-title-support font-sans text-text/70"
+            <h3 class="event-card-heading">
+                <NuxtLink
+                    :to="`/events/${event.slug}`"
+                    class="event-title-link"
                 >
-                    {{ titleSupport }}
-                </span>
-            </NuxtLink>
-            <div
-                v-else
-                class="event-title-link"
-                :class="isExpired ? 'opacity-70' : ''"
-                aria-disabled="true"
-            >
-                <span class="event-title-primary font-heading text-accent">
-                    {{ titleMain }}
-                </span>
-                <span
-                    v-if="titleSupport"
-                    class="event-title-support font-sans text-text/70"
-                >
-                    {{ titleSupport }}
-                </span>
-            </div>
+                    <span class="event-title-primary font-heading text-accent">
+                        {{ titleMain }}
+                    </span>
+                    <span
+                        v-if="titleSupport"
+                        class="event-title-support font-sans text-text/70"
+                    >
+                        {{ titleSupport }}
+                    </span>
+                </NuxtLink>
+            </h3>
 
             <!-- Subtitle (date + venue, fixed height) -->
             <p class="event-meta font-sans text-text/70">
@@ -72,20 +46,21 @@
                 </a>
                 <span v-else>{{ event.venue }}</span>
             </p>
-            <NuxtLink v-if="isLinkable" :to="'/events/' + event.slug"
+            <NuxtLink
+                :to="'/events/' + event.slug"
                 :aria-label="'Más información sobre ' + event.title"
                 class="inline-flex self-start min-h-11 items-center underline underline-offset-4">
                 Más información
             </NuxtLink>
             <a
-                v-if="event.ticketUrl && !isExpired"
+                v-if="event.ticketUrl"
                 :href="event.ticketUrl" target="_blank" rel="noopener noreferrer"
                 class="inline-flex self-start mt-4 px-5 py-2 border-2 border-text text-text font-sans text-sm hover:bg-text hover:!text-background transition"
             >
                 Entradas
             </a>
             <span
-                v-else-if="!isExpired"
+                v-else
                 class="inline-flex self-start mt-4 px-5 py-2 border-2 border-text/30 text-text/55 font-sans text-sm"
             >
                 Entradas próximamente
@@ -95,20 +70,14 @@
 </template>
 
 <script setup lang="ts">
-import type { FutureCollectionItem } from '@nuxt/content'
+import type { UpcomingEvent } from '~/types/events'
 
 const props = defineProps<{
-    event: FutureCollectionItem
-    timing?: { time: string; timeLabel?: string }
-    isExpired?: boolean
+    event: UpcomingEvent
 }>()
 
 const formattedDate = computed(() => formatEventDateShort(props.event.date))
-
-const isExpired = computed(() => Boolean(props.isExpired))
-const isLinkable = computed(
-    () => !isExpired.value && props.event.detailsPublic !== false
-)
+const timing = computed(() => /^\d{2}:\d{2}$/.test(props.event.time) ? props.event : undefined)
 
 const titleMain = computed(() =>
     props.event.title
@@ -143,6 +112,13 @@ const titleSupport = computed(() => {
     .event-card {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
     }
+}
+
+.event-card-heading {
+    display: flow-root;
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
 }
 
 .event-title-link {

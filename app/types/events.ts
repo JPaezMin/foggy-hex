@@ -1,7 +1,12 @@
-import type { FutureCollectionItem, ShowsCollectionItem } from '@nuxt/content'
+import type { ShowsCollectionItem } from '@nuxt/content'
 
-export type UpcomingEvent = FutureCollectionItem & {
-    isExpired: boolean
+export type EventSummary = Pick<ShowsCollectionItem,
+    | 'slug' | 'title' | 'titleSubtitle' | 'listingTitle'
+    | 'archiveTitle' | 'archiveVenue' | 'date' | 'time' | 'timeLabel'
+    | 'venue' | 'venueUrl' | 'image' | 'featuredPoster' | 'ticketUrl'
+>
+
+export type UpcomingEvent = EventSummary & {
     sortTimestamp: number
 }
 

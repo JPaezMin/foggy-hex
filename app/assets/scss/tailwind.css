@@ -5,4 +5,9 @@
   .title-box {
     @apply border border-t border-current px-4 py-2;
   }
+
+  .section-heading {
+      font-size: clamp(1.9rem, 1.55rem + 1.2vw, 2.25rem);
+      margin-bottom: var(--fh-space-2);
+  }
 }

@@ -1,5 +1,7 @@
 ---
 slug: 'les-halles'
+image: "/images/shows/future/les-halles.jpg"
+featuredPoster: "/images/shows/future/halles-blue.png"
 title: 'Les Halles (FR) + Edu Pons (BCN)'
 date: '04/12/26'
 time: '19:00'
@@ -11,7 +13,6 @@ mapUrl: 'https://www.google.com/maps/search/?api=1&query=Carrer+de+la+Legalitat+
 ticketPriceLabels:
     - 'Anticipadas · 10,24 €'
     - 'En Taquilla · 12 €'
-detailsPublic: true
 bands:
     - name: 'Les Halles'
       label: 'Stroom, Not Not Fun, Constellation Tatsu'

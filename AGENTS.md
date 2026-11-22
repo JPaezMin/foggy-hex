@@ -73,9 +73,8 @@ C:\Users\lowtr\Documents\FoggyHex\web\foggy-hex
 
 ## Content Structure
 
-- `content/future`: future event cards/listing data.
-- `content/past`: past event cards/listing data.
-- `content/shows`: detailed event pages.
+- `content/past`: historical cards without detail pages.
+- `content/shows`: complete concerts; source for upcoming cards, detail pages and automatic archive entries.
 - `content/agenda`: agenda entries.
 - `public/images`: static public images.
 - `app/assets`: bundled assets and SCSS.

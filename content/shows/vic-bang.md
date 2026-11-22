@@ -1,6 +1,7 @@
 ---
-detailsPublic: true
 slug: 'vic-bang'
+image: "/images/shows/past/vic-bang.jpg"
+archiveTitle: "Vic Bang (ARG) + Los Cuatro Amigos (VGO)"
 title: 'Vic Bang + Los Cuatro Amigos'
 date: '09/07/26'
 time: '20:45'

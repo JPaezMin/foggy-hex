@@ -2,7 +2,7 @@
     <header id="page-top" tabindex="-1" class="w-full bg-zinc-100 site-header">
         <div class="container mx-auto site-header-grid">
             <NuxtLink to="/" class="site-logo">
-                <img src="/assets/images/logo.svg" alt="Foggy Hex BCN" />
+                <img src="/assets/images/logo.svg" alt="Foggy Hex BCN">
             </NuxtLink>
             <MainNavigation class="site-header-nav" />
             <a

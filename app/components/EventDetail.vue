@@ -54,7 +54,7 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
 <template>
     <article class="container mx-auto event-article" :class="{ 'event-article-split': isSplitVenueEvent }">
         <!-- Header -->
-        <header class="text-center" id="event-header">
+        <header id="event-header" class="text-center">
             <h1 class="event-title font-heading leading-tight text-accent">
                 {{ titleParts.main }}
             </h1>
@@ -72,8 +72,8 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
             </p>
             <div
                 v-if="isSplitVenueEvent"
-                class="mt-5 space-y-2"
                 id="split-venue-slots"
+                class="mt-5 space-y-2"
             >
                 <p class="font-heading text-xl font-bold text-accent">
                     {{ formattedDate }}
@@ -102,7 +102,7 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
                 </div>
             </div>
             <template v-else>
-                <p class="font-sans text-lg mt-5" id="event-meta">
+                <p id="event-meta" class="font-sans text-lg mt-5">
                     <span class="font-heading text-xl font-bold text-accent">
                         {{ formattedDate }}
                     </span>
@@ -131,7 +131,7 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
                 <p v-else-if="!isPast" class="mt-6 font-sans text-base">Entradas próximamente</p>
             </template>
             <p v-if="isPast" class="mt-4 font-heading text-sm uppercase tracking-widest">Concierto pasado</p>
-            <div v-if="event.schedule?.length" class="mt-10" id="event-schedule">
+            <div v-if="event.schedule?.length" id="event-schedule" class="mt-10">
                 <div
                     class="max-w-2xl mx-auto border border-text/10 bg-white/80 shadow-sm"
                 >
@@ -172,56 +172,28 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
                 :src="event.posterImage"
                 :alt="`Cartel de ${event.title}`"
                 class="w-full max-w-[520px] h-auto object-contain"
-            />
+            >
         </section>
 
         <!-- Bands -->
         <section v-if="isSplitVenueEvent && primaryBand" class="grid event-programme">
             <div
-                class="relative grid grid-cols-1 lg:grid-cols-12 gap-4 items-start feature-row"
+                class="feature-row"
             >
                 <!-- Image -->
-                <div class="lg:col-span-5 flex justify-center feature-image-col">
+                <div class="feature-image-col">
                     <div class="overflow-hidden feature-image-frame">
                         <img
                             :src="primaryBand.image"
                             :alt="primaryBand.name"
                             class="w-full object-cover feature-image"
-                        />
+                        >
                     </div>
                 </div>
 
                 <!-- Text -->
-                <div class="lg:col-span-7 feature-text-col">
-                    <div>
-                        <h2 class="font-heading text-3xl relative inline-block">
-                            <template v-if="primaryBand.bandcamp">
-                                <a
-                                    :href="primaryBand.bandcamp"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="border-text pb-1 hover:border-accent transition-colors underline decoration-inherit decoration-1 underline-offset-4"
-                                >
-                                    {{ primaryBand.name }}
-                                </a>
-                            </template>
-                            <template v-else>
-                                <span class="border-text pb-1 decoration-1 underline-offset-4">
-                                    {{ primaryBand.name }}
-                                </span>
-                            </template>
-                        </h2>
-                        <p
-                            v-if="primaryBand.label || primaryBand.country"
-                            class="mt-1 font-sans text-base text-text/60"
-                        >
-                            (
-                            <span v-if="primaryBand.label">{{ primaryBand.label }}</span>
-                            <span v-if="primaryBand.label && primaryBand.country"> / </span>
-                            <span v-if="primaryBand.country">{{ primaryBand.country }}</span>
-                            )
-                        </p>
-                    </div>
+                <div class="feature-text-col">
+                    <EventArtistHeading :artist="primaryBand" />
                     <ArtistBiography
                         class="font-sans text-base leading-relaxed max-w-prose mt-[var(--fh-space-2)] description-html"
                         :html="primaryBand.description"
@@ -244,8 +216,8 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
         <!-- Split-venue supporting artists -->
         <section
             v-if="isSplitVenueEvent && supportingPerformances.length"
-            class="grid gap-12 md:gap-16 md:grid-cols-2 w-full max-w-5xl mx-auto"
             id="split-venue-support"
+            class="grid gap-12 md:gap-16 md:grid-cols-2 w-full max-w-5xl mx-auto"
         >
             <div
                 v-for="{ session, artist } in supportingPerformances"
@@ -280,12 +252,20 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
                 />
             </div>
         </section>
-        <footer v-if="!isPast && (isSplitVenueEvent ? ticketedVenueSlots.length : event.ticketUrl)"
-            class="border-t border-text/30 pt-5 text-center">
+        <footer
+            v-if="!isPast && (isSplitVenueEvent ? ticketedVenueSlots.length : event.ticketUrl)"
+            class="border-t border-text/30 pt-5 text-center"
+        >
             <template v-if="isSplitVenueEvent">
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a v-for="slot in ticketedVenueSlots"
-                        :key="slot.id" :href="slot.ticketUrl" target="_blank" rel="noopener noreferrer" class="event-ticket">
+                    <a
+                        v-for="slot in ticketedVenueSlots"
+                        :key="slot.id"
+                        :href="slot.ticketUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="event-ticket"
+                    >
                         {{ slot.venue }} · Entradas
                     </a>
                 </div>
@@ -354,7 +334,19 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
     word-break: break-word;
 }
 
-/* Split-venue feature image defaults (mobile & portrait) */
+.feature-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+.feature-image-col {
+    display: flex;
+    justify-content: center;
+}
+
 .feature-image-frame {
     display: flex;
     justify-content: center;
@@ -380,38 +372,33 @@ const formattedDate = computed(() => formatEventDateLong(props.event.date))
     word-break: break-word;
 }
 
-/* Split-venue template adjustments for landscape orientation */
-@media (orientation: landscape) {
-    /* Collapse to single column and place text first, image after */
+@media (min-width: 1024px) and (orientation: portrait) {
     .feature-row {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .feature-image-col {
+        grid-column: span 5;
     }
 
     .feature-text-col {
-        order: 2 !important; /* text below the image */
-        text-align: center !important;
+        grid-column: span 7;
+    }
+}
+
+@media (orientation: landscape) {
+    .feature-text-col {
+        text-align: center;
         max-width: 720px;
         margin: 16px auto 0;
     }
 
-    .feature-image-col {
-        order: 1 !important; /* image first */
-        justify-content: center !important;
-    }
-
-    /* Center image and reduce width so it sits under text */
     .feature-image-frame {
-        display: flex;
-        justify-content: center;
-        width: 100%;
         max-width: clamp(300px, 60vw, 600px);
-        margin: 0 auto;
-        aspect-ratio: 4 / 3;
     }
 
-    /* Hide the vertical accent bar to avoid awkward spacing */
     .feature-accent {
-        display: none !important;
+        display: none;
     }
 }
 </style>

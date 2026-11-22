@@ -12,7 +12,7 @@
 <script setup>
 const { $grained } = useNuxtApp()
 const route = useRoute()
-const siteUrl = 'https://foggyhexbcn.com'
+const { siteUrl } = useRuntimeConfig().public
 
 const canonicalUrl = computed(() => {
     const path = route.path === '/' ? '/' : route.path.replace(/\/$/, '')

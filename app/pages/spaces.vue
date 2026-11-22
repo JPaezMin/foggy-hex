@@ -1,4 +1,6 @@
 <script setup>
+
+const { siteUrl } = useRuntimeConfig().public
 useSeoMeta({
     title: 'Espacios autogestionados en Barcelona | Foggy Hex',
     description:
@@ -6,8 +8,8 @@ useSeoMeta({
     ogTitle: 'Espacios autogestionados en Barcelona | Foggy Hex',
     ogDescription:
         'Salas y espacios independientes de Barcelona vinculados a la programación de Foggy Hex.',
-    ogImage: 'https://foggyhexbcn.com/favicons/favicon-1024x1024.png',
-    ogUrl: 'https://foggyhexbcn.com/spaces',
+    ogImage: `${siteUrl}/favicons/favicon-1024x1024.png`,
+    ogUrl: `${siteUrl}/spaces`,
     twitterCard: 'summary_large_image',
 })
 </script>

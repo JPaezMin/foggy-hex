@@ -1,6 +1,7 @@
 ---
-detailsPublic: true
 slug: 'poirier-volt-jgg'
+image: "/images/shows/past/romeo-poirier.jpg"
+archiveTitle: "Roméo Poirier (BE) + Pablo Volt y J.G.G (BCN) + Taki Onqoy (DJ Set)"
 title: 'Roméo Poirier (BE) + Pablo Volt y J.G.G. (BCN)'
 date: '14/11/25'
 time: '20:00'

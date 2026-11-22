@@ -1,5 +1,7 @@
 ---
 slug: 'l-jacobs'
+image: "/images/shows/future/l-jacobs-nana-vaneessen.jpg"
+listingTitle: "L. Jacobs (blickwinkel / BE)"
 title: 'L. Jacobs'
 date: '30/01/27'
 time: '20:15'
@@ -8,7 +10,6 @@ venue: 'Sinestesia'
 ticketPriceLabels:
     - 'Anticipadas · 10,24 €'
     - 'En Taquilla · 12 €'
-detailsPublic: true
 bands:
     - name: 'L. Jacobs'
       label: 'blickwinkel'
